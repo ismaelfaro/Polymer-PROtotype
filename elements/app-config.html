@@ -1,0 +1,50 @@
+<script>
+
+	Polymer({
+		is: 'app-config',
+		properties:{
+			appName : {
+				type: String,
+				value: 'filter.ly'
+			},
+			logo:  {
+				type: String,
+				value:'images/logo.png'
+			},
+			APIUrl	: {
+				type:Object,
+				value: function(){
+					return {
+							'prod'	: 'http://prod.filter.ly/',
+							'qa'	: 'http://qa.filter.ly/',
+							'dev'	: 'http://127.0.0.1:3000/'
+					}
+				}
+			},
+			UrlBase : String,
+			serverMode	: {
+				type 	: String,
+				value	: 'dev',
+				observer: '_changeMode'
+			},
+			config: {
+				type: Object,
+				notify: true,
+			},
+		},
+		_changeMode: function(){	
+			this.UrlBase = this.APIUrl[this.serverMode];
+			console.log(this.UrlBase);
+		},
+		ready: function(){
+			this.config = {
+				appName: this.appName,
+				logo: this.logo,
+				UrlBase: this.UrlBase,
+			};
+			
+			console.info(this.configuration);
+		}
+	});
+
+</script>

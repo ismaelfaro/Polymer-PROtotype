@@ -1,0 +1,78 @@
+{
+  "responseData": {
+    "query": "google",
+    "entries": [ {
+      "url": "http://news.google.com/news?pz\u003d1\u0026cf\u003dall\u0026ned\u003dus\u0026hl\u003den\u0026topic\u003dh\u0026num\u003d3\u0026output\u003drss",
+      "title": " Google  News",
+      "contentSnippet": "Comprehensive up-to-date news coverage, aggregated from sources all over the  world by  Google  News.",
+      "link": "https://news.google.com/",
+      "img": "/images/db/1.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id\u003dUCK8sQmJBp8GCxrOtXWBpyEA",
+      "title": " Google  - YouTube",
+      "contentSnippet": "Experience the world of  Google  on our official YouTube channel. Watch videos  about our products, technology, company happenings and more. Subscribe to ...",
+      "link": "https://www.youtube.com/user/Google",
+      "img": "/images/db/2.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://googleblog.blogspot.com/feeds/posts/default",
+      "title": "Official  Google  Blog",
+      "contentSnippet": "Insights from Googlers into our products, technology, and the  Google  culture.",
+      "link": "http://googleblog.blogspot.com/",
+      "img": "/images/db/3.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://feedproxy.google.com/typepad/alleyinsider/silicon_alley_insider",
+      "title": " Google  core businesses eroding - Business Insider",
+      "contentSnippet": "16 hours ago  ...  In just the past two days, announcements from Facebook, Pinterest, and Microsoft  contribute an erosion of  Google s  core business: Search and ...",
+      "link": "http://www.businessinsider.com/google-core-businesses-eroding-2015-6",
+      "img": "/images/db/4.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://feedproxy.google.com/typepad/alleyinsider/silicon_alley_insider",
+      "title": "Steve Jurvetson:  Google  Free Ride  Uber competitor with self  ... ",
+      "contentSnippet": "13 hours ago  ...  Steve Jurvetson hinted that  Google  could be launching an app called 'Free Ride' , which will eventually use its autonomous car army.",
+      "link": "http://www.businessinsider.com/steve-jurvetson-google-free-ride-uber-competitor-with-self-driving-cars-2015-6",
+      "img": "/images/db/5.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://feeds.arstechnica.com/arstechnica/index/",
+      "title": " Google  dev apologizes after Photos app tags black people as  ... ",
+      "contentSnippet": "18 hours ago  ...  Last month,  Google  rolled out an updated version of its Photos app that had been  divorced from Google+ and bolstered with a few slight ...",
+      "link": "http://arstechnica.com/business/2015/06/google-dev-apologizes-after-photos-app-tags-black-people-as-gorillas/",
+      "img": "/images/db/6.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "https://www.yahoo.com/tech/rss",
+      "title": " Google  Photos Mislabels 2 Black Americans as Gorillas - Yahoo",
+      "contentSnippet": "1 day ago  ...   Google  Photos  image recognition feature accidentally labeled two black friends  as 'gorillas.'",
+      "link": "https://www.yahoo.com/tech/google-photos-mislabels-two-black-americans-as-122793782784.html",
+      "img": "/images/db/7.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://feeds.mashable.com/Mashable",
+      "title": " Google  - Mashable",
+      "contentSnippet": "brightcove.createExperiences();  Google  is a search engine -- it scours the web  for the best responses to text queries. It was founded in 1998 by Sergey Brin and  ...",
+      "link": "http://mashable.com/category/google/",
+      "img": "/images/db/8.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://feeds.feedburner.com/google/think",
+      "title": "Think with  Google ",
+      "contentSnippet": "Think With  Google . undefined ... The  Google  Trends tool uses real-time search  data to help you gauge consumer search behaviors over time. View all tools › ...",
+      "link": "https://www.thinkwithgoogle.com/",
+      "img": "/images/db/9.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    }, {
+      "url": "http://www.wired.com/feed/",
+      "title": "Paired With AI and VR,  Google  Earth Will Change the Planet | WIRED",
+      "contentSnippet": "1 day ago  ...  Caption: Through an extension to  Google s  Chrome web browser called Earth  View, you can view 'the most beautiful and striking' satellite ...",
+      "link": "http://www.wired.com/2015/06/paired-ai-vr-google-earth-will-change-planet/",
+      "img": "/images/db/10.jpg",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+    } ]
+  },
+  "responseDetails": null,
+  "responseStatus": 200
+}

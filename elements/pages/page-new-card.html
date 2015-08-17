@@ -1,0 +1,48 @@
+
+<dom-module id="page-new-card">
+  <style>
+    :host {
+      display: block;
+	  font-weight: 300;
+    }
+
+	h1 {
+		font-weight: 300;
+	}
+	  
+    paper-material{
+      padding: 10px;
+      background-color: white;
+    }
+
+    paper-button{
+      background-color: var(--accent-color);
+      color: white;
+      margin-top: 10px;
+      float: right;
+    }
+
+  </style>
+  <template>
+    <paper-material elevation="1"  on-tap="openNew" index="{{index}}" >
+        <a href="{{item.link}}" target="_blank"> <paper-button raised>Read more</paper-button> </a>
+      <h1>{{item.title}}</h1>
+      <span>{{item.contentSnippet}}</span>
+  
+    </paper-material>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "page-new-card",
+    properties: {
+      item: {
+        type: Object
+      }
+    },
+	openNew:function(){
+	 	console.log(this.index);
+	}
+  });
+</script>

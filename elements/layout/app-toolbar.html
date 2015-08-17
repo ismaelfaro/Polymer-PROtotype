@@ -1,0 +1,69 @@
+<dom-module id="app-toolbar">
+
+<!--	<link rel="import" type="css" href="../filterly-app.css">-->
+
+	<template>	
+			<style>
+			:host {
+				display: block;
+			}
+				
+			#mainToolbar .middle {
+				margin-left: 48px;
+			}
+
+			#mainToolbar.has-shadow .middle {
+				font-size: 20px;
+				padding-bottom: 0;
+				margin-left: 48px;
+			}
+
+			#mainToolbar .middle {
+			margin-left: 48px;
+			}
+
+			#mainToolbar.has-shadow .middle {
+				font-size: 20px;
+				padding-bottom: 0;
+				margin-left: 48px;
+			}
+
+			#logo{
+				width: 180px;
+				height: 50px;
+			}
+
+		</style>
+		 <paper-toolbar id="mainToolbar">
+				  <paper-icon-button id="paperToggle" on-tap="_touchme" icon="menu" paper-drawer-toggle></paper-icon-button>
+				  <span class="flex"></span>
+				  <!-- Application name -->
+				  <div class="middle paper-font-display2 app-name">
+					<div id="logo">
+						<iron-image style="width:50%; height:50%; padding-top: 50px; margin-top: 14px;" sizing="cover"  src="/images/logo.png" ></iron-image>  
+					</div>
+				  </div>
+				  <!-- Application sub title -->
+				  <div class="bottom title"></div>
+
+        </paper-toolbar>
+		
+	</template>
+</dom-module>
+
+<script>
+
+	Polymer({
+		is: 'app-toolbar',
+		properties:{
+			paperDrawerToggle:{
+				type: Boolean,
+				notify: true	
+			}	
+		},
+		_touchme:function(){
+			this.domHost._openMenu();
+		}
+	});
+
+</script>

@@ -1,0 +1,80 @@
+<dom-module id="categorie-table">
+  <style>
+    :host {
+      display: block;
+    }
+
+    paper-button {
+
+      margin: 20px;
+      background: var(--accent-color);
+      color: white;
+    }
+
+    aha-table::shadow table{
+      width: 80%;
+      color: #333;
+      border-spacing: 0;
+      border-collapse: collapse;
+      font-size: 14px;
+      border: 1px solid #a0cfef;
+
+    }
+
+    aha-table::shadow tfoot td{
+      background-color: #eee;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border: 1px solid #a0cfef;
+
+    }
+
+  </style>
+  <template>
+
+    <aha-table id="categorieTableView"
+          selectable
+          copyable
+          removable
+          movable
+          seachable
+          pagesize="20"
+          pagesizetitle="Page Size:"
+          summarytitle="Viewing">
+
+        <aha-column name="Categorie"
+            type="string"
+            sortable
+            searchable
+            editable
+            placeholder="Name"
+            default=""
+            hint="a hint in column header">
+        </aha-column>
+
+        <aha-column name="Link"
+            type="string"
+            sortable
+            searchable
+            editable
+            placeholder="URL"
+            default=""
+            hint="a hint in column header">
+        </aha-column>
+
+    </aha-table>
+    <paper-button raised onclick="categorieTableView.create();">add categorie</paper-button>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "categorie-table",
+    ready: function(){
+      console.info('graph');
+
+    }
+  });
+
+
+</script>

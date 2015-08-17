@@ -1,0 +1,63 @@
+<dom-module id="page-login">
+	<template>
+		<style>
+		
+		</style>
+		<iron-ajax
+		  id="ajax"
+		  url=""
+		  method="post"
+		  handle-as="json"
+		  on-response="hresponse"
+		  debounce-duration="300">
+		</iron-ajax>
+
+		<div class="background">
+
+			<paper-material elevation="1"  on-tap="openNew" index="{{index}}" >
+				<div on-tap="_login">aaaaaa</div>
+				<paper-button></paper-button>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="email" label="email"  value="{{user.email}}" ></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="pwd" label="password" type="password" value="{{user.pwd}}" ></paper-input>
+				</div>
+			</paper-material>
+			
+		</div>
+		
+	</template>
+</dom-module>
+
+<script>
+	
+	Polymer({
+		is: 'page-login',
+		_login: function(){
+			
+			this.$.ajax.body= 
+			
+//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
+//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
+			 this.$.ajax.url = "http://qa.filter.ly/api/1/user/authnative";
+    		 this.$.ajax.body = {
+					email:this.userEmail,
+					pwd: this.pwd,
+					pwd2: null,
+					timezone: 'Europe/Berlin',
+					fromSignup: false
+			};
+    		
+			this.$.ajax.generateRequest();	
+		},
+		hresponse: function(demo){
+			console.log(demo);
+		}	
+			
+		
+	});
+
+</script>
