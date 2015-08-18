@@ -21,10 +21,10 @@
 					}
 				}
 			},
-			UrlBase : String,
+			urlBase : String,
 			serverMode	: {
 				type 	: String,
-				value	: 'dev',
+				value	: 'prod',
 				observer: '_changeMode'
 			},
 			config: {
@@ -34,16 +34,14 @@
 		},
 		_changeMode: function(){	
 			this.UrlBase = this.APIUrl[this.serverMode];
-			console.log(this.UrlBase);
 		},
 		ready: function(){
 			this.config = {
 				appName: this.appName,
 				logo: this.logo,
-				UrlBase: this.UrlBase,
+				urlBase: this.UrlBase,
 			};
 			
-			console.info(this.configuration);
 		}
 	});
 

@@ -309,9 +309,16 @@
 											checked$="{{getValue(row,column.name)}}" />
 									</template>
 								</div>
-							 	<div
+                                <div
 									on-click="click"
-									class$="{{getReaderClass(row, column.name)}}">{{readContent(row, column)}}</div>
+									class$="{{getReaderClass(row, column.name)}}">
+                                    <template is="dom-if" if="{{!isEqual(column.type, 'html')}}">
+                                        <span>{{readContent(row, column)}}</span>
+                                    </template>
+                                    <template is="dom-if" if="{{isEqual(column.type, 'html')}}">
+                                        <aha-html-echo html="{{readContent(row, column)}}"></aha-html-echo>
+                                    </template>
+                                </div>
 							</td>
 						</template>
 					</tr>
@@ -620,7 +627,7 @@
 			if (this.get('meta').length === 0) {
 				this.dataChanged(this.get('data'), []);
 			}
-			if (this.dataset.sizelist) {
+			if (this.dataset && this.dataset.sizelist) {
 				this.sizelist = JSON.parse(this.dataset.sizelist);
 			}
 			//Show element when it's ready.
@@ -648,9 +655,13 @@
 			}
 			return classList.join(' ');
 		},
-		readContent: function(row, column) {
+		readContent: function(row, column) {            
 			var datum = row[column.name];
-			if (datum === null || datum === undefined
+            if (column.renderer !== null && column.renderer !== undefined
+                    && typeof column.renderer === 'string' && column.renderer.trim().length > 0) {
+                datum = this._render(column.renderer, datum, row, column);
+            }
+            if (datum === null || datum === undefined
 				|| typeof datum === 'string' && datum.trim().length === 0) {
 					var options = column.options;
 					var blank = column.placeholder;
@@ -1096,7 +1107,37 @@
 			e.target.classList.toggle('search');
 			e.target.classList.toggle('nosearch');
 			this.$$('#filter').classList.toggle('hide');
-		}
+		},
+        _render: function(name, datum, row, col) {
+            var args = [ datum, row, col, this ];
+            var displayValue = this._invokeRenderer(datum, name, args);
+            if (displayValue !== null) {                
+                return displayValue;                
+            }
+            displayValue = this._invokeRenderer(row, name, args);
+            if (displayValue !== null) {                
+                return displayValue;                
+            }
+            
+            displayValue = this._invokeRenderer(this, name, args);
+            if (displayValue !== null) {                
+                return displayValue;                
+            }
+            
+            displayValue = this._invokeRenderer(this.domHost, name, args);
+            if (displayValue === null || displayValue === undefined) {
+                displayValue = datum;
+            }
+            return displayValue;
+        },
+        _invokeRenderer: function (b, name, args) {
+            var fn = b[name];
+            if (fn) {                
+                return fn.apply(this, args || Polymer.nar);
+            }
+            return null;
+        }
+
 	});
 </script>
 
@@ -1181,7 +1222,50 @@
 			searchplaceholder: {
 				type: String,
 				value: ""
-			}
+			},
+            //renderer - function called to display value
+            renderer: {
+                type: String
+            }            
 		}
 	});
+</script>
+
+
+
+
+<!--
+/**
+ * @module aha-html-echo
+ *
+ *
+ * Generates html elements dynamically, inspired by sortable-table
+ * https://github.com/stevenrskelton/sortable-table
+ *
+ * WARNING! Potential XSS vulnerability if `html` comes from an untrusted source
+ *
+ *    <aha-html-echo
+ *         html="html">
+ *    </aha-html-echo>
+ *
+ * @class aha-html-echo
+ * @author Michael Heinrichs<michael.heinrichs@canoo.com>
+ *
+ */
+-->
+<script>
+    Polymer({
+        is: "aha-html-echo",
+        properties: {
+            //column name
+            html: {
+                type: String,
+                value: "",
+                observer: "onHtmlChanged"
+            }
+        },
+        onHtmlChanged: function() {
+            this.innerHTML = this.html;
+        }
+    });
 </script>

@@ -1,0 +1,52 @@
+<dom-module id="app-logo-screen">
+
+	<template>	
+		<style>
+			:host {
+				display: block;
+				color: white;
+				font-weight: 100;
+			}
+
+			#logo{
+				height: 60px; 
+				width: auto;
+			}
+			#tittle{
+				
+				font-stretch: 300;
+				font-size: 30px;
+				padding-bottom: 8px;
+			}
+			#description{
+				font-stretch: 300;
+				font-size: 20px;
+			}
+
+		</style>
+
+		<div id="tittle">{{title}}</div>
+		<img id="logo" src="{{logo}}" alt="filter.ly">
+		<div id="description">{{description}}</div>
+
+	</template>
+</dom-module>
+
+<script>
+
+	Polymer({
+		is: 'app-logo-screen',
+		properties:{
+			title		: String,
+			description	: String,
+			logo		: {
+				type:String,
+				observer: "dale"
+			}
+		},
+		dale: function(mira){
+			console.log(mira);
+		}
+	});
+
+</script>

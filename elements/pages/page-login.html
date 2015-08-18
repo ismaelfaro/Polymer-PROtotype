@@ -1,63 +1,106 @@
 <dom-module id="page-login">
 	<template>
 		<style>
-		
-		</style>
-		<iron-ajax
-		  id="ajax"
-		  url=""
-		  method="post"
-		  handle-as="json"
-		  on-response="hresponse"
-		  debounce-duration="300">
-		</iron-ajax>
-
-		<div class="background">
-
-			<paper-material elevation="1"  on-tap="openNew" index="{{index}}" >
-				<div on-tap="_login">aaaaaa</div>
-				<paper-button></paper-button>
-
-				<div class="horizontal center-justified layout">
-					<paper-input id="email" label="email"  value="{{user.email}}" ></paper-input>
-				</div>
-
-				<div class="horizontal center-justified layout">
-					<paper-input id="pwd" label="password" type="password" value="{{user.pwd}}" ></paper-input>
-				</div>
-			</paper-material>
+			:host {
+				display: block;
+			}
 			
+			app-logo-screen {
+				padding: 32px;
+			}
+			
+			#login {
+				position: absolute;
+				left: 0px;
+				right: 0px;
+				bottom: 0px;
+				padding: 32px;
+			}
+			
+			#login > .buttons {
+				margin-top: 16px;
+			}
+			
+			paper-input {
+				--paper-input-container-color: white;
+				--paper-input-container-focus-color: yellow;
+				--paper-input-container-invalid-color: orange;
+				--paper-input-container-input-color: white;
+				width: 100%;
+			}
+			
+			paper-button {
+				font-weight: 100;
+				color: white;
+				background-color: rgba(255, 255, 255, 0.2);
+				width: 100%;
+			}
+		</style>
+
+		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
+
+		<app-logo-screen title="Login" description="Login" logo="images/logo-app.png"></app-logo-screen>
+
+		<div id="login">
+
+			<div class="horizontal center-justified layout">
+				<paper-input id="email" label="email" value="{{user.email}}"></paper-input>
+			</div>
+
+			<div class="horizontal center-justified layout">
+				<paper-input id="pwd" label="password" type="password" value="{{user.pwd}}"></paper-input>
+			</div>
+
+			<div class="horizontal center-justified layout buttons">
+				<paper-button on-tap="login"> login </paper-button>
+				<paper-button on-tap="register"> register </paper-button>
+			</div>
+
 		</div>
-		
+
 	</template>
 </dom-module>
 
 <script>
-	
 	Polymer({
 		is: 'page-login',
-		_login: function(){
-			
-			this.$.ajax.body= 
-			
-//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
-//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
-			 this.$.ajax.url = "http://qa.filter.ly/api/1/user/authnative";
-    		 this.$.ajax.body = {
-					email:this.userEmail,
-					pwd: this.pwd,
-					pwd2: null,
-					timezone: 'Europe/Berlin',
-					fromSignup: false
-			};
-    		
-			this.$.ajax.generateRequest();	
-		},
-		hresponse: function(demo){
-			console.log(demo);
-		}	
-			
-		
-	});
+		properties: {
+			config: {
+				type: Object,
+				observer: 'dale'
+			},
+			page: {
+				type: String,
+				notify: true
+			}
 
+		},
+		login: function () {
+
+			//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
+			//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
+
+			this.$.ajax.url = this.config.urlBase + "api/1/user/authnative";
+			this.$.ajax.body = {
+				email: this.userEmail,
+				pwd: this.pwd,
+				pwd2: null,
+				timezone: 'Europe/Berlin',
+				fromSignup: false
+			};
+
+			this.$.ajax.generateRequest();
+		},
+		hresponse: function (demo) {
+			console.log(demo);
+			//TODO: check user and update login to true
+		},
+		register: function () {
+			this.page = 'register';
+		},
+		dale: function () {
+			console.log(this.config);
+		}
+
+	});
 </script>
