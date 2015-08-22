@@ -139,6 +139,7 @@ Attribute           | Options                   | Default               | Descri
 `data-choices`      | *Array*                   | []                    | options for select dropdown, in editing and searching.
 `hint`              | *String*                  | ''                    | this text will be displayed at the column header for instruction.
 `searchplaceholder` | *String*                  | ''                    | this text will be displayed in search filter input box.
+`renderer`          | *String*                  | undefined             | function name to format the object being displayed
 
 
 ## Browser Compatability

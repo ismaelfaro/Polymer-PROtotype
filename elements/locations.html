@@ -1,0 +1,30 @@
+<script>
+	var _globalLocations = {
+
+		allLocations: {
+			type: Object,
+			value: {
+				'es': {
+					appTittle: 'Filter.ly',
+					appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
+					tittleLogin: 'Acceso',
+
+				},
+				'en': {
+					appTittle: 'Filter.ly',
+					appDescription: 'our solution to help you keep up with the news that you care about',
+					tittleLogin: 'Login',
+				}
+			}
+		},
+		defaultLang: {
+			type: String,
+			observer: '_defaultLocation'
+		},
+		location: {
+			type: Object,
+			calculates: '_defaultLocation'
+		}
+
+	}
+</script>

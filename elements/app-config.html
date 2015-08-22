@@ -1,50 +1,49 @@
 <script>
+	appConfig = {
+		properties: {
 
-	Polymer({
-		is: 'app-config',
-		properties:{
-			appName : {
+			appName: {
 				type: String,
 				value: 'filter.ly'
 			},
-			logo:  {
+			logo: {
 				type: String,
-				value:'images/logo.png'
+				value: 'images/logo.png'
 			},
-			APIUrl	: {
-				type:Object,
-				value: function(){
+			APIUrl: {
+				type: Object,
+				value: function () {
 					return {
-							'prod'	: 'http://prod.filter.ly/',
-							'qa'	: 'http://qa.filter.ly/',
-							'dev'	: 'http://127.0.0.1:3000/'
+						'prod': 'http://prod.filter.ly/',
+						'qa': 'http://qa.filter.ly/',
+						'dev': 'http://127.0.0.1:3000/'
 					}
 				}
 			},
-			UrlBase : String,
-			serverMode	: {
-				type 	: String,
-				value	: 'dev',
+			urlBase: String,
+			serverMode: {
+				type: String,
+				value: 'dev',
 				observer: '_changeMode'
 			},
 			config: {
 				type: Object,
-				notify: true,
-			},
+				value: function () {
+					return {
+						appName: this.appName,
+						logo: this.logo,
+						urlBase: this.UrlBase,
+					};
+				}
+			}
 		},
-		_changeMode: function(){	
+		_changeMode: function () {
 			this.UrlBase = this.APIUrl[this.serverMode];
-			console.log(this.UrlBase);
 		},
-		ready: function(){
-			this.config = {
-				appName: this.appName,
-				logo: this.logo,
-				UrlBase: this.UrlBase,
-			};
-			
-			console.info(this.configuration);
+		devcon: function (texto) {
+			if (this.serverMode === 'dev') {
+				console.info(texto);
+			}
 		}
-	});
-
+	}
 </script>
