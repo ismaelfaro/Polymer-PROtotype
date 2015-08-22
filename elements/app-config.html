@@ -20,7 +20,23 @@
 					}
 				}
 			},
-			urlBase: String,
+			API: {
+				type: Object,
+				value: function () {
+					return {
+						'authnative': this.urlBase + 'api/1/user/authnative',
+						'register': this.urlBase + 'api/1/user/register',
+						'resetPwd': this.urlBase + 'TODO:',
+						'readNews': this.urlBase + 'TODO:',
+						'readProfile': this.urlBase + 'TODO:',
+						'addUrl': this.urlBase + 'TODO:'
+					}
+				}
+			},
+			urlBase: {
+				type:String,
+				value: ''
+			},
 			serverMode: {
 				type: String,
 				value: 'dev',

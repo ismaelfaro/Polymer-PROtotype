@@ -80,11 +80,8 @@
 
 		},
 		login: function () {
-
-			//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
-			//			 this.$.ajax.url = "http://prod.filter.ly/api/1/user/authnative";
-
-			this.$.ajax.url = this.config.urlBase + "api/1/user/authnative";
+			console.info(this.config);
+			this.$.ajax.url = this.config.API['authnative'];
 			this.$.ajax.body = {
 				email: this.userEmail,
 				pwd: this.pwd,
