@@ -1,24 +1,83 @@
 <dom-module id="page-splash">
 	<template>
 		<style>
-		
-		</style>
-		
-		<div class="background">
-
-			<div on-tap="_login">splash</div>
+			:host {
+				display: block;
+			}
 			
+			app-logo-screen {
+				padding: 32px;
+			}
+			
+			#login {
+				position: absolute;
+				left: 0px;
+				right: 0px;
+				bottom: 0px;
+				padding: 32px;
+			}
+			
+			#login > .buttons {
+				margin-top: 16px;
+			}
+			
+			paper-input {
+				--paper-input-container-color: white;
+				--paper-input-container-focus-color: yellow;
+				--paper-input-container-invalid-color: orange;
+				--paper-input-container-input-color: white;
+				width: 100%;
+			}
+			
+			paper-button {
+				font-weight: 100;
+				color: white;
+				background-color: rgba(255, 255, 255, 0.2);
+				width: 100%;
+			}
+		</style>
+
+		<app-logo-screen title=" " description="{{location.appDescription}}" logo="images/logo-app.png"></app-logo-screen>
+
+		<div id="login">
+
+			<div class="horizontal center-justified layout buttons">
+				<paper-button on-tap="bLogin"> login </paper-button>
+				<paper-button on-tap="bRegister"> register </paper-button>
+			</div>
+
 		</div>
-		
+
 	</template>
 </dom-module>
 
 <script>
-	
 	Polymer({
 		is: 'page-splash',
-		
-		
-	});
+		properties: {
+			config: {
+				type: Object,
+				observer: 'dale'
+			},
+			page: {
+				type: String,
+				notify: true
+			}
+		},
+		bRegister: function(){
+			console.log('bRegister');
+			this.page = "register";
+		},
+		bLogin: function(){
+			console.log('bLogin');
+			this.page = "login";
+		},
+		dale: function () {
+			console.log(this.config);
+		},
+		ready: function(){
+			console.info('----'+APPLocation.defaultLang+'------');
+		}
 
+	});
 </script>

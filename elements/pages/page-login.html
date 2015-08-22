@@ -39,9 +39,11 @@
 
 		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
 
-		<app-logo-screen title="Login" description="Login" logo="images/logo-app.png"></app-logo-screen>
+		<app-logo-screen title="Login" logo="images/logo-app.png"></app-logo-screen>
 
 		<div id="login">
+
+			<app-social-buttons></app-social-buttons>
 
 			<div class="horizontal center-justified layout">
 				<paper-input id="email" label="email" value="{{user.email}}"></paper-input>
@@ -55,8 +57,10 @@
 				<paper-button on-tap="login"> login </paper-button>
 				<paper-button on-tap="register"> register </paper-button>
 			</div>
-
-		</div>
+			
+			<app-footer-buttons page="{{page}}"></app-footer-buttons>
+			
+			</div>
 
 	</template>
 </dom-module>
@@ -64,10 +68,10 @@
 <script>
 	Polymer({
 		is: 'page-login',
+		behaviors: [appConfig, appLocation],
 		properties: {
 			config: {
-				type: Object,
-				observer: 'dale'
+				type: Object
 			},
 			page: {
 				type: String,
@@ -92,14 +96,11 @@
 			this.$.ajax.generateRequest();
 		},
 		hresponse: function (demo) {
-			console.log(demo);
+//			console.log(demo);
 			//TODO: check user and update login to true
 		},
 		register: function () {
 			this.page = 'register';
-		},
-		dale: function () {
-			console.log(this.config);
 		}
 
 	});

@@ -1,5 +1,6 @@
 <link rel="import" href="../styles/app-theme.html">
 <link rel="import" href="layout/app-toolbar.html">
+<link rel="import" href="app-locations.html">
 <link rel="import" href="app-config.html">
 
 <dom-module id="app-filterly">
@@ -13,39 +14,42 @@
 		}
 		
 		iron-pages {
-			
 			height: 100%;
 		}
 		
-		#page{
+		#page {
 			background-image: url(../images/flower.jpg);
 			background-size: cover;
 			color: var(--text-primary-color);
-			
 		}
-		
 	</style>
 
 	<template>
 
-		<app-config id="config" server-mode="{{serverMode}}" config="{{configuration}}"></app-config>
+		<!--		<app-config id="config" server-mode="{{serverMode}}" config="{{configuration}}"></app-config>-->
 
 		<template id="loginpages" is="dom-if" if="{{!loginUser}}">
 
 			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
-			
+
+				<section data-route="splash">
+					<page-splash page="{{route}}"></page-splash>
+				</section>
+
 				<section data-route="login">
-					<page-login config="{{configuration}}" user="{{loginUser}}"></page-login>
+					<page-login user="{{loginUser}}" page="{{route}}"></page-login>
 				</section>
 
 				<section data-route="register">
-					register
-					<page-register config="{{configuration}}"></page-register>
+					<page-register page="{{route}}"></page-register>
 				</section>
 
 				<section data-route="resetpassword">
-					reset password
-					<page-resetpassword config="{{configuration}}"></page-resetpassword>
+					<page-resetpassword page="{{route}}"></page-resetpassword>
+				</section>
+
+				<section data-route="terms">
+					<page-terms page="{{route}}"></page-terms>
 				</section>
 
 			</iron-pages>
@@ -89,7 +93,7 @@
 
 					<!-- Main Toolbar -->
 
-					<!--       	<app-toolbar id="mainToolbar"></app-toolbar>-->
+					<!--  <app-toolbar id="mainToolbar"></app-toolbar>-->
 
 					<paper-toolbar id="mainToolbar">
 
@@ -108,7 +112,7 @@
 					<!-- Main Content -->
 					<div class="content">
 						<iron-pages id="pageBase" attr-for-selected="data-route" selected="{{route}}">
-							
+
 							<section data-route="news">
 								<page-news></page-news>
 							</section>
@@ -135,7 +139,6 @@
 				</paper-header-panel>
 			</paper-drawer-panel>
 
-
 		</template>
 
 
@@ -151,8 +154,9 @@
 </dom-module>
 
 <script>
-	Polymer({
+ Polymer({
 		is: 'app-filterly',
+		behaviors: [appConfig, appLocation],
 		properties: {
 			loginUser: {
 				type: Boolean,
@@ -161,8 +165,15 @@
 			configuration: {
 				type: Object,
 				notify: true,
-				
+
 			},
+			pageseLector: {
+				type: String,
+				observer: '_changePage'
+			},
+			route: {
+				type: String
+			}
 		},
 		onMenuSelect: function () {
 			if (this.$.paperDrawerPanel.narrow) {
@@ -172,16 +183,18 @@
 		_openMenu: function () {
 			this.$.paperDrawerPanel.openDrawer();
 		},
+		_changePage: function (value) {
+			window.location.href = "/#!/" + value;
+		},
 		ready: function () {
-			
-			if(this.loginUser){
-				window.location.href="/#!/news";
-			} else
-			{
-				window.location.href="/#!/login";
+
+			if (this.loginUser) {
+				if( window.location.pathname !== '/#!/news' ) window.location.href = "/#!/news";
+			} else {
+				if( window.location.pathname !== '/#!/' || window.location.pathname !== '/' ) window.location.href = "/#!/";
 			}
-				
-			this.serverMode = 'prod';
+		this.defaultLang = 'es';
 		}
 	});
+	
 </script>

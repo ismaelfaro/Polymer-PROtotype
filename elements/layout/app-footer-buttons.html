@@ -1,0 +1,54 @@
+<dom-module id="app-footer-buttons">
+
+	<template>
+		<style>
+			:host {
+				display: block;
+				color: white;
+				font-weight: 100;
+				margin-top: 8px;
+			}
+			
+			paper-button {
+				font-size: 0.8em;
+				font-weight: 100;
+				color: white;
+			}
+		</style>
+
+		<div class="horizontal center-justified layout buttons">
+			<paper-button on-tap="bBack"> go back </paper-button>
+			<span class="flex"></span>
+			<template is="dom-if" if="{{!noTerms}}">
+				<paper-button on-tap="bTerms"> terms </paper-button>
+			</template>
+		</div>
+
+	</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: 'app-footer-buttons',
+		properties: {
+			page: {
+				type: String,
+				notify: true
+			},
+			noTerms: {
+				type: Boolean,
+				value: false
+			}
+
+		},
+		ready: function (){
+			
+		},
+		bBack: function () {
+			this.page = "splash";
+		},
+		bTerms: function () {
+			this.page = "terms";
+		}
+	});
+</script>

@@ -1,14 +1,14 @@
 <dom-module id="page-register">
 	<template>
-		<style>
+	
 		
-		</style>
-		
-		<template>
 		<style>
 			:host {
 				display: block;
-				color: white;
+			}
+			
+			app-logo-screen {
+				padding: 32px;
 			}
 			
 			#register {
@@ -17,7 +17,10 @@
 				right: 0px;
 				bottom: 0px;
 				padding: 32px;
-				
+			}
+			
+			#register > .buttons {
+				margin-top: 16px;
 			}
 			
 			paper-input {
@@ -27,24 +30,25 @@
 				--paper-input-container-input-color: white;
 				width: 100%;
 			}
-				
-			paper-button{
+			
+			paper-button {
+				font-weight: 100;
+				color: white;
 				background-color: rgba(255, 255, 255, 0.2);
 				width: 100%;
 			}
 				
-			.buttons{
-				margin-top: 16px;
-			}
-				
 		</style>
 
+		
 		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
-
-		<app-logo-screen title="Register Account" description="Login" logo="images/logo-app.png"></app-logo-screen>
-
-		<paper-material id="register">
-
+		
+		<app-logo-screen title="Sign Up"  logo="images/logo-app.png"></app-logo-screen>
+		
+		<div id="register">
+		
+			<app-social-buttons></app-social-buttons>
+			
 			<div class="horizontal center-justified layout">
 				<paper-input id="email" label="Your email" value="{{user.email}}"></paper-input>
 			</div>
@@ -58,23 +62,37 @@
 			</div>
 			
 			<div class="horizontal center-justified layout buttons">
-				<paper-button> login </paper-button>
+				<paper-button>{{appLocation.}}</paper-button>
 				<paper-button> register </paper-button>
 			</div>
 			
-		</paper-material>
-
+			<app-footer-buttons page="{{page}}"></app-footer-buttons>
+			
+		</div>
 
 
 	</template>
 		
-	</template>
+	
 </dom-module>
 
 <script>
 
 	Polymer({
-		is: 'page-register'
+		is: 'page-register',
+		properties: {
+			config: {
+				type: Object
+			},
+			page: {
+				type: String,
+				notify: true
+			}
+
+		},
+		ready: function(){
+//			console.log('page-register is ok')
+		}
 	});
 
 </script>
