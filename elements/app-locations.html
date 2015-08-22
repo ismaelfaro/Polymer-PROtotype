@@ -24,12 +24,11 @@
 //	};
 //
 //	APPLocation.setLanguage(APPLocation.defaultLang);
-	
-	
-	
+
+
+
 	Polymer({
 		is: 'app-locations',
-		behaviour: [GlobalsBehaviour],
 		properties: {
 			allLocations: {
 				type: Object,
@@ -63,47 +62,67 @@
 			console.info(language);
 			this.location = this.allLocations[this.defaultLang];
 		}
-		
+
 	});
-	
-//	
-//	
-//	appLocation = {
-//		behaviour: [GlobalsBehaviour],
-//		properties: {
-//			allLocations: {
-//				type: Object,
-//				value: {
-//					'es': {
-//						appTittle: 'Filter.ly',
-//						appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
-//						tittleLogin: 'Acceso',
+
+		// 
+		// Polymer({
+		// 	is: 'app-locations',
+		// 	properties: {
+		// 		allLocations: {
+		// 			type: Object,
+		// 			value: {
+		// 				'es': {
+		// 					appTittle: 'Filter.ly',
+		// 					appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
+		// 					tittleLogin: 'Acceso',
+		//
+		// 				},
+		// 				'en': {
+		// 					appTittle: 'Filter.ly',
+		// 					appDescription: 'our solution to help you keep up with the news that you care about',
+		// 					tittleLogin: 'Login',
+		// 				}
+		// 			}
+		// 		},
+		// 		defaultLang: {
+		// 			type: String,
+		// 			observer: '_defaultLocation'
+		// 		},
+		// 		location: {
+		// 			type: Object,
+		// 			calculates: '_defaultLocation'
+		// 		}
+		// 	},
+		// 	ready: function () {
+		// 		this.defaultLang = 'en';
+		// 	},
+		// 	_defaultLocation: function (language) {
+		// 		console.info(language);
+		// 		this.location = this.allLocations[this.defaultLang];
+		// 	}
+		//
+		// });
+		//
+
 //
-//					},
-//					'en': {
-//						appTittle: 'Filter.ly',
-//						appDescription: 'our solution to help you keep up with the news that you care about',
-//						tittleLogin: 'Login',
-//					}
-//				}
-//			},
-//			defaultLang: {
-//				type: String,
-//				observer: '_defaultLocation'
-//			},
-//			location: {
-//				type: Object,
-//				calculates: '_defaultLocation'
-//			}
-//		},
-//		ready: function () {
-//			this.defaultLang = 'en';
-//		},
-//		_defaultLocation: function (language) {
-//			console.info(language);
-//			this.location = this.allLocations[this.defaultLang];
-//		}
-//	}
-//	
-	
+// console.info(_globalLocations);
+//
+ // 	var _gl = {};
+	//
+	// appLocation = {
+	// 	properties: {
+	// 		allLocations: _gl.allLocations || Object,
+	// 		defaultLang: _gl.defaultLang || Object,
+	// 		location: _gl.location || Object
+	// 	},
+	// 	ready: function () {
+	// 		this.defaultLang = 'en';
+	// 	},
+	// 	_defaultLocation: function (language) {
+	// 		console.info(language);
+	// 		this.location = this.allLocations[this.defaultLang];
+	// 	}
+	// }
+
 </script>

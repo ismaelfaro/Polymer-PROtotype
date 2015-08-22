@@ -4,11 +4,11 @@
 			:host {
 				display: block;
 			}
-			
+
 			app-logo-screen {
 				padding: 32px;
 			}
-			
+
 			#login {
 				position: absolute;
 				left: 0px;
@@ -16,11 +16,11 @@
 				bottom: 0px;
 				padding: 32px;
 			}
-			
+
 			#login > .buttons {
 				margin-top: 16px;
 			}
-			
+
 			paper-input {
 				--paper-input-container-color: white;
 				--paper-input-container-focus-color: yellow;
@@ -28,7 +28,7 @@
 				--paper-input-container-input-color: white;
 				width: 100%;
 			}
-			
+
 			paper-button {
 				font-weight: 100;
 				color: white;
@@ -57,9 +57,9 @@
 				<paper-button on-tap="login"> login </paper-button>
 				<paper-button on-tap="register"> register </paper-button>
 			</div>
-			
+
 			<app-footer-buttons page="{{page}}"></app-footer-buttons>
-			
+
 			</div>
 
 	</template>
@@ -68,7 +68,7 @@
 <script>
 	Polymer({
 		is: 'page-login',
-		behaviors: [appConfig, appLocation],
+		behaviors: [appConfig],
 		properties: {
 			config: {
 				type: Object

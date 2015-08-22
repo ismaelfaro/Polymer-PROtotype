@@ -12,11 +12,11 @@
 			display: block;
 			height: 100%;
 		}
-		
+
 		iron-pages {
 			height: 100%;
 		}
-		
+
 		#page {
 			background-image: url(../images/flower.jpg);
 			background-size: cover;
@@ -156,7 +156,7 @@
 <script>
  Polymer({
 		is: 'app-filterly',
-		behaviors: [appConfig, appLocation],
+		behaviors: [appConfig],
 		properties: {
 			loginUser: {
 				type: Boolean,
@@ -196,5 +196,5 @@
 		this.defaultLang = 'es';
 		}
 	});
-	
+
 </script>
