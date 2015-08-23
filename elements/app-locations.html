@@ -1,71 +1,97 @@
 <script>
 
-//	APPLocation = {
-//		defaultLanguage: 'en',
-//		allLocations: {
-//			'es': {
-//				appTittle: 'Filter.ly',
-//				appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
-//				tittleLogin: 'Acceso',
-//
-//			},
-//			'en': {
-//				appTittle: 'Filter.ly',
-//				appDescription: 'our solution to help you keep up with the news that you care about',
-//				tittleLogin: 'Login',
-//			}
-//
-//		},
-//		location: {},
-//		setLanguage: function (language) {
-//			if(!language) return;
-//			this.location = this.allLocations[language];
-//		}
-//	};
-//
-//	APPLocation.setLanguage(APPLocation.defaultLang);
 
+APPLocation = {
+	defaultLanguage: 'en',
+	allLocations: {
+		'es': {
+			appTittle: 'Filter.ly',
+			appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
+			tittleLogin: 'Acceso',
 
-
-	Polymer({
-		is: 'app-locations',
-		properties: {
-			allLocations: {
-				type: Object,
-				value: {
-					'es': {
-						appTittle: 'Filter.ly',
-						appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
-						tittleLogin: 'Acceso',
-
-					},
-					'en': {
-						appTittle: 'Filter.ly',
-						appDescription: 'our solution to help you keep up with the news that you care about',
-						tittleLogin: 'Login',
-					}
-				}
-			},
-			defaultLang: {
-				type: String,
-				observer: '_defaultLocation'
-			},
-			location: {
-				type: Object,
-				calculates: '_defaultLocation'
-			}
 		},
-		ready: function () {
-			this.defaultLang = 'en';
-		},
-		_defaultLocation: function (language) {
-			console.info(language);
-			this.location = this.allLocations[this.defaultLang];
+		'en': {
+			appTittle: 'Filter.ly',
+			appDescription: 'our solution to help you keep up with the news that you care about',
+			tittleLogin: 'Login',
 		}
 
-	});
+	},
+	location: {},
+	setLanguage: function (language) {
+		if(!language) return;
+		this.location = this.allLocations[language];
+	}
+};
 
-		// 
+// APPLocation.setLanguage(APPLocation.defaultLang);
+//
+// 	APPLocation = {
+// 		defaultLanguage: 'en',
+// 		allLocations: {
+// 			'es': {
+// 				appTittle: 'Filter.ly',
+// 				appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
+// 				tittleLogin: 'Acceso',
+//
+// 			},
+// 			'en': {
+// 				appTittle: 'Filter.ly',
+// 				appDescription: 'our solution to help you keep up with the news that you care about',
+// 				tittleLogin: 'Login',
+// 			}
+//
+// 		},
+// 		location: {},
+// 		setLanguage: function (language) {
+// 			if(!language) return;
+// 			this.location = this.allLocations[language];
+// 		}
+// 	};
+//
+// 	APPLocation.setLanguage(APPLocation.defaultLang);
+
+	//
+	//
+	// Polymer({
+	// 	is: 'app-locations',
+	// 	properties: {
+	// 		allLocations: {
+	// 			type: Object,
+	// 			value: {
+	// 				'es': {
+	// 					appTittle: 'Filter.ly',
+	// 					appDescription: 'Nuestra Solución te ayudará a mantenerte al tanto de las noticias que te interesan',
+	// 					tittleLogin: 'Acceso',
+	//
+	// 				},
+	// 				'en': {
+	// 					appTittle: 'Filter.ly',
+	// 					appDescription: 'our solution to help you keep up with the news that you care about',
+	// 					tittleLogin: 'Login',
+	// 				}
+	// 			}
+	// 		},
+	// 		defaultLang: {
+	// 			type: String,
+	// 			observer: '_defaultLocation'
+	// 		},
+	// 		location: {
+	// 			type: Object,
+	// 			calculates: '_defaultLocation'
+	// 		}
+	// 	},
+	// 	ready: function () {
+	// 		this.defaultLang = 'en';
+	// 	},
+	// 	_defaultLocation: function (language) {
+	// 		console.info(language);
+	// 		this.location = this.allLocations[this.defaultLang];
+	// 	}
+	//
+	// });
+
+		//
 		// Polymer({
 		// 	is: 'app-locations',
 		// 	properties: {

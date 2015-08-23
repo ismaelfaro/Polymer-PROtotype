@@ -1,3 +1,5 @@
+<link rel="import" href="../app-config.html">
+
 <dom-module id="page-login">
 	<template>
 		<style>
@@ -37,6 +39,8 @@
 			}
 		</style>
 
+		<config-data id="config"></config-data>
+
 		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
 
 		<app-logo-screen title="Login" logo="images/logo-app.png"></app-logo-screen>
@@ -68,7 +72,7 @@
 <script>
 	Polymer({
 		is: 'page-login',
-		behaviors: [appConfig],
+		behaviors: [],
 		properties: {
 			config: {
 				type: Object
@@ -98,7 +102,10 @@
 		},
 		register: function () {
 			this.page = 'register';
-		}
+		},
+		ready: function() {
+		  console.log(this.$.config.data.name);
+		},
 
 	});
 </script>

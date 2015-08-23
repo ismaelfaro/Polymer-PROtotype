@@ -1,65 +1,119 @@
 <script>
-	appConfig = {
-		properties: {
 
-			appName: {
-				type: String,
-				value: 'filter.ly'
-			},
-			logo: {
-				type: String,
-				value: 'images/logo.png'
-			},
-			APIUrl: {
-				type: Object,
-				value: function () {
-					return {
-						'prod': 'http://prod.filter.ly/',
-						'qa': 'http://qa.filter.ly/',
-						'dev': 'http://127.0.0.1:3000/'
-					}
+
+
+    (function() {
+
+      var _appData =
+        {
+          appName: 'filter.ly',
+          logo: 'images/logo.png',
+					APIUrl: {
+										'prod': 'http://prod.filter.ly/',
+										'qa': 'http://qa.filter.ly/',
+										'dev': 'http://127.0.0.1:3000/'
+									},
+					API: {
+										'authnative': this.urlBase + 'api/1/user/authnative',
+										'register': this.urlBase + 'api/1/user/register',
+										'resetPwd': this.urlBase + 'TODO:',
+										'readNews': this.urlBase + 'TODO:',
+										'readProfile': this.urlBase + 'TODO:',
+										'addUrl': this.urlBase + 'TODO:',
+									},
+					urlBase: '',
+
+
+        };
+
+				
+			var _dataStorage = {};
+
+      Polymer({
+        is: 'app-config',
+        properties: {
+          app: {
+            type: Object,
+            notify: true,
+            value: function() { return _appData; },
+					locale: {
+            type: Object,
+            notify: true,
+            value: function() { return _appData; },
+          },
+					data: {
+						type: Object,
+						notify: true,
+						value: function() { return _dataStorage; },
 				}
-			},
-			API: {
-				type: Object,
-				value: function () {
-					return {
-						'authnative': this.urlBase + 'api/1/user/authnative',
-						'register': this.urlBase + 'api/1/user/register',
-						'resetPwd': this.urlBase + 'TODO:',
-						'readNews': this.urlBase + 'TODO:',
-						'readProfile': this.urlBase + 'TODO:',
-						'addUrl': this.urlBase + 'TODO:'
-					}
-				}
-			},
-			urlBase: {
-				type:String,
-				value: ''
-			},
-			serverMode: {
-				type: String,
-				value: 'dev',
-				observer: '_changeMode'
-			},
-			config: {
-				type: Object,
-				value: function () {
-					return {
-						appName: this.appName,
-						logo: this.logo,
-						urlBase: this.UrlBase,
-					};
-				}
-			}
-		},
-		_changeMode: function () {
-			this.UrlBase = this.APIUrl[this.serverMode];
-		},
-		devcon: function (texto) {
-			if (this.serverMode === 'dev') {
-				console.info(texto);
-			}
-		}
-	}
+        }
+      });
+    })();
+
+
+
+	//
+	// appConfig = {
+	// 	properties: {
+	//
+	// 		appName: {
+	// 			type: String,
+	// 			value: 'filter.ly'
+	// 		},
+	// 		logo: {
+	// 			type: String,
+	// 			value: 'images/logo.png'
+	// 		},
+	// 		APIUrl: {
+	// 			type: Object,
+	// 			value: function () {
+	// 				return {
+	// 					'prod': 'http://prod.filter.ly/',
+	// 					'qa': 'http://qa.filter.ly/',
+	// 					'dev': 'http://127.0.0.1:3000/'
+	// 				}
+	// 			}
+	// 		},
+	// 		API: {
+	// 			type: Object,
+	// 			value: function () {
+	// 				return {
+	// 					'authnative': this.urlBase + 'api/1/user/authnative',
+	// 					'register': this.urlBase + 'api/1/user/register',
+	// 					'resetPwd': this.urlBase + 'TODO:',
+	// 					'readNews': this.urlBase + 'TODO:',
+	// 					'readProfile': this.urlBase + 'TODO:',
+	// 					'addUrl': this.urlBase + 'TODO:'
+	// 				}
+	// 			}
+	// 		},
+	// 		urlBase: {
+	// 			type:String,
+	// 			value: ''
+	// 		},
+	// 		serverMode: {
+	// 			type: String,
+	// 			value: 'dev',
+	// 			observer: '_changeMode'
+	// 		},
+	// 		config: {
+	// 			type: Object,
+	// 			value: function () {
+	// 				return {
+	// 					appName: this.appName,
+	// 					logo: this.logo,
+	// 					urlBase: this.UrlBase,
+	// 				};
+	// 			}
+	// 		}
+	// 	},
+	// 	_changeMode: function () {
+	// 		this.UrlBase = this.APIUrl[this.serverMode];
+	// 	},
+	// 	devcon: function (texto) {
+	// 		if (this.serverMode === 'dev') {
+	// 			console.info(texto);
+	// 		}
+	// 	}
+	// }
 </script>

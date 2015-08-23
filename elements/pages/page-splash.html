@@ -37,6 +37,8 @@
 			}
 		</style>
 
+		<config-data id="config"></config-data>
+
 		<app-logo-screen title=" " description="{{location.appDescription}}" logo="images/logo-app.png"></app-logo-screen>
 
 		<div id="login">
@@ -76,6 +78,9 @@
 			console.log(this.config);
 		},
 		ready: function(){
+			console.log(this.$.config.data.name);
+			this.$.config.data.name = 'demo';
+
 			// console.info('----'+APPLocation.defaultLang+'------');
 		}
 
