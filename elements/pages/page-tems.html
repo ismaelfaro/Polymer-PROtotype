@@ -1,15 +1,18 @@
+<link rel="import" href="../app-config-behavior.html">
+
 <dom-module id="page-terms">
 	<template>
 		<style>
 			:host {
 				display: block;
 			}
-			
+
 			#terms{
 				padding: 32px;
+				display:flex;
 			}
-			
-			#terms-footer {
+
+			#base-footer {
 				position: absolute;
 				left: 0px;
 				right: 0px;
@@ -17,15 +20,12 @@
 				padding: 32px;
 			}
 		</style>
-		
-		<div id="terms">
-			uno dos tres 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
 
-		<div id="terms-footer">
+		<div id="terms"></div>
 
-			<app-footer-buttons page="{{page}}" no-terms></app-footer-buttons>
+		<div id="base-footer">
+
+			<app-footer-buttons page="{{page}}" no-terms config="{{config}}"></app-footer-buttons>
 
 		</div>
 
@@ -35,11 +35,16 @@
 <script>
 	Polymer({
 		is: 'page-terms',
+		behaviors: [appConfig],
 		properties: {
 			page: {
 				type: String,
 				notify: true
 			}
+		},
+		ready: function() {
+
+			this.$.terms.innerText = this.config.location.termsInfo;
 
 		}
 

@@ -1,3 +1,5 @@
+<link rel="import" href="../app-config-behavior.html">
+
 <dom-module id="page-splash">
 	<template>
 		<style>
@@ -9,7 +11,7 @@
 				padding: 32px;
 			}
 
-			#login {
+			#base-footer {
 				position: absolute;
 				left: 0px;
 				right: 0px;
@@ -17,7 +19,7 @@
 				padding: 32px;
 			}
 
-			#login > .buttons {
+			#base-footer > .buttons {
 				margin-top: 16px;
 			}
 
@@ -37,13 +39,13 @@
 			}
 		</style>
 
-		<app-logo-screen title=" " description="{{location.appDescription}}" logo="images/logo-app.png"></app-logo-screen>
+		<app-logo-screen title=" " description="{{config.location.appDescription}}" logo="images/logo-app.png"></app-logo-screen>
 
-		<div id="login">
+		<div id="base-footer">
 
 			<div class="horizontal center-justified layout buttons">
-				<paper-button on-tap="bLogin"> login </paper-button>
-				<paper-button on-tap="bRegister"> register </paper-button>
+				<paper-button on-tap="bLogin">{{config.location.login}}</paper-button>
+				<paper-button on-tap="bRegister">{{config.location.register}}</paper-button>
 			</div>
 
 		</div>
@@ -54,30 +56,19 @@
 <script>
 	Polymer({
 		is: 'page-splash',
+		behaviors: [appConfig],
 		properties: {
-			config: {
-				type: Object,
-				observer: 'dale'
-			},
 			page: {
 				type: String,
 				notify: true
 			}
 		},
 		bRegister: function(){
-			console.log('bRegister');
 			this.page = "register";
 		},
 		bLogin: function(){
-			console.log('bLogin');
 			this.page = "login";
 		},
-		dale: function () {
-			console.log(this.config);
-		},
-		ready: function(){
-			// console.info('----'+APPLocation.defaultLang+'------');
-		}
 
 	});
 </script>
