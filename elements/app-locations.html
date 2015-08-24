@@ -1,46 +1,45 @@
 <script>
 
-
-var _APPLocation = {
-	_language: 'en',
-	allLocations: {
-		'es': {
-			language: 'es',
-			appTittle: 'Filter.ly',
-			appDescription: 'te ayudará a mantenerte al tanto de las noticias que te interesan',
-			tittleLogin: 'Acceso',
-			tittleRegister: 'Registro',
-			login: 'Acceder',
-			email: 'Tu Correo Electrónico',
-			password: 'Tu Contraseña',
-			password2: 'Repite tu Contraseña',
-			register: 'Registro',
-			goBack: 'Retroceder',
-			terms: 'Terminos de uso',
-			termsInfo: " uno dos tres \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+	var _APPLocation = {
+		allLocations: {
+			'es': {
+				language: 'es',
+				appTittle: 'Filter.ly',
+				appDescription: 'te ayudará a mantenerte al tanto de las noticias que te interesan',
+				tittleLogin: 'Acceso',
+				tittleRegister: 'Registro',
+				login: 'Acceder',
+				email: 'Tu Correo Electrónico',
+				password: 'Tu Contraseña',
+				password2: 'Repite tu Contraseña',
+				register: 'Registro',
+				goBack: 'Retroceder',
+				terms: 'Terminos de uso',
+				termsInfo: " uno dos tres \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+			},
+			'en': {
+				language: 'en',
+				appTittle: 'Filter.ly',
+				appDescription: 'our solution to help you keep up with the news that you care about',
+				tittleLogin: 'Login',
+				tittleRegister: 'Sing Up',
+				login: 'Login',
+				email: 'Your eEmail',
+				password: 'Your Password',
+				password2: 'Repear Password',
+				register: 'Sing Up',
+				goBack : 'go back ',
+				terms: 'terms',
+				termsInfo: ' one two three \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+			}
 		},
-		'en': {
-			language: 'en',
-			appTittle: 'Filter.ly',
-			appDescription: 'our solution to help you keep up with the news that you care about',
-			tittleLogin: 'Login',
-			tittleRegister: 'Sing Up',
-			login: 'Login',
-			email: 'Your eEmail',
-			password: 'Your Password',
-			password2: 'Repear Password',
-			register: 'Sing Up',
-			goBack : 'go back ',
-			terms: 'terms',
-			termsInfo: ' one two three \n Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+		_language: 'en',
+		location: {},
+		setLanguage: function (language) {
+			if(!language) return;
+			this.location = this.allLocations[language];
+			this._language = language;
 		}
-	},
-	location: {},
-	setLanguage: function (language) {
-		if(!language) return;
-		this.location = this.allLocations[language];
-		this._language = language;
-	}
-};
+	};
 
 </script>
