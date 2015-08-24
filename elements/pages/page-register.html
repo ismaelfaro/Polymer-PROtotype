@@ -1,28 +1,30 @@
+<link rel="import" href="../app-config-behavior.html">
+
 <dom-module id="page-register">
 	<template>
-	
-		
+
+
 		<style>
 			:host {
 				display: block;
 			}
-			
+
 			app-logo-screen {
 				padding: 32px;
 			}
-			
-			#register {
+
+			#base-footer {
 				position: absolute;
 				left: 0px;
 				right: 0px;
 				bottom: 0px;
 				padding: 32px;
 			}
-			
-			#register > .buttons {
+
+			#base-footer > .buttons {
 				margin-top: 16px;
 			}
-			
+
 			paper-input {
 				--paper-input-container-color: white;
 				--paper-input-container-focus-color: yellow;
@@ -30,60 +32,58 @@
 				--paper-input-container-input-color: white;
 				width: 100%;
 			}
-			
+
 			paper-button {
 				font-weight: 100;
 				color: white;
 				background-color: rgba(255, 255, 255, 0.2);
 				width: 100%;
 			}
-				
+
 		</style>
 
-		
+
 		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
-		
-		<app-logo-screen title="Sign Up"  logo="images/logo-app.png"></app-logo-screen>
-		
-		<div id="register">
-		
+
+		<app-logo-screen title="{{config.location.tittleRegister}}"   logo="images/logo-app.png"></app-logo-screen>
+
+		<div id="base-footer">
+
 			<app-social-buttons></app-social-buttons>
-			
+
 			<div class="horizontal center-justified layout">
-				<paper-input id="email" label="Your email" value="{{user.email}}"></paper-input>
+				<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
 			</div>
 
 			<div class="horizontal center-justified layout">
-				<paper-input id="pwd" label="Your Password" type="password" value="{{user.pwd}}"></paper-input>
+				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.pwd}}"></paper-input>
 			</div>
-			
+
 			<div class="horizontal center-justified layout">
-				<paper-input id="pwd2" label="Repeat Password" type="password" value="{{user.pwd2}}"></paper-input>
+				<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.pwd2}}"></paper-input>
 			</div>
-			
+
 			<div class="horizontal center-justified layout buttons">
-				<paper-button>{{appLocation.}}</paper-button>
-				<paper-button> register </paper-button>
+				<paper-button>{{config.location.login}}</paper-button>
+				<paper-button>{{config.location.register}}</paper-button>
 			</div>
-			
+
 			<app-footer-buttons page="{{page}}"></app-footer-buttons>
-			
+
 		</div>
 
 
 	</template>
-		
-	
+
+
 </dom-module>
 
 <script>
 
 	Polymer({
 		is: 'page-register',
+		behaviors: [appConfig],
 		properties: {
-			config: {
-				type: Object
-			},
 			page: {
 				type: String,
 				notify: true
@@ -91,7 +91,7 @@
 
 		},
 		ready: function(){
-//			console.log('page-register is ok')
+
 		}
 	});
 

@@ -1,4 +1,4 @@
-<link rel="import" href="../app-config.html">
+<link rel="import" href="../app-config-behavior.html">
 
 <dom-module id="page-login">
 	<template>
@@ -11,7 +11,7 @@
 				padding: 32px;
 			}
 
-			#login {
+			#base-footer {
 				position: absolute;
 				left: 0px;
 				right: 0px;
@@ -19,7 +19,7 @@
 				padding: 32px;
 			}
 
-			#login > .buttons {
+			#base-footer > .buttons {
 				margin-top: 16px;
 			}
 
@@ -39,30 +39,28 @@
 			}
 		</style>
 
-		<config-data id="config"></config-data>
-
 		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
 
-		<app-logo-screen title="Login" logo="images/logo-app.png"></app-logo-screen>
+		<app-logo-screen title="{{config.location.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
 
-		<div id="login">
+		<div id="base-footer">
 
 			<app-social-buttons></app-social-buttons>
 
 			<div class="horizontal center-justified layout">
-				<paper-input id="email" label="email" value="{{user.email}}"></paper-input>
+				<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
 			</div>
 
 			<div class="horizontal center-justified layout">
-				<paper-input id="pwd" label="password" type="password" value="{{user.pwd}}"></paper-input>
+				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.pwd}}"></paper-input>
 			</div>
 
 			<div class="horizontal center-justified layout buttons">
-				<paper-button on-tap="login"> login </paper-button>
-				<paper-button on-tap="register"> register </paper-button>
+				<paper-button on-tap="login">{{config.location.login}}</paper-button>
+				<paper-button on-tap="register">{{config.location.register}}</paper-button>
 			</div>
 
-			<app-footer-buttons page="{{page}}"></app-footer-buttons>
+			<app-footer-buttons page="{{page}}" config="{{config}}"></app-footer-buttons>
 
 			</div>
 
@@ -72,16 +70,12 @@
 <script>
 	Polymer({
 		is: 'page-login',
-		behaviors: [],
+		behaviors: [appConfig],
 		properties: {
-			config: {
-				type: Object
-			},
 			page: {
 				type: String,
 				notify: true
 			}
-
 		},
 		login: function () {
 			console.info(this.config);
@@ -104,7 +98,7 @@
 			this.page = 'register';
 		},
 		ready: function() {
-		  console.log(this.$.config.data.name);
+
 		},
 
 	});

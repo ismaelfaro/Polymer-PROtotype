@@ -1,13 +1,12 @@
 <script>
 
-
-
     (function() {
 
       var _appData =
         {
           appName: 'filter.ly',
           logo: 'images/logo.png',
+          defaultLang: 'es',
 					APIUrl: {
 										'prod': 'http://prod.filter.ly/',
 										'qa': 'http://qa.filter.ly/',
@@ -22,12 +21,11 @@
 										'addUrl': this.urlBase + 'TODO:',
 									},
 					urlBase: '',
-
-
         };
 
-				
 			var _dataStorage = {};
+
+			var _appLocation = _APPLocation;
 
       Polymer({
         is: 'app-config',
@@ -35,21 +33,29 @@
           app: {
             type: Object,
             notify: true,
-            value: function() { return _appData; },
+            value: function() { return _appData; }
+					},
 					locale: {
             type: Object,
             notify: true,
-            value: function() { return _appData; },
+            value: function() {
+                _appLocation.setLanguage(_appData.defaultLang);
+                return _appLocation; },
+          },
+          location: {
+            type: Object,
+            notify: true,
+            value: function() {
+                return _appLocation.location; },
           },
 					data: {
 						type: Object,
 						notify: true,
 						value: function() { return _dataStorage; },
-				}
+					}
         }
       });
     })();
-
 
 
 	//

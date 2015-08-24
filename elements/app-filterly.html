@@ -1,7 +1,7 @@
 <link rel="import" href="../styles/app-theme.html">
 <link rel="import" href="layout/app-toolbar.html">
-<link rel="import" href="app-locations.html">
-<link rel="import" href="app-config.html">
+
+<link rel="import" href="app-config-behavior.html">
 
 <dom-module id="app-filterly">
 
@@ -25,8 +25,6 @@
 	</style>
 
 	<template>
-
-		<!--		<app-config id="config" server-mode="{{serverMode}}" config="{{configuration}}"></app-config>-->
 
 		<template id="loginpages" is="dom-if" if="{{!loginUser}}">
 
@@ -156,16 +154,11 @@
 <script>
  Polymer({
 		is: 'app-filterly',
-		behaviors: [],
+		behaviors: [appConfig],
 		properties: {
 			loginUser: {
 				type: Boolean,
 				value: false
-			},
-			configuration: {
-				type: Object,
-				notify: true,
-
 			},
 			pageseLector: {
 				type: String,
@@ -187,13 +180,14 @@
 			window.location.href = "/#!/" + value;
 		},
 		ready: function () {
+			this.config = this.$.config;
 
 			if (this.loginUser) {
 				if( window.location.pathname !== '/#!/news' ) window.location.href = "/#!/news";
 			} else {
 				if( window.location.pathname !== '/#!/' || window.location.pathname !== '/' ) window.location.href = "/#!/";
 			}
-		this.defaultLang = 'es';
+
 		}
 	});
 

@@ -1,3 +1,5 @@
+<link rel="import" href="../app-config-behavior.html">
+
 <dom-module id="app-footer-buttons">
 
 	<template>
@@ -8,19 +10,20 @@
 				font-weight: 100;
 				margin-top: 8px;
 			}
-			
+
 			paper-button {
 				font-size: 0.8em;
 				font-weight: 100;
 				color: white;
+
 			}
 		</style>
 
 		<div class="horizontal center-justified layout buttons">
-			<paper-button on-tap="bBack"> go back </paper-button>
+			<paper-button on-tap="bBack">{{config.location.goBack}}</paper-button>
 			<span class="flex"></span>
 			<template is="dom-if" if="{{!noTerms}}">
-				<paper-button on-tap="bTerms"> terms </paper-button>
+				<paper-button on-tap="bTerms">{{config.location.terms}}</paper-button>
 			</template>
 		</div>
 
@@ -30,6 +33,7 @@
 <script>
 	Polymer({
 		is: 'app-footer-buttons',
+		behaviors: [appConfig],
 		properties: {
 			page: {
 				type: String,
@@ -42,7 +46,7 @@
 
 		},
 		ready: function (){
-			
+
 		},
 		bBack: function () {
 			this.page = "splash";
