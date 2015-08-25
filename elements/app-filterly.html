@@ -203,7 +203,11 @@
 
 			this.messageWidget = document.querySelector('paper-toast');
 
-			document.addEventListener('app:alert',function(erro){
+			document.addEventListener('app:alert' || 'app:message',function(erro){
+				self.showMessage(erro);
+			});
+
+			document.addEventListener('app:message',function(erro){
 				self.showMessage(erro);
 			});
 

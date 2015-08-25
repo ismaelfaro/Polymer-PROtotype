@@ -28,12 +28,15 @@
 
 
             } else {
+              this.fire('app:message',{message: this.config.location.registerUserCorrect});
+
               console.log("Successfully created user account with uid:", userData.uid);
             }
           });
     },
     ready: function(){
-
+      console.info('------');
+      console.info(this.config.location);
 
     }
 
