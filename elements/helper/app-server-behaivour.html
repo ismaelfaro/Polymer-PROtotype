@@ -1,0 +1,80 @@
+
+<script src="../extra/firebase.js"></script>
+
+<script>
+
+appServer = {
+    properties: {
+      server: {
+        type: Object,
+        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com");}
+        // value: document.createElement('firebase-auth')
+      },
+      serverData: {
+        type: Object,
+        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com");}
+        // value: document.createElement('firebase-collection')
+      },
+
+      serverConnectivity: {
+        type: Object,
+        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com/.info/connected");}
+        // value: document.createElement('firebase-collection')
+      }
+    },
+    register: function(user){
+      this.server.createUser(user,
+        function(error, userData) {
+            if (error) {
+              console.log("Error creating user:", error);
+              this.fire('register:error',{message:this.location.registerPasswordError})
+            } else {
+              console.log("Successfully created user account with uid:", userData.uid);
+            }
+          });
+    },
+    registerFacebook:function(){
+
+    },
+    registerTwitter:function(){
+
+    },
+    login:function(user){
+      this.server.authWithPassword( user,
+        function(error, authData) {
+          if (error) {
+            console.log("Login Failed!", error);
+            this.fire('login:error',{message:this.location.loginPassword});
+          } else {
+            console.log("Authenticated successfully with payload:", authData);
+          }
+        });
+    },
+    logout:function(){
+
+    },
+    resetPwd:function(user){
+
+    },
+    readNews:function(){
+
+    },
+    readCategories:function(){
+
+    },
+    saveURL:function(){
+
+    },
+    connectionTest:function(){
+      this.serverConnectivity.on("value", function(snap) {
+            if (snap.val() === true) {
+              document.fire('app',{connection: true});
+            } else {
+              document.fire('app',{connection: false});
+            }
+      });
+    }
+
+  });
+
+</script>

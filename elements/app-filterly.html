@@ -168,12 +168,27 @@
 			},
 			route: {
 				type: String
+			},
+			messageWidget: {
+				type: Object
 			}
 		},
 		onMenuSelect: function () {
 			if (this.$.paperDrawerPanel.narrow) {
 				this.$.paperDrawerPanel.closeDrawer();
 			}
+		},
+		showMessage: function(data){
+
+			console.info(data);
+			if (data.type==='app:alert'){
+				this.messageWidget.style.background='red';
+				this.messageWidget.style.color='white';
+			}
+
+			this.messageWidget.text = data.detail.message;
+			this.messageWidget.show();
+
 		},
 		_openMenu: function () {
 			this.$.paperDrawerPanel.openDrawer();
@@ -182,7 +197,15 @@
 			window.location.href = "/#!/" + value;
 		},
 		ready: function () {
+			var self = this;
+
 			this.config = this.$.config;
+
+			this.messageWidget = document.querySelector('paper-toast');
+
+			document.addEventListener('app:alert',function(erro){
+				self.showMessage(erro);
+			});
 
 			if (this.loginUser) {
 				if( window.location.pathname !== '/#!/news' ) window.location.href = "/#!/news";

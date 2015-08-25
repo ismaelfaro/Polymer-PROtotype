@@ -25,7 +25,7 @@ paper-menu iron-icon {
 }
 
 .paper-menu > .iron-selected {
-	color: var(--default-primary-color);	
+	color: var(--default-primary-color);
 }
 
 paper-menu a {
@@ -49,6 +49,13 @@ paper-menu a {
 	min-height: 48px;
 	padding: 0 16px;
 }
+
+paper-toast {
+	background-color: var(--accent-color);
+	color: #000;
+	opacity: 0.90;
+}
+
 
 #mainToolbar .middle {
 	margin-left: 48px;
@@ -108,7 +115,7 @@ paper-menu a {
 
     height: 56px;
   }
-		
+
   }
 
   /* Tablet+ */
@@ -129,9 +136,9 @@ paper-menu a {
       padding: 48px 62px;
     }
 
-	
-	  
-	  
+
+
+
   }
 
   /* Material Design Adaptive Breakpoints */
@@ -175,6 +182,3 @@ paper-menu a {
   @media all and (min-width: 1281px) and (max-width: 1600px) { }
   /* desktop-xlarge */
   @media all and (min-width: 1601px) and (max-width: 1920px) { }
-	  
-	  
-	 

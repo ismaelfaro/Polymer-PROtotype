@@ -41,6 +41,7 @@
 				text-transform: none;
 			}
 
+
 		</style>
 
 
@@ -57,16 +58,16 @@
 			</div>
 
 			<div class="horizontal center-justified layout">
-				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.pwd}}"></paper-input>
+				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
 			</div>
 
 			<div class="horizontal center-justified layout">
-				<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.pwd2}}"></paper-input>
+				<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.password2}}"></paper-input>
 			</div>
 
 			<div class="horizontal center-justified layout buttons">
 				<paper-button>{{config.location.login}}</paper-button>
-				<paper-button>{{config.location.register}}</paper-button>
+				<paper-button on-tap="registerme">{{config.location.register}}</paper-button>
 			</div>
 
 			<app-footer-buttons page="{{page}}"></app-footer-buttons>
@@ -85,11 +86,30 @@
 		is: 'page-register',
 		behaviors: [appConfig],
 		properties: {
+			user: {
+				type:Object,
+				value: function(){ return {};}
+			},
 			page: {
 				type: String,
 				notify: true
+			},
+			server: {
+				type: Object,
+				value: function(){return document.createElement('app-server-calls');}
 			}
+		},
+		registerme: function(){
 
+			if (this.user.password !== this.user.password2){
+				this.fire('app:alert',{message:this.config.location.registerPasswordError});
+
+				// this.config.showMessage('error en la contraseña', 'alert')
+
+
+			}else {
+				this.server.register(this.user);
+			}
 		},
 		ready: function(){
 
