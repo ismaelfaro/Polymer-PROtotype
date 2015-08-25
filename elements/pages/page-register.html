@@ -74,9 +74,7 @@
 
 		</div>
 
-
 	</template>
-
 
 </dom-module>
 
@@ -103,9 +101,6 @@
 
 			if (this.user.password !== this.user.password2){
 				this.fire('app:alert',{message:this.config.location.registerPasswordError});
-
-				// this.config.showMessage('error en la contraseña', 'alert')
-
 
 			}else {
 				this.server.register(this.user);

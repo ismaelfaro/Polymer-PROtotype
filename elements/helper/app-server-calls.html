@@ -19,16 +19,21 @@
       }
     },
     register(user){
+      var self = this;
+
+      this.fire('app:alert',{message:this.config.location.registerPasswordError});
 
       this.server.createUser(user,
         function(error, userData) {
             if (error) {
               console.log("Error creating user:", error);
-              this.fire('app:alert',{message:error});
+              self.fire('app:alert',{message:error});
 
 
             } else {
-              this.fire('app:message',{message: this.config.location.registerUserCorrect});
+
+              console.info( self.config.location.registerUserCorrect);
+              self.fire('app:message',{message: self.config.location.registerUserCorrect});
 
               console.log("Successfully created user account with uid:", userData.uid);
             }
@@ -37,6 +42,7 @@
     ready: function(){
       // console.info('------');
       // console.info(this.config.location);
+      this.fire('app:alert',{message:'demo'});
 
     }
 

@@ -219,7 +219,7 @@
 
 			this.messageWidget = document.querySelector('paper-toast');
 
-			document.addEventListener('app:alert' || 'app:message',function(erro){
+			document.addEventListener('app:alert',function(erro){
 				self.showMessage(erro);
 			});
 
@@ -229,7 +229,7 @@
 
 			// this.loginUser = true;
 
-			
+
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
 			if (this.loginUser) {
