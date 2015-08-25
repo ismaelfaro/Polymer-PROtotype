@@ -33,23 +33,23 @@
 			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
 
 				<section data-route="splash">
-					<page-splash page="{{route}}"></page-splash>
+					<page-splash page="{{pageSelector}}"></page-splash>
 				</section>
 
 				<section data-route="login">
-					<page-login user="{{loginUser}}" page="{{route}}"></page-login>
+					<page-login user="{{loginUser}}" page="{{pageSelector}}"></page-login>
 				</section>
 
 				<section data-route="register">
-					<page-register page="{{route}}"></page-register>
+					<page-register page="{{pageSelector}}"></page-register>
 				</section>
 
 				<section data-route="resetpassword">
-					<page-resetpassword page="{{route}}"></page-resetpassword>
+					<page-resetpassword page="{{pageSelector}}"></page-resetpassword>
 				</section>
 
 				<section data-route="terms">
-					<page-terms page="{{route}}"></page-terms>
+					<page-terms page="{{pageSelector}}"></page-terms>
 				</section>
 
 			</iron-pages>
@@ -162,12 +162,17 @@
 				type: Boolean,
 				value: false
 			},
-			pageseLector: {
+			pagePrevius: {
+				type: Array,
+				value: function (){return [];}
+			},
+			pageSelector: {
 				type: String,
 				observer: '_changePage'
 			},
 			route: {
-				type: String
+				type: String,
+				value: ''
 			},
 			messageWidget: {
 				type: Object
@@ -194,7 +199,18 @@
 			this.$.paperDrawerPanel.openDrawer();
 		},
 		_changePage: function (value) {
-			window.location.href = "/#!/" + value;
+
+			if(value === '') return; // is necesary to enable use the "goto back" button two or more times
+
+			if(value === 'goBack') {
+				value = this.pagePrevius.pop();
+				if(value === undefined ) value = 'splash';
+
+			} else this.pagePrevius.push(this.route);
+
+			page('/#!/'+value);
+			this.route = value;
+
 		},
 		ready: function () {
 			var self = this;
@@ -211,10 +227,18 @@
 				self.showMessage(erro);
 			});
 
+			// this.loginUser = true;
+
+			
+			if( window.location.hash === '#!/undefined') this._changePage('splash');
+
 			if (this.loginUser) {
-				if( window.location.pathname !== '/#!/news' ) window.location.href = "/#!/news";
+				if( window.location.hash !== '#!/news' ) this._changePage('news');
+
 			} else {
-				if( window.location.pathname !== '/#!/' || window.location.pathname !== '/' ) window.location.href = "/#!/";
+
+				// if( window.location.hash !== '#!/') this._changePage('splash');
+				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
 			}
 
 		}
