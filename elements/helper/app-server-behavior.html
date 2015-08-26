@@ -22,14 +22,17 @@ appServer = {
         // value: document.createElement('firebase-collection')
       }
     },
-    register: function(user){
+    register: function(user, callback){
+
+
       this.server.createUser(user,
         function(error, userData) {
             if (error) {
-              console.log("Error creating user:", error);
-              this.fire('register:error',{message:this.location.registerPasswordError})
+              console.info(error);
+              callback(null, error);
             } else {
-              console.log("Successfully created user account with uid:", userData.uid);
+                console.info(userData);
+                callback(userData);
             }
           });
     },
@@ -39,14 +42,20 @@ appServer = {
     registerTwitter:function(){
 
     },
-    login:function(user){
+    login:function(user, callback){
+
+      var self = this;
+
       this.server.authWithPassword( user,
         function(error, authData) {
           if (error) {
             console.log("Login Failed!", error);
-            this.fire('login:error',{message:this.location.loginPassword});
+            self.fire('login:error',{message:self.location.loginPassword});
+            callback({message:error},error);
           } else {
             console.log("Authenticated successfully with payload:", authData);
+            self.fire('app:message',{message: self.config.location.registerUserCorrect});
+            callback(authData, error);
           }
         });
     },
@@ -75,6 +84,6 @@ appServer = {
       });
     }
 
-  });
+  };
 
 </script>

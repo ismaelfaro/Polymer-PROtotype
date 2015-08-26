@@ -6,7 +6,7 @@
         {
           appName: 'filter.ly',
           logo: 'images/logo.png',
-          defaultLang: 'es',
+          defaultLang: 'en',
           serverName: 'polymer-prototype',
 					APIUrl: {
 										'prod': 'http://prod.filter.ly/',
@@ -27,6 +27,8 @@
 			var _dataStorage = {};
 
 			var _appLocation = _APPLocation;
+
+      var _userAuth = false;
 
       Polymer({
         is: 'app-config',
@@ -53,7 +55,12 @@
 						type: Object,
 						notify: true,
 						value: function() { return _dataStorage; },
-					}
+					},
+          userAuth: {
+            type: Boolean,
+            notify: true,
+            value: function() { return _userAuth; },
+          }
         }
       });
     })();

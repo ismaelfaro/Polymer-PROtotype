@@ -28,7 +28,7 @@
 
 	<template>
 
-		<template id="loginpages" is="dom-if" if="{{!loginUser}}">
+		<template id="loginpages" is="dom-if" if="{{!config.app.auth}}">
 
 			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
 
@@ -212,11 +212,8 @@
 			this.route = value;
 
 		},
-		ready: function () {
+		_messageWidget: function(){
 			var self = this;
-
-			this.config = this.$.config;
-
 			this.messageWidget = document.querySelector('paper-toast');
 
 			document.addEventListener('app:alert',function(erro){
@@ -227,12 +224,11 @@
 				self.showMessage(erro);
 			});
 
-			// this.loginUser = true;
-
-
+		},
+		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			if (this.loginUser) {
+			if (this.config.app.auth ) {
 				if( window.location.hash !== '#!/news' ) this._changePage('news');
 
 			} else {
@@ -240,6 +236,11 @@
 				// if( window.location.hash !== '#!/') this._changePage('splash');
 				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
 			}
+		},
+		ready: function () {
+
+			this._initRoute();
+			this._messageWidget();
 
 		}
 	});

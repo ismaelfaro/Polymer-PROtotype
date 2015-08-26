@@ -1,4 +1,5 @@
 <link rel="import" href="../app-config-behavior.html">
+<link rel="import" href="../helper/app-server-behavior.html">
 
 <dom-module id="page-register">
 	<template>
@@ -82,7 +83,7 @@
 
 	Polymer({
 		is: 'page-register',
-		behaviors: [appConfig],
+		behaviors: [appConfig,appServer],
 		properties: {
 			user: {
 				type:Object,
@@ -92,18 +93,33 @@
 				type: String,
 				notify: true
 			},
-			server: {
-				type: Object,
-				value: function(){return document.createElement('app-server-calls');}
-			}
+		},
+		_auth: function(){
+			console.info(this.config);
+			this.config.app.auth = true;
+			this.page='news';
 		},
 		registerme: function(){
+			var self = this;
 
 			if (this.user.password !== this.user.password2){
 				this.fire('app:alert',{message:this.config.location.registerPasswordError});
 
-			}else {
-				this.server.register(this.user);
+			} else {
+				this.register(this.user,
+					function(data, erro){
+						if(!erro){
+								self.fire('app:message',{message:self.config.location.registerUserCorrect});
+								self.user = {};
+								self._auth()
+
+						}else {
+							  self.fire('app:alert',{message:self.config.location[erro]});
+
+						}
+					}
+				);
+
 			}
 		},
 		ready: function(){

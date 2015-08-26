@@ -18,26 +18,43 @@
         // value: document.createElement('firebase-collection')
       }
     },
-    register(user){
+    register(user, callback){
       var self = this;
 
       this.fire('app:alert',{message:this.config.location.registerPasswordError});
+      console.info(callback);
 
       this.server.createUser(user,
-        function(error, userData) {
-            if (error) {
-              console.log("Error creating user:", error);
-              self.fire('app:alert',{message:error});
+        function(error, authData, callback) {
+          if (error) {
+            // console.log("Login Failed!", error);
+            // self.fire('login:error',{message:self.location.loginPassword});
+            console.info(self.callback);
+            // callback({message:error}, error);
+          } else {
+            // console.log("Authenticated successfully with payload:", authData);
+            // self.fire('app:message',{message: self.config.location.registerUserCorrect});
+            // callback({message:authData}, error);
+          }
+        }
 
 
-            } else {
-
-              console.info( self.config.location.registerUserCorrect);
-              self.fire('app:message',{message: self.config.location.registerUserCorrect});
-
-              console.log("Successfully created user account with uid:", userData.uid);
-            }
-          });
+        // function(error, userData) {
+        //     if (error) {
+        //       console.log("Error creating user:", error);
+        //       self.fire('app:alert',{message:error});
+        //
+        //
+        //     } else {
+        //
+        //       console.info( self.config.location.registerUserCorrect);
+        //       self.fire('app:message',{message: self.config.location.registerUserCorrect});
+        //
+        //       console.log("Successfully created user account with uid:", userData.uid);
+        //     }
+        // }
+        //
+      ).bind(self);
     },
     ready: function(){
       // console.info('------');
