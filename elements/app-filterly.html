@@ -228,7 +228,11 @@
 		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			if (this.config.app.auth ) {
+			this.config.app.developer = true;
+			
+			this.config.consoldev(this.config.userProfile.auth);
+
+			if ( this.config.userProfile.auth ) {
 				if( window.location.hash !== '#!/news' ) this._changePage('news');
 
 			} else {

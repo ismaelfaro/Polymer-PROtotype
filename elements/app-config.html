@@ -22,13 +22,14 @@
 										'addUrl': this.urlBase + 'TODO:',
 									},
 					urlBase: '',
+          developer: false,
         };
 
 			var _dataStorage = {};
 
 			var _appLocation = _APPLocation;
 
-      var _userAuth = false;
+      var _userProfile = { auth: false };
 
       Polymer({
         is: 'app-config',
@@ -56,10 +57,15 @@
 						notify: true,
 						value: function() { return _dataStorage; },
 					},
-          userAuth: {
-            type: Boolean,
+          userProfile: {
+            type: Object,
             notify: true,
-            value: function() { return _userAuth; },
+            value: function() { return _userProfile; },
+          }
+        },
+        consoldev: function(text){
+          if(this.app.developer){
+            console.info(text);
           }
         }
       });

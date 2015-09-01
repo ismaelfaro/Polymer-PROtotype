@@ -1,4 +1,4 @@
-<link rel="import" href="../app-config-behavior.html">
+<!-- <link rel="import" href="../app-config-behavior.html"> -->
 
 <dom-module id="page-splash">
 	<template>
@@ -42,7 +42,7 @@
 
 		<app-logo-screen title="{{config.location.splashTittle}}" description="{{config.location.splashDescription}}" logo="images/logo-app.png"></app-logo-screen>
 
-		<div id="base-footer">
+		<div id="base-footer" class="content-footer">
 
 			<div class="horizontal center-justified layout buttons">
 				<paper-button on-tap="bLogin">{{config.location.login}}</paper-button>
