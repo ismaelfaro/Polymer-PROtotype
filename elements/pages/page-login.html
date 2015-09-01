@@ -29,6 +29,7 @@
 				--paper-input-container-invalid-color: orange;
 				--paper-input-container-input-color: white;
 				width: 100%;
+				padding: 0 8px 0 8px;
 			}
 
 			paper-button {
@@ -79,7 +80,7 @@
 			}
 		},
 		login: function () {
-			console.info(this.config);
+			console.info(this.config.userProfile);
 			this.$.ajax.url = this.config.API['authnative'];
 			this.$.ajax.body = {
 				email: this.userEmail,

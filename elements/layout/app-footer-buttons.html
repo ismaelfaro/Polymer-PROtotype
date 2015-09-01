@@ -22,8 +22,6 @@
 		<div class="horizontal center-justified layout buttons">
 			<paper-button on-tap="bBack">{{config.location.goBack}}</paper-button>
 			<span class="flex"></span>
-			<paper-button id="auth" on-tap="userAuth">{{config.userAuth}}</paper-button>
-			<span class="flex"></span>
 			<template is="dom-if" if="{{!noTerms}}">
 				<paper-button on-tap="bTerms">{{config.location.terms}}</paper-button>
 			</template>
@@ -57,11 +55,6 @@
 		},
 		bTerms: function () {
 			this.page = 'terms';
-		},
-		userAuth: function(){
-			this.config.userAuth = !this.config.userAuth;
-			this.$.auth.innerHTML=this.config.userAuth;
-			console.info(this.config.userAuth);
 		}
 	});
 </script>

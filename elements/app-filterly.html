@@ -183,18 +183,6 @@
 				this.$.paperDrawerPanel.closeDrawer();
 			}
 		},
-		showMessage: function(data){
-
-			console.info(data);
-			if (data.type==='app:alert'){
-				this.messageWidget.style.background='red';
-				this.messageWidget.style.color='white';
-			}
-
-			this.messageWidget.text = data.detail.message;
-			this.messageWidget.show();
-
-		},
 		_openMenu: function () {
 			this.$.paperDrawerPanel.openDrawer();
 		},
@@ -212,7 +200,19 @@
 			this.route = value;
 
 		},
-		_messageWidget: function(){
+		showMessage: function(data){
+
+			console.info(data);
+			if (data.type==='app:alert'){
+				this.messageWidget.style.background='red';
+				this.messageWidget.style.color='white';
+			}
+
+			this.messageWidget.text = data.detail.message;
+			this.messageWidget.show();
+
+		},
+		_initMessageWidget: function(){
 			var self = this;
 			this.messageWidget = document.querySelector('paper-toast');
 
@@ -228,8 +228,6 @@
 		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			this.config.app.developer = true;
-			
 			this.config.consoldev(this.config.userProfile.auth);
 
 			if ( this.config.userProfile.auth ) {
@@ -244,7 +242,7 @@
 		ready: function () {
 
 			this._initRoute();
-			this._messageWidget();
+			this._initMessageWidget();
 
 		}
 	});

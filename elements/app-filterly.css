@@ -50,6 +50,7 @@ paper-menu a {
 	padding: 0 16px;
 }
 
+
 paper-toast {
 	background-color: var(--accent-color);
 	color: #000;
