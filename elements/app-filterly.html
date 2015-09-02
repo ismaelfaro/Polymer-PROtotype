@@ -24,16 +24,17 @@
 			margin: 0px;
 			padding: 0px;
 		}
+
 	</style>
 
 	<template>
 
-		<template id="loginpages" is="dom-if" if="{{!config.app.auth}}">
+		<template id="loginpages" is="dom-if" if="{{!config.userProfile.auth}}">
 
 			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
 
-				<section data-route="splash">
-					<page-splash page="{{pageSelector}}"></page-splash>
+				<section  data-route="splash">
+					<page-splash  page="{{pageSelector}}"></page-splash>
 				</section>
 
 				<section data-route="login">
@@ -56,7 +57,7 @@
 
 		</template>
 
-		<template is="dom-if" if="{{loginUser}}">
+		<template is="dom-if" if="{{config.userProfile.auth}}">
 
 			<paper-drawer-panel id="paperDrawerPanel" right-drawer>
 				<div drawer>
@@ -69,22 +70,22 @@
 					<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
 						<a data-route="news" href="/news">
 							<iron-icon icon="view-list"></iron-icon>
-							<span>News</span>
+							<span>{{config.location.tittleNews}}</span>
 						</a>
 
 						<a data-route="categories" href="/categories">
 							<iron-icon icon="dashboard"></iron-icon>
-							<span>Categories</span>
+							<span>{{config.location.tittleCategories}}</span>
 						</a>
 
 						<a data-route="profile" href="/profile">
 							<iron-icon icon="face"></iron-icon>
-							<span>Profile</span>
+							<span>{{config.location.tittleProfile}}</span>
 						</a>
 
-						<a data-route="profile" href="/profile">
-							<iron-icon icon="face"></iron-icon>
-							<span>Profile</span>
+						<a data-route="logout" href="/logout">
+							<iron-icon icon="close"></iron-icon>
+							<span>{{config.location.tittleLogout}}</span>
 						</a>
 
 					</paper-menu>
@@ -100,7 +101,7 @@
 
 						<div id="logo" class="paper-font-display2 app-name">
 
-							<iron-image style="background-position-x: 100%;width:50%; height:50%; padding-top: 50px; margin-top: 8px;" sizing="cover" src="{{configuration.logo}}"></iron-image>
+							<iron-image style="background-position-x: 100%;width:50%; height:50%; padding-top: 50px; margin-top: 8px;" sizing="cover" src="{{config.app.logo}}"></iron-image>
 
 						</div>
 
@@ -228,7 +229,7 @@
 		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			this.config.consoldev(this.config.userProfile.auth);
+			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
 
 			if ( this.config.userProfile.auth ) {
 				if( window.location.hash !== '#!/news' ) this._changePage('news');

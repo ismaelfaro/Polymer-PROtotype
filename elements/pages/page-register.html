@@ -52,31 +52,31 @@
 
 		<app-logo-screen title="{{config.location.tittleRegister}}"   logo="images/logo-app.png"></app-logo-screen>
 
-		<div id="base-footer">
+		<animation-tag animation="fadeIn">
+			<div id="base-footer">
 
-			<app-social-buttons></app-social-buttons>
+				<app-social-buttons></app-social-buttons>
 
-			<div class="horizontal center-justified layout">
-				<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+				<div class="horizontal center-justified layout">
+					<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.password2}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout buttons">
+					<paper-button on-tap="registerme">{{config.location.register}}</paper-button>
+				</div>
+
+				<app-footer-buttons page="{{page}}"></app-footer-buttons>
+
 			</div>
-
-			<div class="horizontal center-justified layout">
-				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
-			</div>
-
-			<div class="horizontal center-justified layout">
-				<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.password2}}"></paper-input>
-			</div>
-
-			<div class="horizontal center-justified layout buttons">
-				<paper-button>{{config.location.login}}</paper-button>
-				<paper-button on-tap="registerme">{{config.location.register}}</paper-button>
-			</div>
-
-			<app-footer-buttons page="{{page}}"></app-footer-buttons>
-
-		</div>
-
+		</animation-tag>
 	</template>
 
 </dom-module>

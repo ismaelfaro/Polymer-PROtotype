@@ -30,7 +30,7 @@
 
 			var _appLocation = _APPLocation;
 
-      var _userProfile = { auth: false };
+      var _userProfile = { auth: true };
 
       Polymer({
         is: 'app-config',
@@ -44,7 +44,7 @@
             type: Object,
             notify: true,
             value: function() {
-                _appLocation.setLanguage(_appData.defaultLang);
+                _appLocation.setLanguage(_appLocation.getDeviceLanguage());
                 return _appLocation; },
           },
           location: {

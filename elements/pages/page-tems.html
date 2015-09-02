@@ -21,7 +21,9 @@
 			}
 		</style>
 
-		<div id="terms"></div>
+		<animation-tag animation="fadeIn">
+			<div id="terms"></div>
+		</animation-tag>
 
 		<div id="base-footer">
 
@@ -43,9 +45,8 @@
 			}
 		},
 		ready: function() {
-
+			// necesary to let use \n new lines.
 			this.$.terms.innerText = this.config.location.termsInfo;
-
 		}
 
 	});

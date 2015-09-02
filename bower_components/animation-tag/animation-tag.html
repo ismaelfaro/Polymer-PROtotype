@@ -1,0 +1,152 @@
+<!--
+
+CSS-animation is a Animate.css Web Component wrapper Licensed under the MIT license - http://opensource.org/licenses/MIT more info about Animate.css - http://daneden.me/animate Copyright (c) 2015 Ismael Faro
+
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="animate.css">
+
+<!--
+
+The `animation-tag` element create simple animations using Animate.css library.
+
+    <animation-tag animation="lightSpeedOut">
+        <element-to-anim></element-to-anim>
+    </animation-tag>
+
+    <animation-tag animation="lightSpeedOut" start-time="2.0">
+        <element-to-anim></element-to-anim>
+    </animation-tag>
+
+    With start-time set to time, in seconds, you can controll when the animation start.
+
+     <animation-tag animation="lightSpeedOut" stop>
+        <element-to-anim></element-to-anim>
+    </animation-tag>
+
+    With Stop set to true, you can stop the animation in the start and after you can animate it after.
+
+    <animation-tag animation="pulse infinite">
+        <element-to-anim></element-to-anim>
+    </animation-tag>
+
+    You can make "infinite" animation add this word into the animation attribute.
+
+    Note: if you change the "animation" attribute the animation fire automatically.
+
+
+    TODO: the element trigger when the animation started or finished.
+
+@group Ismaelfaro Elements
+@element animation-tag
+@demo demo/index.html
+-->
+
+<dom-module id="animation-tag">
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <div id="__anima">
+            <content></content>
+        </div>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: "animation-tag",
+        properties: {
+            /**
+             * Time to start the animation
+             */
+            startTime: {
+                type: Number,
+                value: 0.0
+            },
+            /**
+             * To Stop the animation, changing the attribute
+             */
+            stop: {
+                type: Boolean,
+                value: false,
+                observer: '_stop'
+            },
+            /**
+             * Animation to exec.
+             */
+            animation: {
+                type: String,
+                observer: '_animate'
+            },
+            /**
+             * Animation duration.
+             */
+            animationTime: {
+                type: Number,
+                value: 1.0
+            },
+            /**
+             * Animation is run.
+             */
+            animationRun: {
+                type: Boolean,
+                value: false,
+                observe: '_stopAnimation'
+            }
+
+        },
+        /**
+         * Controller the start animation
+         *
+         */
+        _animationController: function () {
+            var self = this;
+            setTimeout(function () {
+                self.animationRun = false;
+            }, this.animationTime);
+        },
+        /**
+         * Used to launch the animation automatically
+         *
+         */
+        _animate: function () {
+            if (!this.stop) {
+                this.runAnimation(this.startTime);
+            }
+        },
+        /**
+         * Stop the animation
+         *
+         */
+        _stop: function () {
+            if (this.animationRun) {
+                this.animationRun = false;
+                this.stop = true;
+                // TODO: use the .class funtions to improve the code
+                this.$.__anima.className = '';
+            }
+        },
+        /**
+         * Run the animation function, you can use to launch the animation.
+         *
+         */
+        runAnimation: function (start) {
+            var self = this,
+                start = parseFloat(start) * 1000 || 0.0;
+
+            setTimeout(function () {
+                // TODO: use the .class funtions to improve the code
+                // self.$.__anima.classList.add (  " animated " + self.animation);
+                self.$.__anima.className = ' animated ' + self.animation;
+                self.animationRun = true;
+                self._animationController();
+
+            }, start);
+        }
+    });
+</script>

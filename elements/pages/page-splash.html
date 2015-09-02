@@ -40,15 +40,17 @@
 			}
 		</style>
 
-		<app-logo-screen title="{{config.location.splashTittle}}" description="{{config.location.splashDescription}}" logo="images/logo-app.png"></app-logo-screen>
+		<animation-tag animation="fadeInUp">
+			<app-logo-screen title="{{config.location.tittleSplash}}" description="{{config.location.descriptionSplash}}" logo="images/logo-app.png"></app-logo-screen>
+		</animation-tag>
 
 		<div id="base-footer" class="content-footer">
-
-			<div class="horizontal center-justified layout buttons">
-				<paper-button on-tap="bLogin">{{config.location.login}}</paper-button>
-				<paper-button on-tap="bRegister">{{config.location.register}}</paper-button>
-			</div>
-
+			<animation-tag animation="fadeInUp">
+				<div class="horizontal center-justified layout buttons">
+						<paper-button on-tap="bLogin">{{config.location.login}}</paper-button>
+						<paper-button on-tap="bRegister">{{config.location.register}}</paper-button>
+				</div>
+			</animation-tag>
 		</div>
 
 	</template>
