@@ -19,10 +19,13 @@
         on-response="handleResponse"
         lastResponse="{{respuesta}}"
         ></iron-ajax>
-        
+
       <template is="dom-repeat" items="{{items}}" index-as="index">
-         <page-new-card item="{{item}}" index="{{index}}"></page-new-card>
+          <animation-tag animation="slideInUp">
+            <page-new-card item="{{item}}" index="{{index}}"></page-new-card>
+        </animation-tag>
       </template>
+
   </template>
 </dom-module>
 <script>
