@@ -71,18 +71,23 @@
         },
         _bake_cookie:function (data) {
           return 'APP='+JSON.stringify(data);
+          // return JSON.stringify(data);
+
         },
         _recover_cookie: function(data){
           // var result = document.cookie.match(new RegExp('APP=([^;]+)'));
           // result && (result = JSON.parse(result[1]));
           return JSON.parse(data.split('APP=')[1]);
+          // return JSON.parse(data);
         },
         loadCookie: function(){
-          this.userProfile = this._recover_cookie(document.cookie);
-          console.log('loadCookie:');
-          console.info( this.userProfile );
-          if (this.userProfile === '') return undefined
-          else return this.userProfile;
+
+          if (document.cookie === '') return undefined
+          else {
+            this.userProfile = this._recover_cookie(document.cookie);
+            return this.userProfile;
+          }
+
         },
         saveCookie: function(){
           document.cookie = this._bake_cookie(this.userProfile);

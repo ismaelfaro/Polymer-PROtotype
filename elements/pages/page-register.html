@@ -19,9 +19,9 @@
 				left: 0px;
 				right: 0px;
 				bottom: 0px;
-				padding: 32px;
-
+				padding: 8px;
 			}
+
 
 			#base-footer > .buttons {
 				margin-top: 16px;
@@ -85,7 +85,7 @@
 
 	Polymer({
 		is: 'page-register',
-		behaviors: [appConfig,appServer],
+		behaviors: [ appConfig, appServer ],
 		properties: {
 			auth: {
 				type: Boolean,
@@ -121,11 +121,9 @@
 						}else {
 							  self.fire('app:alert',{message:self.config.location[erro]});
 
-						}
-					}
-				);
-
-			}
+						};
+				});
+			};
 		},
 		ready: function(){
 

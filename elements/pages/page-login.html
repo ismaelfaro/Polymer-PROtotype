@@ -1,4 +1,4 @@
-<!-- <link rel="import" href="../app-config-behavior.html"> -->
+<link rel="import" href="../helper/app-server-behavior.html">
 
 <dom-module id="page-login">
 	<template>
@@ -13,12 +13,12 @@
 
 			#base-footer {
 				position: absolute;
-				left: 0;
-				right: 0;
+				left: 0px;
+				right: 0px;
 				bottom: 0px;
-				padding: 32px;
-				/*width: 600px;*/
+				padding: 8px;
 			}
+
 
 			#base-footer > .buttons {
 				margin-top: 16px;
@@ -59,11 +59,11 @@
 				</div>
 
 				<div class="horizontal center-justified layout">
-					<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.pwd}}"></paper-input>
+					<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
 				</div>
 
 				<div class="horizontal center-justified layout buttons">
-					<paper-button on-tap="login">{{config.location.login}}</paper-button>
+					<paper-button on-tap="loginMe">{{config.location.login}}</paper-button>
 					<paper-button on-tap="resetPwd">{{config.location.tittleResetPassword}}</paper-button>
 				</div>
 
@@ -80,25 +80,43 @@
 <script>
 	Polymer({
 		is: 'page-login',
-		behaviors: [appConfig],
+		behaviors: [ appConfig, appServer ],
 		properties: {
+			auth: {
+				type: Boolean,
+				notify: true
+			},
+			user: {
+				type:Object,
+				value: function(){ return {};}
+			},
 			page: {
 				type: String,
 				notify: true
-			}
+			},
 		},
-		login: function () {
-			console.info(this.config.userProfile);
-			this.$.ajax.url = this.config.app.API['authnative'];
-			this.$.ajax.body = {
-				email: this.userEmail,
-				pwd: this.pwd,
-				pwd2: null,
-				timezone: 'Europe/Berlin',
-				fromSignup: false
-			};
+		_auth: function(){
+			this.auth = true;
+			this.page='news';
+		},
+		loginMe: function () {
+			var self = this;
 
-			this.$.ajax.generateRequest();
+			console.info(this.user);
+
+			this.login(this.user,
+				function(data, erro){
+					if(!erro){
+							self.fire('app:message',{message:self.config.location.registerUserCorrect});
+							self.user = data;
+							self._auth();
+
+					}else {
+							self.fire('app:alert',{message:self.config.location[erro]});
+
+					};
+			});
+
 		},
 		hresponse: function (demo) {
 			//			console.log(demo);

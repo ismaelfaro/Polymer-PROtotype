@@ -11,6 +11,9 @@ body {
   background: #fafafa;
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
+  /*height: 100%;
+  width: 100%;
+  overflow: hidden*/
 }
 
 
@@ -92,4 +95,3 @@ body {
 .icon-bar:before {
     content: "\e613";
 }
-
