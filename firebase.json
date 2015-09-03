@@ -1,0 +1,9 @@
+{
+  "firebase": "polymer-prototype",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

@@ -82,7 +82,7 @@
         },
         loadCookie: function(){
 
-          if (document.cookie === '') return undefined
+          if (document.cookie === '' || document.cookie === 'APP=') return undefined
           else {
             this.userProfile = this._recover_cookie(document.cookie);
             return this.userProfile;

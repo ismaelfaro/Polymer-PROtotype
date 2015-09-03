@@ -43,8 +43,6 @@
 
 		</style>
 
-		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
-
 		<app-logo-screen title="{{config.location.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
 
 		<div class="horizontal center-justified layout">
@@ -107,7 +105,7 @@
 			this.login(this.user,
 				function(data, erro){
 					if(!erro){
-							self.fire('app:message',{message:self.config.location.registerUserCorrect});
+							self.fire('app:message',{message:self.config.location.loginUserCorrect});
 							self.user = data;
 							self._auth();
 
@@ -118,15 +116,11 @@
 			});
 
 		},
-		hresponse: function (demo) {
-			//			console.log(demo);
-			//TODO: check user and update login to true
-		},
 		resetPwd: function () {
 			this.page = 'resetpassword';
 		},
 		ready: function() {
-
+			this.user = {};
 		},
 
 	});

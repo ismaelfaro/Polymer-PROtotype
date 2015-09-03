@@ -43,29 +43,27 @@ appServer = {
     },
     login:function(user, callback){
 
-      var self = this;
-
       this.server.authWithPassword( user,
-        function(error, authData) {
-          if (error) {
-            console.log("Login Failed!", error);
-            self.fire('login:error',{message:self.location.loginPassword});
-            callback({message:error},error);
-          } else {
-            console.log("Authenticated successfully with payload:", authData);
-            self.fire('app:message',{message: self.config.location.registerUserCorrect});
-            callback(authData, error);
-          }
-        });
+        function(error, userData) {
+            if (error) {
+              console.info(error);
+              callback(null, error);
+            } else {
+              console.info(userData);
+              callback(userData);
+            }
+          });
     },
     logout:function(){
-
+      this.server.unauth();
     },
     resetPwd:function(user){
-
+      
     },
-    readNews:function(){
-
+    readNews:function(callback){
+      this.server.on('value', function(data){
+        callback(data.val());
+      });
     },
     readCategories:function(){
 
