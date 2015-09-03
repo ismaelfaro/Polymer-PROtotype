@@ -30,7 +30,7 @@
 
 			var _appLocation = _APPLocation;
 
-      var _userProfile = { auth: true };
+      var _userProfile = { auth: false };
 
       Polymer({
         is: 'app-config',
@@ -68,6 +68,29 @@
           if(this.app.developer){
             console.info(text);
           }
+        },
+        _bake_cookie:function (data) {
+          return 'APP='+JSON.stringify(data);
+        },
+        _recover_cookie: function(data){
+          // var result = document.cookie.match(new RegExp('APP=([^;]+)'));
+          // result && (result = JSON.parse(result[1]));
+          return JSON.parse(data.split('APP=')[1]);
+        },
+        loadCookie: function(){
+          this.userProfile = this._recover_cookie(document.cookie);
+          console.log('loadCookie:');
+          console.info( this.userProfile );
+          if (this.userProfile === '') return undefined
+          else return this.userProfile;
+        },
+        saveCookie: function(){
+          document.cookie = this._bake_cookie(this.userProfile);
+          console.log('saveCookie:');
+          console.info( this.userProfile );
+        },
+        removeCookie: function(){
+          document.cookie = 'APP=';
         }
       });
     })();

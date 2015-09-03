@@ -70,7 +70,7 @@
 				</div>
 
 				<div class="horizontal center-justified layout buttons">
-					<paper-button on-tap="registerme">{{config.location.register}}</paper-button>
+					<paper-button on-tap="registerMe">{{config.location.register}}</paper-button>
 				</div>
 
 				<app-footer-buttons page="{{page}}"></app-footer-buttons>
@@ -87,6 +87,10 @@
 		is: 'page-register',
 		behaviors: [appConfig,appServer],
 		properties: {
+			auth: {
+				type: Boolean,
+				notify: true
+			},
 			user: {
 				type:Object,
 				value: function(){ return {};}
@@ -97,11 +101,10 @@
 			},
 		},
 		_auth: function(){
-			console.info(this.config);
-			this.config.app.auth = true;
+			this.auth = true;
 			this.page='news';
 		},
-		registerme: function(){
+		registerMe: function(){
 			var self = this;
 
 			if (this.user.password !== this.user.password2){
@@ -112,8 +115,8 @@
 					function(data, erro){
 						if(!erro){
 								self.fire('app:message',{message:self.config.location.registerUserCorrect});
-								self.user = {};
-								self._auth()
+								self.user = data;
+								self._auth();
 
 						}else {
 							  self.fire('app:alert',{message:self.config.location[erro]});

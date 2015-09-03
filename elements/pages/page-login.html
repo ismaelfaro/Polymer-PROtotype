@@ -89,7 +89,7 @@
 		},
 		login: function () {
 			console.info(this.config.userProfile);
-			this.$.ajax.url = this.config.API['authnative'];
+			this.$.ajax.url = this.config.app.API['authnative'];
 			this.$.ajax.body = {
 				email: this.userEmail,
 				pwd: this.pwd,

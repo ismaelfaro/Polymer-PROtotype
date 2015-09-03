@@ -24,15 +24,14 @@ appServer = {
     },
     register: function(user, callback){
 
-
       this.server.createUser(user,
         function(error, userData) {
             if (error) {
               console.info(error);
               callback(null, error);
             } else {
-                console.info(userData);
-                callback(userData);
+              console.info(userData);
+              callback(userData);
             }
           });
     },

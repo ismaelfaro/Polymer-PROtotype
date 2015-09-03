@@ -51,7 +51,7 @@
 				</section>
 
 				<section data-route="register">
-					<page-register page="{{pageSelector}}"></page-register>
+					<page-register page="{{pageSelector}}" auth="{{authDetect}}"></page-register>
 				</section>
 
 				<section data-route="resetpassword">
@@ -197,7 +197,7 @@
 			},
 			authDetect: {
 					type: Boolean,
-					value: true,
+					value: false,
 					observer: '_checkAuth'
 
 			}
@@ -206,6 +206,7 @@
 				this.config.userProfile.auth = this.authDetect;
 
 				if(this.config.userProfile.auth){
+					this.config.saveCookie();
 					this._showApp();
 				}else{
 					this._showInit();
@@ -274,6 +275,10 @@
 		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
+			var loadUserProfile = this.config.loadCookie() || {auth: false};
+
+			this.config.userProfile = loadUserProfile;
+
 			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
 
 			if ( this.config.userProfile.auth ) {
@@ -292,6 +297,7 @@
 		ready: function () {
 
 			//this.authDetect = this.config.userProfile;
+
 			this._initRoute();
 			this._initMessageWidget();
 
