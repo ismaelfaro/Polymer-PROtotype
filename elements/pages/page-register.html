@@ -52,7 +52,7 @@
 		<animation-tag animation="fadeIn">
 			<div id="base-footer">
 
-				<app-social-buttons></app-social-buttons>
+				<app-social-buttons socialbutton="{{socialButton}}"></app-social-buttons>
 
 				<div class="horizontal center-justified layout">
 					<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
@@ -96,6 +96,13 @@
 				type: String,
 				notify: true
 			},
+			socialButton: {
+				type:String,
+				observer: '_social'
+			}
+		},
+		_social: function(){
+
 		},
 		_auth: function(){
 			this.auth = true;

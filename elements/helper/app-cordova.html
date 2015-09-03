@@ -1,0 +1,15 @@
+<script type="text/javascript">
+
+  Polymer({
+    is: "app-cordova",
+    ready: function(){
+      var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+      if (isCordovaApp) {
+        Polymer.import( ['corvova-js.html'], function() {
+            console.log('Cordova.js Loaded')
+         });
+      }
+    }
+  });
+
+</script>

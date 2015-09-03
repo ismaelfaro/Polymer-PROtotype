@@ -29,14 +29,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	<meta name="msapplication-TileColor" content="#3372DF">
 
 	<!-- Add to homescreen for Chrome on Android -->
+	<meta name="application-name" content="Filter.ly">
 	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="application-name" content="Polymer Starter Kit Web App Prototype">
 	<link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
 
 	<!-- Add to homescreen for Safari on iOS -->
+	<meta name="apple-mobile-web-app-title" content="Filter.ly">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="Polymer Starter Kit">
 	<link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
 
 	<!-- Tile icon for Win8 (144x144) -->
@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 	<!-- endbuild-->
 
 	<!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
-	<script src="bower_components/webcomponentsjs/webcomponents.js" debug></script>
+	<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 	<!-- endbuild -->
 
 	<!-- will be replaced with elements/elements.vulcanized.html -->
@@ -61,12 +61,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 	<app-filterly id="app"></app-filterly>
 
-	<script src="cordova.js"></script>
+	<app-cordova></app-cordova>
 
-
-	<!-- build:js scripts/app.js -->
-	<!--  <script src="scripts/app.js"></script>-->
-	<!-- endbuild-->
 </body>
 
 </html>

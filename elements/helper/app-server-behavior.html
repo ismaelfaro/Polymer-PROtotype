@@ -36,9 +36,26 @@ appServer = {
           });
     },
     registerFacebook:function(){
-
+      server.authWithOAuthPopup("facebook", function(error, authData) {
+        if (error) {
+          console.log("Authentication Failed!", error);
+          callback(null, error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+          callback(authData);
+        }
+      });
     },
-    registerTwitter:function(){
+    registerTwitter:function(callback){
+      server.authWithOAuthPopup("twitter", function(error, authData) {
+        if (error) {
+          console.log("Authentication Failed!", error);
+          callback(null, error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+          callback(authData);
+        }
+      });
 
     },
     login:function(user, callback){
@@ -58,7 +75,7 @@ appServer = {
       this.server.unauth();
     },
     resetPwd:function(user){
-      
+
     },
     readNews:function(callback){
       this.server.on('value', function(data){

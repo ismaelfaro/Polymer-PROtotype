@@ -7,37 +7,36 @@
 
 	<link rel="import" type="css" href="app-filterly.css">
 
-	<style>
-		:host {
-			display: block;
-			height: 100%;
-		}
-
-		iron-pages {
-			height: 100%;
-		}
-
-		#page {
-			background-image: url(../images/flower.jpg);
-			background-size: cover;
-			color: var(--text-primary-color);
-			margin: 0px;
-			padding: 0px;
-		}
-
-		#initcontent, #appcontent {
-				display: none;
-				height: 100%;
-		}
-
-		.show {
-				display: block !important;
-		}
-
-	</style>
-
 	<template>
 
+		<style>
+			:host {
+				display: block;
+				height: 100%;
+			}
+
+			iron-pages {
+				height: 100%;
+			}
+
+			#page {
+				background-image: url(../images/background.jpg);
+				background-size: cover;
+				color: var(--text-primary-color);
+				margin: 0px;
+				padding: 0px;
+			}
+
+			#initcontent, #appcontent {
+					display: none;
+					height: 100%;
+			}
+
+			.show {
+					display: block !important;
+			}
+
+		</style>
 
 		<section id="initcontent">
 			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
