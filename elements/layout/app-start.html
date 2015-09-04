@@ -1,0 +1,74 @@
+
+
+<dom-module id="app-start">
+
+  <template>
+  <style>
+    :host {
+      display: block;
+    }
+
+    iron-pages {
+      height: 100%;
+    }
+
+    #page {
+      background-image: url(../../images/background.jpg);
+      background-size: cover;
+      color: var(--text-primary-color);
+      margin: 0px;
+      padding: 0px;
+    }
+
+  </style>
+    <iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
+
+      <section  data-route="splash">
+        <page-splash  page="{{pageSelector}}"></page-splash>
+      </section>
+
+      <section data-route="login">
+        <page-login auth="{{authDetect}}" userdata="{{config.userProfile}}" page="{{pageSelector}}"></page-login>
+      </section>
+
+      <section data-route="register">
+        <page-register page="{{pageSelector}}" auth="{{authDetect}}"></page-register>
+      </section>
+
+      <section data-route="resetpassword">
+        <page-resetpassword page="{{pageSelector}}"></page-resetpassword>
+      </section>
+
+      <section data-route="terms">
+        <page-terms page="{{pageSelector}}"></page-terms>
+      </section>
+
+    </iron-pages>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: "app-start",
+    properties: {
+      route: {
+        type: String,
+        notify: true
+      },
+      pageSelector: {
+        type: String,
+        notify: true
+      },
+      authDetect: {
+        type: Boolean,
+        notify: true
+      },
+      config: {
+        type: Object,
+      }
+    }
+
+  });
+
+</script>
