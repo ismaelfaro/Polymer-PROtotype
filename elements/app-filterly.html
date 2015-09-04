@@ -273,12 +273,6 @@
 		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			// var loadUserProfile = this.config.loadCookie() || {auth: false};
-			console.info('???44444????');
-			console.info(this.config.userProfile );
-
-			// this.config.userProfile = loadUserProfile;
-
 			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
 
 			if ( this.config.userProfile.auth ) {
@@ -296,8 +290,6 @@
 		},
 
 		attached: function () {
-
-			//this.authDetect = this.config.userProfile;
 
 			this._initRoute();
 			this._initMessageWidget();

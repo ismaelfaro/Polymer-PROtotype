@@ -61,13 +61,8 @@
           userProfile: {
             type: Object,
             notify: true,
-            value: function() { return _userProfile; },
-            observer: '_dale'
+            value: function() { return _userProfile; }
           }
-        },
-        _dale: function(data){
-          console.log('//////////');
-          console.info(data);
         },
         consoldev: function(text){
           if(this.app.developer){
@@ -90,16 +85,12 @@
           if (document.cookie === '' || document.cookie === 'APP=') return { auth: false }
           else {
             this.userProfile = this._recover_cookie(document.cookie);
-            console.info(this.userProfile);
-            console.info('======');
             return this.userProfile;
           }
 
         },
         saveCookie: function(){
           document.cookie = this._bake_cookie(this.userProfile);
-          console.log('saveCookie:');
-          console.info( this.userProfile );
         },
         removeCookie: function(){
           document.cookie = 'APP=';

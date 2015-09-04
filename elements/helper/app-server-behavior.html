@@ -35,8 +35,8 @@ appServer = {
             }
           });
     },
-    registerFacebook:function(){
-      server.authWithOAuthPopup("facebook", function(error, authData) {
+    registerFacebook:function(callback){
+      this.server.authWithOAuthPopup("facebook", function(error, authData) {
         if (error) {
           console.log("Authentication Failed!", error);
           callback(null, error);
@@ -47,7 +47,7 @@ appServer = {
       });
     },
     registerTwitter:function(callback){
-      server.authWithOAuthPopup("twitter", function(error, authData) {
+      this.server.authWithOAuthPopup("twitter", function(error, authData) {
         if (error) {
           console.log("Authentication Failed!", error);
           callback(null, error);

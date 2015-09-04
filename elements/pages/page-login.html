@@ -50,7 +50,7 @@
 		<animation-tag animation="fadeIn">
 			<div id="base-footer">
 
-				<app-social-buttons></app-social-buttons>
+				<app-social-buttons socialbutton="{{socialButton}}"></app-social-buttons>
 
 				<div class="horizontal center-justified layout">
 					<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
@@ -93,16 +93,29 @@
 				type:Object,
 				value: function(){ return {};},
 				notify: true,
-				observer: 'chargeUserData'
 			},
 			page: {
 				type: String,
 				notify: true
 			},
+			socialButton: {
+				type:String,
+				observer: '_socialButton'
+			}
 		},
-		chargeUserData: function(){
-			console.info(this.userdata);
-			console.log('!!!2222!!!');
+		_socialButton: function(data){
+			var self = this;
+			this.registerFacebook(data,
+				function(data, erro){
+					if(!erro){
+							self.fire('app:message',{message:self.config.location.loginUserCorrect});
+							self.userdata = data;
+							self._auth();
+					}else {
+							self.fire('app:alert',{message:self.config.location[erro]});
+
+					};
+			});
 		},
 		_auth: function(){
 			this.auth = true;
@@ -111,9 +124,6 @@
 		},
 		loginMe: function () {
 			var self = this;
-
-			console.info(this.user);
-
 			this.login(this.user,
 				function(data, erro){
 					if(!erro){
