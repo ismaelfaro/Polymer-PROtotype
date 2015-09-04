@@ -8,29 +8,14 @@ appServer = {
       server: {
         type: Object,
         value: function(){return new Firebase("https://polymer-prototype.firebaseio.com");}
-        // value: document.createElement('firebase-auth')
-      },
-      serverData: {
-        type: Object,
-        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com");}
-        // value: document.createElement('firebase-collection')
-      },
-
-      serverConnectivity: {
-        type: Object,
-        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com/.info/connected");}
-        // value: document.createElement('firebase-collection')
       }
     },
     register: function(user, callback){
-
       this.server.createUser(user,
         function(error, userData) {
             if (error) {
-              console.info(error);
               callback(null, error);
             } else {
-              console.info(userData);
               callback(userData);
             }
           });
@@ -38,10 +23,8 @@ appServer = {
     registerSocial:function(social,callback){
       this.server.authWithOAuthPopup(social, function(error, authData) {
         if (error) {
-          console.log("Authentication Failed!", error);
           callback(null, error);
         } else {
-          console.log("Authenticated successfully with payload:", authData);
           callback(authData);
         }
       });
@@ -50,10 +33,8 @@ appServer = {
       this.server.authWithPassword( user,
         function(error, userData) {
             if (error) {
-              console.info(error);
               callback(null, error);
             } else {
-              console.info(userData);
               callback(userData);
             }
           });

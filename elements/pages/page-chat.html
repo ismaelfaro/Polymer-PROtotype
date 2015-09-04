@@ -12,15 +12,9 @@
       margin-bottom: 20px;
     }
 
-    #chat {
-      position: absolute;
-      bottom: 0px;
-    }
-
   </style>
 
-
-  <section id="chatt">
+  <section id="chat">
 
         <template is="dom-repeat" items="{{items}}" index-as="index">
               <page-new-bubble userID="{{userData.uid}}" item="{{item}}" index="{{index}}"></page-new-bubble>
@@ -46,24 +40,25 @@
         },
         userdata: {
           type: Object,
-          notify: true,
         },
         message: {
           type: Object
-        },
-        scrollChat: Object
+        }
+      },
+      _scrollview: function(){
+        this.config.app.scrollChat.scrollTop = this.config.app.scrollChat.scrollHeight+100;
       },
       _sendMessage: function(){
         if(this.message === {}) return;
 
-        this.message.uid=this.userdata.uid;
-        this.message.password=this.userdata.password;
+        this.message.uid = this.userdata.uid;
+        this.message.password = this.userdata.password;
 
-        this.send('posts', this.message, function(data){
+        this.send('posts', this.message, function(data){});
 
-        });
         this.message = {};
-        this.config.app.scrollChat.scrollTop = this.config.app.scrollChat.scrollHeight+100;
+
+        this._scrollview();
 
       },
       _populateData: function(data){
