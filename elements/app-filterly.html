@@ -160,13 +160,10 @@
 
 		</section>
 
-
-		<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline.">
-		</paper-toast>
+		<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline."></paper-toast>
 
 		<platinum-sw-register auto-register clients-claim skip-waiting on-service-worker-installed="displayInstalledToast">
-			<platinum-sw-cache default-cache-strategy="networkFirst" precache-file="precache.json">
-			</platinum-sw-cache>
+			<platinum-sw-cache default-cache-strategy="networkFirst" precache-file="precache.json"></platinum-sw-cache>
 		</platinum-sw-register>
 
 	</template>
@@ -294,7 +291,7 @@
 
 			this._initRoute();
 			this._initMessageWidget();
-			
+
 			// store scroll dom component
 			this.config.app.scrollChat= document.querySelector('#mainContainer');
 		}
