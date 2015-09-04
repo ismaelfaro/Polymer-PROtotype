@@ -1,5 +1,5 @@
-<!-- <link rel="import" href="../app-config-behavior.html"> -->
 <link rel="import" href="../helper/app-server-behavior.html">
+<link rel="import" href="../layout/app-social-buttons-behevior.html">
 
 <dom-module id="page-register">
 	<template>
@@ -82,7 +82,7 @@
 
 	Polymer({
 		is: 'page-register',
-		behaviors: [ appConfig, appServer ],
+		behaviors: [ appConfig, appServer, appSocialButtons ],
 		properties: {
 			auth: {
 				type: Boolean,
@@ -95,19 +95,7 @@
 			page: {
 				type: String,
 				notify: true
-			},
-			socialButton: {
-				type:String,
-				observer: '_social'
 			}
-		},
-		_social: function(data){
-			console.info(data);
-
-		},
-		_auth: function(){
-			this.auth = true;
-			this.page='news';
 		},
 		registerMe: function(){
 			var self = this;
@@ -129,9 +117,6 @@
 						};
 				});
 			};
-		},
-		ready: function(){
-
 		}
 	});
 

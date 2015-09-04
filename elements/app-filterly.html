@@ -74,22 +74,22 @@
 
 						<!-- Drawer Content -->
 						<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-							<a data-route="news" href="/news">
+							<a data-route="news" href="/#!/news">
 								<iron-icon icon="view-list"></iron-icon>
 								<span>{{config.location.tittleNews}}</span>
 							</a>
 
-							<a data-route="categories" href="/categories">
+							<a data-route="categories" href="/#!/categories">
 								<iron-icon icon="dashboard"></iron-icon>
 								<span>{{config.location.tittleCategories}}</span>
 							</a>
 
-							<a data-route="profile" href="/profile">
+							<a data-route="profile" href="/#!/profile">
 								<iron-icon icon="face"></iron-icon>
 								<span>{{config.location.tittleProfile}}</span>
 							</a>
 
-							<a data-route="logout" href="/logout">
+							<a data-route="logout" href="/#!/logout">
 								<iron-icon icon="close"></iron-icon>
 								<span>{{config.location.tittleLogout}}</span>
 							</a>
@@ -247,7 +247,6 @@
 		},
 		showMessage: function(data){
 
-			console.info(data);
 			if (data.type==='app:alert'){
 				this.messageWidget.style.background='red';
 				this.messageWidget.style.color='white';

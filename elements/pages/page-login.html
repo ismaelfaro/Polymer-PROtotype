@@ -1,4 +1,5 @@
 <link rel="import" href="../helper/app-server-behavior.html">
+<link rel="import" href="../layout/app-social-buttons-behevior.html">
 
 <dom-module id="page-login">
 	<template>
@@ -78,7 +79,7 @@
 <script>
 	Polymer({
 		is: 'page-login',
-		behaviors: [ appConfig, appServer ],
+		behaviors: [ appConfig, appServer, appSocialButtons ],
 		properties: {
 			auth: {
 				type: Boolean,
@@ -97,30 +98,7 @@
 			page: {
 				type: String,
 				notify: true
-			},
-			socialButton: {
-				type:String,
-				observer: '_socialButton'
 			}
-		},
-		_socialButton: function(data){
-			var self = this;
-			this.registerFacebook(data,
-				function(data, erro){
-					if(!erro){
-							self.fire('app:message',{message:self.config.location.loginUserCorrect});
-							self.userdata = data;
-							self._auth();
-					}else {
-							self.fire('app:alert',{message:self.config.location[erro]});
-
-					};
-			});
-		},
-		_auth: function(){
-			this.auth = true;
-			this.userdata.auth = true;
-			this.page='news';
 		},
 		loginMe: function () {
 			var self = this;
@@ -136,7 +114,6 @@
 
 					};
 			});
-
 		},
 		resetPwd: function () {
 			this.page = 'resetpassword';
