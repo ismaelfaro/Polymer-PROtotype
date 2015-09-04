@@ -1,0 +1,36 @@
+
+<script>
+
+appMessageWidget = {
+    properties: {
+      messageWidget: {
+        type: Object
+      },
+    },
+    showMessage: function(data){
+
+      if (data.type==='app:alert'){
+        this.messageWidget.style.background='red';
+        this.messageWidget.style.color='white';
+      }
+
+      this.messageWidget.text = data.detail.message;
+      this.messageWidget.show();
+
+    },
+    initMessageWidget: function(){
+      var self = this;
+      this.messageWidget = document.querySelector('paper-toast');
+
+      document.addEventListener('app:alert',function(erro){
+        self.showMessage(erro);
+      });
+
+      document.addEventListener('app:message',function(erro){
+        self.showMessage(erro);
+      });
+    },
+
+  };
+
+</script>
