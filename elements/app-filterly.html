@@ -46,7 +46,7 @@
 				</section>
 
 				<section data-route="login">
-					<page-login auth="{{authDetect}}" page="{{pageSelector}}"></page-login>
+					<page-login auth="{{authDetect}}" userdata="{{config.userProfile}}" page="{{pageSelector}}"></page-login>
 				</section>
 
 				<section data-route="register">
@@ -136,7 +136,7 @@
 									<animation-tag animation="slideInUp">
 										<paper-material elevation="1">
 											<h2 class="paper-font-display2">{{config.location.tittleProfile}}</h2>
-											<page-profile user='{"name":"pepe","mail":"my@email.com","image":"/images/db/3.jpg"}' </page-profile>
+											<page-profile userData='{{config.userProfile}}' </page-profile>
 												<!-- <google-map></google-map> -->
 										</paper-material>
 									</animation-tag>
@@ -196,7 +196,6 @@
 			},
 			authDetect: {
 					type: Boolean,
-					value: false,
 					observer: '_checkAuth'
 
 			}
@@ -274,9 +273,11 @@
 		_initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			var loadUserProfile = this.config.loadCookie() || {auth: false};
+			// var loadUserProfile = this.config.loadCookie() || {auth: false};
+			console.info('???44444????');
+			console.info(this.config.userProfile );
 
-			this.config.userProfile = loadUserProfile;
+			// this.config.userProfile = loadUserProfile;
 
 			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
 
@@ -293,7 +294,8 @@
 				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
 			}
 		},
-		ready: function () {
+
+		attached: function () {
 
 			//this.authDetect = this.config.userProfile;
 

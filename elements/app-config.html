@@ -62,7 +62,12 @@
             type: Object,
             notify: true,
             value: function() { return _userProfile; },
+            observer: '_dale'
           }
+        },
+        _dale: function(data){
+          console.log('//////////');
+          console.info(data);
         },
         consoldev: function(text){
           if(this.app.developer){
@@ -82,9 +87,11 @@
         },
         loadCookie: function(){
 
-          if (document.cookie === '' || document.cookie === 'APP=') return undefined
+          if (document.cookie === '' || document.cookie === 'APP=') return { auth: false }
           else {
             this.userProfile = this._recover_cookie(document.cookie);
+            console.info(this.userProfile);
+            console.info('======');
             return this.userProfile;
           }
 
@@ -96,6 +103,9 @@
         },
         removeCookie: function(){
           document.cookie = 'APP=';
+        },
+        ready: function(){
+          this.userProfile = this.loadCookie();
         }
       });
     })();

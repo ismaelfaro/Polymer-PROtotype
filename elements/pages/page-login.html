@@ -86,15 +86,27 @@
 			},
 			user: {
 				type:Object,
-				value: function(){ return {};}
+				value: function(){ return {};},
+				notify: true
+			},
+			userdata: {
+				type:Object,
+				value: function(){ return {};},
+				notify: true,
+				observer: 'chargeUserData'
 			},
 			page: {
 				type: String,
 				notify: true
 			},
 		},
+		chargeUserData: function(){
+			console.info(this.userdata);
+			console.log('!!!2222!!!');
+		},
 		_auth: function(){
 			this.auth = true;
+			this.userdata.auth = true;
 			this.page='news';
 		},
 		loginMe: function () {
@@ -106,7 +118,7 @@
 				function(data, erro){
 					if(!erro){
 							self.fire('app:message',{message:self.config.location.loginUserCorrect});
-							self.user = data;
+							self.userdata = data;
 							self._auth();
 
 					}else {
