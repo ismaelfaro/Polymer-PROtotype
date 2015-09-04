@@ -1,0 +1,78 @@
+
+
+<dom-module id="page-chat">
+
+  <template>
+  <style>
+    :host {
+      display: block;
+    }
+
+    page-new-card{
+      margin-bottom: 20px;
+    }
+
+    #chat {
+      position: absolute;
+      bottom: 0px;
+    }
+
+
+  </style>
+
+
+  <section id="chatt">
+
+        <template is="dom-repeat" items="{{items}}" index-as="index">
+              <page-new-bubble userID="{{userData.uid}}" item="{{item}}" index="{{index}}"></page-new-bubble>
+        </template>
+
+        <paper-input id="menssage" label="{{config.location.message}}" value={{message.message}}></paper-input>
+
+        <paper-button on-tap="_sendMessage" raised>send</paper-button>
+
+      </section>
+
+  </template>
+</dom-module>
+<script>
+  (function () {
+    Polymer({
+      is: 'page-chat',
+      behaviors: [appConfig, appServer],
+      properties: {
+        items: {
+          type: Array,
+          notify: true,
+        },
+        userData: Object,
+        message: {
+          type: Object
+        }
+      },
+      _sendMessage: function(){
+        this.message.uid=this.config.userProfile.uid;
+        this.message.password=this.config.userProfile.password;
+        this.send('posts', this.message, function(data){
+            self.message = {message:''};
+            self.$.menssage = '';
+        });
+        this.message = {};
+        this.$.chatt.scrollTop = this.$.chatt.scrollHeight;
+        // this.message.message='';
+      },
+      _populateData: function(data){
+        this.items = data;
+      },
+      ready: function() {
+        var self = this;
+
+        this.message = {};
+
+        this.read('posts',function(data){
+            self._populateData(data);
+        });
+      }
+    });
+  })();
+</script>

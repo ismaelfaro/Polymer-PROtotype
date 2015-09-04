@@ -47,7 +47,6 @@ appServer = {
       });
     },
     login:function(user, callback){
-
       this.server.authWithPassword( user,
         function(error, userData) {
             if (error) {
@@ -62,19 +61,31 @@ appServer = {
     logout:function(){
       this.server.unauth();
     },
-    resetPwd:function(user){
-
+    resetPwd:function(user, callback){
+      this.server.resetPassword( user,
+        function(error) {
+            if (error) {
+              switch (error.code) {
+                case "INVALID_USER":
+                  console.log("The specified user account does not exist.");
+                  break;
+                default:
+                  console.log("Error resetting password:", error);
+              }
+              callback(null, error);
+            } else {
+              console.info(userData);
+              callback('password sent');
+            }
+          });
     },
-    readNews:function(callback){
-      this.server.on('value', function(data){
-        callback(data.val());
+    read:function(categorie, callback){
+      this.server.child(categorie).on("value",function(snapshot) {
+        callback( _.values(snapshot.val()) );
       });
     },
-    readCategories:function(){
-
-    },
-    saveURL:function(){
-
+    send:function(categorie, data){
+      this.server.child(categorie).push(data);
     },
     connectionTest:function(){
       this.serverConnectivity.on("value", function(snap) {

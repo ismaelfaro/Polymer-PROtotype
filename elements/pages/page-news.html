@@ -37,8 +37,8 @@
       },
       ready: function() {
         var self = this;
-        this.readNews(function(data){
-            self._populateData(data.responseData.entries);
+        this.read('responseData/entries',function(data){
+            self._populateData(data);
         });
       }
     });
