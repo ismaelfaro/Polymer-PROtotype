@@ -12,6 +12,7 @@ Complete Web-App scaffolding based in Polymer Starter Kit
 * Helpers: /elements/helpers/
 
 * Backend FireBase connection: /elements/helpers/app-server-behavior.html
+> https://www.firebase.com/docs/web/quickstart.html
 
 ##theming:
 
