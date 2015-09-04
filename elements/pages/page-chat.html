@@ -48,24 +48,29 @@
         userData: Object,
         message: {
           type: Object
-        }
+        },
+        scrollChat: Object
       },
       _sendMessage: function(){
+        if(this.message === {}) return;
+        console.info(this.message);
         this.message.uid=this.config.userProfile.uid;
         this.message.password=this.config.userProfile.password;
         this.send('posts', this.message, function(data){
-            self.message = {message:''};
-            self.$.menssage = '';
+
         });
         this.message = {};
-        this.$.chatt.scrollTop = this.$.chatt.scrollHeight;
-        // this.message.message='';
+        this.config.app.scrollChat.scrollTop = this.config.app.scrollChat.scrollHeight+100;
+
       },
       _populateData: function(data){
         this.items = data;
       },
       ready: function() {
+
         var self = this;
+        this.scrollChat = document.querySelector('#mainContainer');
+        console.info(document.querySelector('#mainContainer'));
 
         this.message = {};
 

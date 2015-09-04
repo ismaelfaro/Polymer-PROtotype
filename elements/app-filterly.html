@@ -290,11 +290,12 @@
 			}
 		},
 
-		attached: function () {
+		ready: function () {
 
 			this._initRoute();
 			this._initMessageWidget();
-
+			console.info(document.querySelector('#mainContainer'));
+			this.config.app.scrollChat= document.querySelector('#mainContainer');
 		}
 	});
 
