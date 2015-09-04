@@ -17,16 +17,8 @@
 				height: 100%;
 			}
 
-			iron-pages {
+			app-start, app-logic {
 				height: 100%;
-			}
-
-			#page {
-				background-image: url(../images/background.jpg);
-				background-size: cover;
-				color: var(--text-primary-color);
-				margin: 0px;
-				padding: 0px;
 			}
 
 			#initcontent, #appcontent {
@@ -40,127 +32,10 @@
 
 		</style>
 
-		<section id="initcontent">
-			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
 
-				<section  data-route="splash">
-					<page-splash  page="{{pageSelector}}"></page-splash>
-				</section>
+		<app-start id="initcontent" route="{{route}}" page-selector="{{pageSelector}}" config="{{config}}" auth-detect="{{authDetect}}"></app-start>
 
-				<section data-route="login">
-					<page-login auth="{{authDetect}}" userdata="{{config.userProfile}}" page="{{pageSelector}}"></page-login>
-				</section>
-
-				<section data-route="register">
-					<page-register page="{{pageSelector}}" auth="{{authDetect}}"></page-register>
-				</section>
-
-				<section data-route="resetpassword">
-					<page-resetpassword page="{{pageSelector}}"></page-resetpassword>
-				</section>
-
-				<section data-route="terms">
-					<page-terms page="{{pageSelector}}"></page-terms>
-				</section>
-
-			</iron-pages>
-		</section>
-
-		<section id="appcontent">
-			<paper-drawer-panel id="paperDrawerPanel" right-drawer>
-					<div drawer>
-						<!-- Drawer Toolbar -->
-						<paper-toolbar id="drawerToolbar">
-							<span class="paper-font-title">Menu</span>
-						</paper-toolbar>
-
-						<!-- Drawer Content -->
-						<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-							<a data-route="news" href="/#!/news">
-								<iron-icon icon="view-list"></iron-icon>
-								<span>{{config.location.tittleNews}}</span>
-							</a>
-
-							<a data-route="chat" href="/#!/chat">
-								<iron-icon icon="dashboard"></iron-icon>
-								<span>{{config.location.tittleChat}}</span>
-							</a>
-
-							<a data-route="profile" href="/#!/profile">
-								<iron-icon icon="face"></iron-icon>
-								<span>{{config.location.tittleProfile}}</span>
-							</a>
-
-							<a data-route="logout" href="/#!/logout">
-								<iron-icon icon="close"></iron-icon>
-								<span>{{config.location.tittleLogout}}</span>
-							</a>
-
-						</paper-menu>
-					</div>
-					<paper-header-panel main mode="waterfall">
-
-						<!-- Main Toolbar -->
-
-						<!--  <app-toolbar id="mainToolbar"></app-toolbar>-->
-
-						<paper-toolbar id="mainToolbar">
-
-
-							<div id="logo" class="paper-font-display2 app-name">
-
-								<iron-image style="background-position-x: 100%;width:50%; height:50%; padding-top: 50px; margin-top: 8px;" sizing="cover" src="{{config.app.logo}}"></iron-image>
-
-							</div>
-
-							<span class="flex"></span>
-
-							<paper-icon-button id="paperToggle" class="menu-button" icon="menu" paper-drawer-toggle> </paper-icon-button>
-						</paper-toolbar>
-
-						<!-- Main Content -->
-						<div class="content">
-							<iron-pages id="pageBase" attr-for-selected="data-route" selected="{{route}}">
-								<section data-route="news">
-									<page-news></page-news>
-								</section>
-
-								<section data-route="chat">
-									<animation-tag animation="slideInUp">
-										<paper-material elevation="1">
-											<h2 class="paper-font-display2">{{config.location.tittleChat}}</h2>
-											<!-- <categorie-table></categorie-table> -->
-
-											<page-chat userData='{{config.userProfile}}'></page-chat>
-										</paper-material>
-									</animation-tag>
-								</section>
-
-								<section data-route="profile">
-									<animation-tag animation="slideInUp">
-										<paper-material elevation="1">
-											<h2 class="paper-font-display2">{{config.location.tittleProfile}}</h2>
-											<page-profile userData='{{config.userProfile}}' </page-profile>
-												<!-- <google-map></google-map> -->
-										</paper-material>
-									</animation-tag>
-								</section>
-
-								<section data-route="logout">
-									<animation-tag animation="zoomIn">
-										<paper-material elevation="1">
-											<h2 class="paper-font-display2">{{config.location.tittleLogout}}</h2>
-											<page-logout page="{{pageSelector}}" auth="{{authDetect}}"></page-logout>
-										</paper-material>
-									</animation-tag>
-								</section>
-
-							</iron-pages>
-						</div>
-					</paper-header-panel>
-				</paper-drawer-panel>
-
-		</section>
+		<app-logic id="appcontent" route="{{route}}" page-selector="{{pageSelector}}" config="{{config}}" auth-detect="{{authDetect}}"></app-logic>
 
 		<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline."></paper-toast>
 
@@ -204,15 +79,6 @@
 			this.$.initcontent.classList.remove ('show');
 
 		},
-		onMenuSelect: function () {
-			if (this.$.paperDrawerPanel.narrow) {
-				this.$.paperDrawerPanel.closeDrawer();
-			}
-		},
-		_openMenu: function () {
-			this.$.paperDrawerPanel.openDrawer();
-		},
-
 		ready: function () {
 
 			this.initRoute();
