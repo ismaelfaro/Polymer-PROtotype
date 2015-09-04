@@ -8,22 +8,6 @@
           appName: 'filter.ly',
           logo: 'images/logo.png',
           defaultLang: 'en',
-          serverName: 'polymer-prototype',
-					APIUrl: {
-										'prod': 'http://prod.filter.ly/',
-										'qa': 'http://qa.filter.ly/',
-										'dev': 'http://127.0.0.1:3000/'
-									},
-					API: {
-										'authnative': this.urlBase + 'api/1/user/authnative',
-										'register': this.urlBase + 'api/1/user/register',
-										'resetPwd': this.urlBase + 'TODO:',
-										'readNews': this.urlBase + 'TODO:',
-										'readProfile': this.urlBase + 'TODO:',
-										'addUrl': this.urlBase + 'TODO:',
-									},
-					urlBase: '',
-
         };
 
 			var _dataStorage = {};
@@ -61,8 +45,11 @@
           userProfile: {
             type: Object,
             notify: true,
-            value: function() { return _userProfile; }
+            value: function() { return _userProfile; },
           }
+        },
+        _dale: function(data){
+          console.info(data);
         },
         consoldev: function(text){
           if(this.app.developer){
@@ -71,14 +58,10 @@
         },
         _bake_cookie:function (data) {
           return 'APP='+JSON.stringify(data);
-          // return JSON.stringify(data);
 
         },
         _recover_cookie: function(data){
-          // var result = document.cookie.match(new RegExp('APP=([^;]+)'));
-          // result && (result = JSON.parse(result[1]));
           return JSON.parse(data.split('APP=')[1]);
-          // return JSON.parse(data);
         },
         loadCookie: function(){
 

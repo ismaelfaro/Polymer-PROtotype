@@ -2,6 +2,8 @@
 <link rel="import" href="layout/app-toolbar.html">
 
 <link rel="import" href="app-config-behavior.html">
+<link rel="import" href="helper/app-messagewidget-behavior.html">
+<link rel="import" href="helper/app-route-behavior.html">
 
 <dom-module id="app-filterly">
 
@@ -79,9 +81,9 @@
 								<span>{{config.location.tittleNews}}</span>
 							</a>
 
-							<a data-route="categories" href="/#!/categories">
+							<a data-route="chat" href="/#!/chat">
 								<iron-icon icon="dashboard"></iron-icon>
-								<span>{{config.location.tittleCategories}}</span>
+								<span>{{config.location.tittleChat}}</span>
 							</a>
 
 							<a data-route="profile" href="/#!/profile">
@@ -123,11 +125,13 @@
 									<page-news></page-news>
 								</section>
 
-								<section data-route="categories">
+								<section data-route="chat">
 									<animation-tag animation="slideInUp">
 										<paper-material elevation="1">
-											<h2 class="paper-font-display2">{{config.location.tittleCategories}}</h2>
+											<h2 class="paper-font-display2">{{config.location.tittleChat}}</h2>
 											<!-- <categorie-table></categorie-table> -->
+
+											<page-chat userData='{{config.userProfile}}'></page-chat>
 										</paper-material>
 									</animation-tag>
 								</section>
@@ -158,13 +162,10 @@
 
 		</section>
 
-
-		<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline.">
-		</paper-toast>
+		<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline."></paper-toast>
 
 		<platinum-sw-register auto-register clients-claim skip-waiting on-service-worker-installed="displayInstalledToast">
-			<platinum-sw-cache default-cache-strategy="networkFirst" precache-file="precache.json">
-			</platinum-sw-cache>
+			<platinum-sw-cache default-cache-strategy="networkFirst" precache-file="precache.json"></platinum-sw-cache>
 		</platinum-sw-register>
 
 	</template>
@@ -173,31 +174,11 @@
 <script>
  Polymer({
 		is: 'app-filterly',
-		behaviors: [appConfig],
+		behaviors: [appConfig , appMessageWidget, appRoute],
 		properties: {
-			loginUser: {
-				type: Boolean,
-				value: false
-			},
-			pagePrevius: {
-				type: Array,
-				value: function (){return [];}
-			},
-			pageSelector: {
-				type: String,
-				observer: '_changePage'
-			},
-			route: {
-				type: String,
-				value: ''
-			},
-			messageWidget: {
-				type: Object
-			},
 			authDetect: {
 					type: Boolean,
 					observer: '_checkAuth'
-
 			}
 		},
 		_checkAuth: function(){
@@ -231,68 +212,14 @@
 		_openMenu: function () {
 			this.$.paperDrawerPanel.openDrawer();
 		},
-		_changePage: function (value) {
 
-			if(value === '') return; // is necesary to enable use the "goto back" button two or more times
+		ready: function () {
 
-			if(value === 'goBack') {
-				value = this.pagePrevius.pop();
-				if(value === undefined ) value = 'splash';
+			this.initRoute();
+			this.initMessageWidget();
 
-			} else this.pagePrevius.push(this.route);
-
-			page('/#!/'+value);
-			this.route = value;
-
-		},
-		showMessage: function(data){
-
-			if (data.type==='app:alert'){
-				this.messageWidget.style.background='red';
-				this.messageWidget.style.color='white';
-			}
-
-			this.messageWidget.text = data.detail.message;
-			this.messageWidget.show();
-
-		},
-		_initMessageWidget: function(){
-			var self = this;
-			this.messageWidget = document.querySelector('paper-toast');
-
-			document.addEventListener('app:alert',function(erro){
-				self.showMessage(erro);
-			});
-
-			document.addEventListener('app:message',function(erro){
-				self.showMessage(erro);
-			});
-
-		},
-		_initRoute: function(){
-			if( window.location.hash === '#!/undefined') this._changePage('splash');
-
-			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
-
-			if ( this.config.userProfile.auth ) {
-
-				this._showApp();
-
-				if( window.location.hash !== '#!/news' ) this._changePage('news');
-
-			} else {
-				this._showInit();
-				// Fix Safari and firefox splash.
-				if( window.location.hash !== '#!/') this._changePage('splash');
-				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
-			}
-		},
-
-		attached: function () {
-
-			this._initRoute();
-			this._initMessageWidget();
-
+			// store scroll dom component
+			this.config.app.scrollChat= document.querySelector('#mainContainer');
 		}
 	});
 

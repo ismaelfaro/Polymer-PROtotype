@@ -1,0 +1,55 @@
+
+<script>
+
+appRoute = {
+    properties: {
+      pagePrevius: {
+				type: Array,
+				value: function (){return [];}
+			},
+			pageSelector: {
+				type: String,
+				observer: '_changePage'
+			},
+			route: {
+				type: String,
+				value: ''
+			},
+    },
+    _changePage: function (value) {
+
+			if(value === '') return; // is necesary to enable use the "goto back" button two or more times
+
+			if(value === 'goBack') {
+				value = this.pagePrevius.pop();
+				if(value === undefined ) value = 'splash';
+
+			} else this.pagePrevius.push(this.route);
+
+			page('/#!/'+value);
+			this.route = value;
+
+		},
+
+		initRoute: function(){
+			if( window.location.hash === '#!/undefined') this._changePage('splash');
+
+			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
+
+			if ( this.config.userProfile.auth ) {
+
+				this._showApp();
+
+				if( window.location.hash !== '#!/news' ) this._changePage('news');
+
+			} else {
+				this._showInit();
+				// Fix Safari and firefox splash.
+				if( window.location.hash !== '#!/') this._changePage('splash');
+				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
+			}
+		},
+
+  };
+
+</script>

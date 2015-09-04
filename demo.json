@@ -1,4 +1,11 @@
 {
+  "categories": [
+    "football",
+    "3D",
+    "films",
+    "code",
+    "parties"
+  ],
   "responseData": {
     "query": "google",
     "entries": [ {

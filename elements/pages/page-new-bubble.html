@@ -1,0 +1,70 @@
+
+<dom-module id="page-new-bubble">
+
+  <template>
+
+  <style>
+    :host {
+      display: block;
+    font-weight: 300;
+    }
+
+  h1 {
+    font-weight: 300;
+  }
+
+    paper-material{
+      padding: 16px;
+      background-color: white;
+      margin: 8px;
+    }
+
+    img {
+      margin: 0px 6px 6px 0px ;
+      float: right;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border-style: solid;
+      border-width:thick;
+      border-color: var(--accent-color);
+    }
+
+    .photo-left{
+      float: left !important;
+    }
+
+  </style>
+    <animation-tag animation="{{animation}}">
+      <paper-material elevation="5"  on-tap="openNew" index="{{index}}" >
+        <img id="photo" src="{{item.password.profileImageURL}}" alt="{{item.password.email}}">
+        <span>{{item.message}}</span>
+      </paper-material>
+    </animation-tag>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "page-new-bubble",
+    behaviors: [appConfig],
+    properties: {
+      item: {
+        type: Object
+      },
+      userID: {
+        type: String
+      }
+    },
+    ready: function(){
+      if(this.item.uid === this.config.userProfile.uid){
+        this.animation = "bounceInLeft";
+      } else {
+        this.$.photo.classList.add('photo-left');
+        this.animation = "bounceInRight";
+      }
+    },
+  	openNew:function(){
+  	}
+  });
+</script>
