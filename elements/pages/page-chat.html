@@ -17,7 +17,6 @@
       bottom: 0px;
     }
 
-
   </style>
 
 
@@ -45,7 +44,10 @@
           type: Array,
           notify: true,
         },
-        userData: Object,
+        userdata: {
+          type: Object,
+          notify: true,
+        },
         message: {
           type: Object
         },
@@ -53,9 +55,10 @@
       },
       _sendMessage: function(){
         if(this.message === {}) return;
-        console.info(this.message);
-        this.message.uid=this.config.userProfile.uid;
-        this.message.password=this.config.userProfile.password;
+
+        this.message.uid=this.userdata.uid;
+        this.message.password=this.userdata.password;
+
         this.send('posts', this.message, function(data){
 
         });
@@ -69,8 +72,6 @@
       ready: function() {
 
         var self = this;
-        this.scrollChat = document.querySelector('#mainContainer');
-        console.info(document.querySelector('#mainContainer'));
 
         this.message = {};
 
