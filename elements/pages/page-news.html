@@ -12,34 +12,34 @@
 
   </style>
   <template>
-      <iron-ajax id="loadNews"
-        auto
-        url="/demo.json?q={{query}}"
-        handle-as="json"
-        on-response="handleResponse"
-        lastResponse="{{respuesta}}"
-        ></iron-ajax>
-        
+
       <template is="dom-repeat" items="{{items}}" index-as="index">
-         <page-new-card item="{{item}}" index="{{index}}"></page-new-card>
+          <animation-tag animation="slideInUp">
+            <page-new-card item="{{item}}" index="{{index}}"></page-new-card>
+        </animation-tag>
       </template>
+
   </template>
 </dom-module>
 <script>
   (function () {
     Polymer({
       is: 'page-news',
+      behaviors: [appConfig, appServer],
       properties: {
         items: {
           type: Array,
           notify: true,
-        }
+        },
+      },
+      _populateData: function(data){
+        this.items = data;
       },
       ready: function() {
-
-      },
-      handleResponse: function(request){
-        this.items = request.detail.response.responseData.entries;
+        var self = this;
+        this.readNews(function(data){
+            self._populateData(data.responseData.entries);
+        });
       }
     });
   })();

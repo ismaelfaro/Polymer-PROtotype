@@ -7,137 +7,156 @@
 
 	<link rel="import" type="css" href="app-filterly.css">
 
-	<style>
-		:host {
-			display: block;
-			height: 100%;
-		}
-
-		iron-pages {
-			height: 100%;
-		}
-
-		#page {
-			background-image: url(../images/flower.jpg);
-			background-size: cover;
-			color: var(--text-primary-color);
-		}
-	</style>
-
 	<template>
 
-		<template id="loginpages" is="dom-if" if="{{!loginUser}}">
+		<style>
+			:host {
+				display: block;
+				height: 100%;
+			}
 
+			iron-pages {
+				height: 100%;
+			}
+
+			#page {
+				background-image: url(../images/background.jpg);
+				background-size: cover;
+				color: var(--text-primary-color);
+				margin: 0px;
+				padding: 0px;
+			}
+
+			#initcontent, #appcontent {
+					display: none;
+					height: 100%;
+			}
+
+			.show {
+					display: block !important;
+			}
+
+		</style>
+
+		<section id="initcontent">
 			<iron-pages id="page" attr-for-selected="data-route" selected="{{route}}">
 
-				<section data-route="splash">
-					<page-splash page="{{route}}"></page-splash>
+				<section  data-route="splash">
+					<page-splash  page="{{pageSelector}}"></page-splash>
 				</section>
 
 				<section data-route="login">
-					<page-login user="{{loginUser}}" page="{{route}}"></page-login>
+					<page-login auth="{{authDetect}}" userdata="{{config.userProfile}}" page="{{pageSelector}}"></page-login>
 				</section>
 
 				<section data-route="register">
-					<page-register page="{{route}}"></page-register>
+					<page-register page="{{pageSelector}}" auth="{{authDetect}}"></page-register>
 				</section>
 
 				<section data-route="resetpassword">
-					<page-resetpassword page="{{route}}"></page-resetpassword>
+					<page-resetpassword page="{{pageSelector}}"></page-resetpassword>
 				</section>
 
 				<section data-route="terms">
-					<page-terms page="{{route}}"></page-terms>
+					<page-terms page="{{pageSelector}}"></page-terms>
 				</section>
 
 			</iron-pages>
+		</section>
 
-		</template>
-
-		<template is="dom-if" if="{{loginUser}}">
-
+		<section id="appcontent">
 			<paper-drawer-panel id="paperDrawerPanel" right-drawer>
-				<div drawer>
-					<!-- Drawer Toolbar -->
-					<paper-toolbar id="drawerToolbar">
-						<span class="paper-font-title">Menu</span>
-					</paper-toolbar>
+					<div drawer>
+						<!-- Drawer Toolbar -->
+						<paper-toolbar id="drawerToolbar">
+							<span class="paper-font-title">Menu</span>
+						</paper-toolbar>
 
-					<!-- Drawer Content -->
-					<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-						<a data-route="news" href="/news">
-							<iron-icon icon="view-list"></iron-icon>
-							<span>News</span>
-						</a>
+						<!-- Drawer Content -->
+						<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+							<a data-route="news" href="/#!/news">
+								<iron-icon icon="view-list"></iron-icon>
+								<span>{{config.location.tittleNews}}</span>
+							</a>
 
-						<a data-route="categories" href="/categories">
-							<iron-icon icon="dashboard"></iron-icon>
-							<span>Categories</span>
-						</a>
+							<a data-route="categories" href="/#!/categories">
+								<iron-icon icon="dashboard"></iron-icon>
+								<span>{{config.location.tittleCategories}}</span>
+							</a>
 
-						<a data-route="profile" href="/profile">
-							<iron-icon icon="face"></iron-icon>
-							<span>Profile</span>
-						</a>
+							<a data-route="profile" href="/#!/profile">
+								<iron-icon icon="face"></iron-icon>
+								<span>{{config.location.tittleProfile}}</span>
+							</a>
 
-						<a data-route="profile" href="/profile">
-							<iron-icon icon="face"></iron-icon>
-							<span>Profile</span>
-						</a>
+							<a data-route="logout" href="/#!/logout">
+								<iron-icon icon="close"></iron-icon>
+								<span>{{config.location.tittleLogout}}</span>
+							</a>
 
-					</paper-menu>
-				</div>
-				<paper-header-panel main mode="waterfall">
-
-					<!-- Main Toolbar -->
-
-					<!--  <app-toolbar id="mainToolbar"></app-toolbar>-->
-
-					<paper-toolbar id="mainToolbar">
-
-
-						<div id="logo" class="paper-font-display2 app-name">
-
-							<iron-image style="background-position-x: 100%;width:50%; height:50%; padding-top: 50px; margin-top: 8px;" sizing="cover" src="{{configuration.logo}}"></iron-image>
-
-						</div>
-
-						<span class="flex"></span>
-
-						<paper-icon-button id="paperToggle" class="menu-button" icon="menu" paper-drawer-toggle> </paper-icon-button>
-					</paper-toolbar>
-
-					<!-- Main Content -->
-					<div class="content">
-						<iron-pages id="pageBase" attr-for-selected="data-route" selected="{{route}}">
-
-							<section data-route="news">
-								<page-news></page-news>
-							</section>
-
-							<section data-route="categories">
-								<paper-material elevation="1">
-									<h2 class="paper-font-display2">Categories</h2>
-
-									<categorie-table></categorie-table>
-
-								</paper-material>
-							</section>
-
-							<section data-route="profile">
-								<paper-material elevation="1">
-									<h2 class="paper-font-display2">Contact</h2>
-									<page-profile user='{"name":"pepe","mail":"my@email.com","image":"/images/db/3.jpg"}' </page-profile>
-										<google-map></google-map>
-								</paper-material>
-							</section>
-
-						</iron-pages>
+						</paper-menu>
 					</div>
-				</paper-header-panel>
-			</paper-drawer-panel>
+					<paper-header-panel main mode="waterfall">
 
-		</template>
+						<!-- Main Toolbar -->
+
+						<!--  <app-toolbar id="mainToolbar"></app-toolbar>-->
+
+						<paper-toolbar id="mainToolbar">
+
+
+							<div id="logo" class="paper-font-display2 app-name">
+
+								<iron-image style="background-position-x: 100%;width:50%; height:50%; padding-top: 50px; margin-top: 8px;" sizing="cover" src="{{config.app.logo}}"></iron-image>
+
+							</div>
+
+							<span class="flex"></span>
+
+							<paper-icon-button id="paperToggle" class="menu-button" icon="menu" paper-drawer-toggle> </paper-icon-button>
+						</paper-toolbar>
+
+						<!-- Main Content -->
+						<div class="content">
+							<iron-pages id="pageBase" attr-for-selected="data-route" selected="{{route}}">
+								<section data-route="news">
+									<page-news></page-news>
+								</section>
+
+								<section data-route="categories">
+									<animation-tag animation="slideInUp">
+										<paper-material elevation="1">
+											<h2 class="paper-font-display2">{{config.location.tittleCategories}}</h2>
+											<!-- <categorie-table></categorie-table> -->
+										</paper-material>
+									</animation-tag>
+								</section>
+
+								<section data-route="profile">
+									<animation-tag animation="slideInUp">
+										<paper-material elevation="1">
+											<h2 class="paper-font-display2">{{config.location.tittleProfile}}</h2>
+											<page-profile userData='{{config.userProfile}}' </page-profile>
+												<!-- <google-map></google-map> -->
+										</paper-material>
+									</animation-tag>
+								</section>
+
+								<section data-route="logout">
+									<animation-tag animation="zoomIn">
+										<paper-material elevation="1">
+											<h2 class="paper-font-display2">{{config.location.tittleLogout}}</h2>
+											<page-logout page="{{pageSelector}}" auth="{{authDetect}}"></page-logout>
+										</paper-material>
+									</animation-tag>
+								</section>
+
+							</iron-pages>
+						</div>
+					</paper-header-panel>
+				</paper-drawer-panel>
+
+		</section>
 
 
 		<paper-toast id="caching-complete" duration="6000" text="Caching complete! This app will work offline.">
@@ -160,13 +179,49 @@
 				type: Boolean,
 				value: false
 			},
-			pageseLector: {
+			pagePrevius: {
+				type: Array,
+				value: function (){return [];}
+			},
+			pageSelector: {
 				type: String,
 				observer: '_changePage'
 			},
 			route: {
-				type: String
+				type: String,
+				value: ''
+			},
+			messageWidget: {
+				type: Object
+			},
+			authDetect: {
+					type: Boolean,
+					observer: '_checkAuth'
+
 			}
+		},
+		_checkAuth: function(){
+				this.config.userProfile.auth = this.authDetect;
+
+				if(this.config.userProfile.auth){
+					this.config.saveCookie();
+					this._showApp();
+				}else{
+					this._showInit();
+				}
+
+		},
+		_showInit: function(){
+
+			this.$.appcontent.classList.remove ('show');
+			this.$.initcontent.classList.add ('show');
+
+		},
+		_showApp: function(){
+
+			this.$.appcontent.classList.add ('show');
+			this.$.initcontent.classList.remove ('show');
+
 		},
 		onMenuSelect: function () {
 			if (this.$.paperDrawerPanel.narrow) {
@@ -177,16 +232,66 @@
 			this.$.paperDrawerPanel.openDrawer();
 		},
 		_changePage: function (value) {
-			window.location.href = "/#!/" + value;
-		},
-		ready: function () {
-			this.config = this.$.config;
 
-			if (this.loginUser) {
-				if( window.location.pathname !== '/#!/news' ) window.location.href = "/#!/news";
-			} else {
-				if( window.location.pathname !== '/#!/' || window.location.pathname !== '/' ) window.location.href = "/#!/";
+			if(value === '') return; // is necesary to enable use the "goto back" button two or more times
+
+			if(value === 'goBack') {
+				value = this.pagePrevius.pop();
+				if(value === undefined ) value = 'splash';
+
+			} else this.pagePrevius.push(this.route);
+
+			page('/#!/'+value);
+			this.route = value;
+
+		},
+		showMessage: function(data){
+
+			if (data.type==='app:alert'){
+				this.messageWidget.style.background='red';
+				this.messageWidget.style.color='white';
 			}
+
+			this.messageWidget.text = data.detail.message;
+			this.messageWidget.show();
+
+		},
+		_initMessageWidget: function(){
+			var self = this;
+			this.messageWidget = document.querySelector('paper-toast');
+
+			document.addEventListener('app:alert',function(erro){
+				self.showMessage(erro);
+			});
+
+			document.addEventListener('app:message',function(erro){
+				self.showMessage(erro);
+			});
+
+		},
+		_initRoute: function(){
+			if( window.location.hash === '#!/undefined') this._changePage('splash');
+
+			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
+
+			if ( this.config.userProfile.auth ) {
+
+				this._showApp();
+
+				if( window.location.hash !== '#!/news' ) this._changePage('news');
+
+			} else {
+				this._showInit();
+				// Fix Safari and firefox splash.
+				if( window.location.hash !== '#!/') this._changePage('splash');
+				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
+			}
+		},
+
+		attached: function () {
+
+			this._initRoute();
+			this._initMessageWidget();
 
 		}
 	});

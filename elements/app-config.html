@@ -4,9 +4,11 @@
 
       var _appData =
         {
+          developer: true,
           appName: 'filter.ly',
           logo: 'images/logo.png',
-          defaultLang: 'es',
+          defaultLang: 'en',
+          serverName: 'polymer-prototype',
 					APIUrl: {
 										'prod': 'http://prod.filter.ly/',
 										'qa': 'http://qa.filter.ly/',
@@ -21,11 +23,14 @@
 										'addUrl': this.urlBase + 'TODO:',
 									},
 					urlBase: '',
+
         };
 
 			var _dataStorage = {};
 
 			var _appLocation = _APPLocation;
+
+      var _userProfile = { auth: false };
 
       Polymer({
         is: 'app-config',
@@ -39,7 +44,7 @@
             type: Object,
             notify: true,
             value: function() {
-                _appLocation.setLanguage(_appData.defaultLang);
+                _appLocation.setLanguage(_appLocation.getDeviceLanguage());
                 return _appLocation; },
           },
           location: {
@@ -52,74 +57,48 @@
 						type: Object,
 						notify: true,
 						value: function() { return _dataStorage; },
-					}
+					},
+          userProfile: {
+            type: Object,
+            notify: true,
+            value: function() { return _userProfile; }
+          }
+        },
+        consoldev: function(text){
+          if(this.app.developer){
+            console.info(text);
+          }
+        },
+        _bake_cookie:function (data) {
+          return 'APP='+JSON.stringify(data);
+          // return JSON.stringify(data);
+
+        },
+        _recover_cookie: function(data){
+          // var result = document.cookie.match(new RegExp('APP=([^;]+)'));
+          // result && (result = JSON.parse(result[1]));
+          return JSON.parse(data.split('APP=')[1]);
+          // return JSON.parse(data);
+        },
+        loadCookie: function(){
+
+          if (document.cookie === '' || document.cookie === 'APP=') return { auth: false }
+          else {
+            this.userProfile = this._recover_cookie(document.cookie);
+            return this.userProfile;
+          }
+
+        },
+        saveCookie: function(){
+          document.cookie = this._bake_cookie(this.userProfile);
+        },
+        removeCookie: function(){
+          document.cookie = 'APP=';
+        },
+        ready: function(){
+          this.userProfile = this.loadCookie();
         }
       });
     })();
 
-
-	//
-	// appConfig = {
-	// 	properties: {
-	//
-	// 		appName: {
-	// 			type: String,
-	// 			value: 'filter.ly'
-	// 		},
-	// 		logo: {
-	// 			type: String,
-	// 			value: 'images/logo.png'
-	// 		},
-	// 		APIUrl: {
-	// 			type: Object,
-	// 			value: function () {
-	// 				return {
-	// 					'prod': 'http://prod.filter.ly/',
-	// 					'qa': 'http://qa.filter.ly/',
-	// 					'dev': 'http://127.0.0.1:3000/'
-	// 				}
-	// 			}
-	// 		},
-	// 		API: {
-	// 			type: Object,
-	// 			value: function () {
-	// 				return {
-	// 					'authnative': this.urlBase + 'api/1/user/authnative',
-	// 					'register': this.urlBase + 'api/1/user/register',
-	// 					'resetPwd': this.urlBase + 'TODO:',
-	// 					'readNews': this.urlBase + 'TODO:',
-	// 					'readProfile': this.urlBase + 'TODO:',
-	// 					'addUrl': this.urlBase + 'TODO:'
-	// 				}
-	// 			}
-	// 		},
-	// 		urlBase: {
-	// 			type:String,
-	// 			value: ''
-	// 		},
-	// 		serverMode: {
-	// 			type: String,
-	// 			value: 'dev',
-	// 			observer: '_changeMode'
-	// 		},
-	// 		config: {
-	// 			type: Object,
-	// 			value: function () {
-	// 				return {
-	// 					appName: this.appName,
-	// 					logo: this.logo,
-	// 					urlBase: this.UrlBase,
-	// 				};
-	// 			}
-	// 		}
-	// 	},
-	// 	_changeMode: function () {
-	// 		this.UrlBase = this.APIUrl[this.serverMode];
-	// 	},
-	// 	devcon: function (texto) {
-	// 		if (this.serverMode === 'dev') {
-	// 			console.info(texto);
-	// 		}
-	// 	}
-	// }
 </script>

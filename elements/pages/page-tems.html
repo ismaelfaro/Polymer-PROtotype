@@ -1,4 +1,4 @@
-<link rel="import" href="../app-config-behavior.html">
+<!-- <link rel="import" href="../app-config-behavior.html"> -->
 
 <dom-module id="page-terms">
 	<template>
@@ -17,11 +17,14 @@
 				left: 0px;
 				right: 0px;
 				bottom: 0px;
-				padding: 32px;
+				padding: 8px;
 			}
+
 		</style>
 
-		<div id="terms"></div>
+		<animation-tag animation="fadeIn">
+			<div id="terms"></div>
+		</animation-tag>
 
 		<div id="base-footer">
 
@@ -43,9 +46,8 @@
 			}
 		},
 		ready: function() {
-
+			// necesary to let use \n new lines.
 			this.$.terms.innerText = this.config.location.termsInfo;
-
 		}
 
 	});

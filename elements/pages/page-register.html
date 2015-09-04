@@ -1,4 +1,5 @@
-<link rel="import" href="../app-config-behavior.html">
+<link rel="import" href="../helper/app-server-behavior.html">
+<link rel="import" href="../layout/app-social-buttons-behevior.html">
 
 <dom-module id="page-register">
 	<template>
@@ -18,8 +19,9 @@
 				left: 0px;
 				right: 0px;
 				bottom: 0px;
-				padding: 32px;
+				padding: 8px;
 			}
+
 
 			#base-footer > .buttons {
 				margin-top: 16px;
@@ -31,6 +33,7 @@
 				--paper-input-container-invalid-color: orange;
 				--paper-input-container-input-color: white;
 				width: 100%;
+				padding: 0 8px 0 8px;
 			}
 
 			paper-button {
@@ -38,43 +41,40 @@
 				color: white;
 				background-color: rgba(255, 255, 255, 0.2);
 				width: 100%;
+				text-transform: none;
 			}
+
 
 		</style>
 
-
-		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
-
 		<app-logo-screen title="{{config.location.tittleRegister}}"   logo="images/logo-app.png"></app-logo-screen>
 
-		<div id="base-footer">
+		<animation-tag animation="fadeIn">
+			<div id="base-footer">
 
-			<app-social-buttons></app-social-buttons>
+				<app-social-buttons socialbutton="{{socialButton}}"></app-social-buttons>
 
-			<div class="horizontal center-justified layout">
-				<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+				<div class="horizontal center-justified layout">
+					<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.password2}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout buttons">
+					<paper-button on-tap="registerMe">{{config.location.register}}</paper-button>
+				</div>
+
+				<app-footer-buttons page="{{page}}"></app-footer-buttons>
+
 			</div>
-
-			<div class="horizontal center-justified layout">
-				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.pwd}}"></paper-input>
-			</div>
-
-			<div class="horizontal center-justified layout">
-				<paper-input id="pwd2" label="{{config.location.password2}}"  type="password" value="{{user.pwd2}}"></paper-input>
-			</div>
-
-			<div class="horizontal center-justified layout buttons">
-				<paper-button>{{config.location.login}}</paper-button>
-				<paper-button>{{config.location.register}}</paper-button>
-			</div>
-
-			<app-footer-buttons page="{{page}}"></app-footer-buttons>
-
-		</div>
-
-
+		</animation-tag>
 	</template>
-
 
 </dom-module>
 
@@ -82,16 +82,41 @@
 
 	Polymer({
 		is: 'page-register',
-		behaviors: [appConfig],
+		behaviors: [ appConfig, appServer, appSocialButtons ],
 		properties: {
+			auth: {
+				type: Boolean,
+				notify: true
+			},
+			user: {
+				type:Object,
+				value: function(){ return {};}
+			},
 			page: {
 				type: String,
 				notify: true
 			}
-
 		},
-		ready: function(){
+		registerMe: function(){
+			var self = this;
 
+			if (this.user.password !== this.user.password2){
+				this.fire('app:alert',{message:this.config.location.registerPasswordError});
+
+			} else {
+				this.register(this.user,
+					function(data, erro){
+						if(!erro){
+								self.fire('app:message',{message:self.config.location.registerUserCorrect});
+								self.user = data;
+								self._auth();
+
+						}else {
+							  self.fire('app:alert',{message:self.config.location[erro]});
+
+						};
+				});
+			};
 		}
 	});
 

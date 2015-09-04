@@ -1,0 +1,49 @@
+<script>
+
+	appSocialButtons = {
+		properties: {
+			socialButton: {
+				type:String,
+				observer: '_socialButton'
+			},
+		},
+		_cleanSocialData: function(social, data){
+
+			var userDataClean = data;
+
+			if(social == "twitter"){
+				userDataClean = { uid		: data.auth.uid,
+								provider: data.provider,
+								token		: data.token,
+								password: {
+										profileImageURL: data.twitter.profileImageURL,
+										email: data.twitter.username
+									 }
+								}
+			}
+			return userDataClean;
+
+		},
+		_socialButton: function(social){
+			if (social === '') return
+			var self = this;
+			this.registerSocial(social,
+				function(data, erro){
+					if(!erro){
+							self.fire('app:message',{message:self.config.location.loginUserCorrect});
+							self.userdata = self._cleanSocialData(social, data);
+							self._auth();
+					}else {
+							self.fire('app:alert',{message:self.config.location[erro]});
+					};
+			});
+		},
+		_auth: function(){
+			this.auth = true;
+			this.userdata.auth = true;
+			this.page='news';
+		}
+	};
+
+
+</script>

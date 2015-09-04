@@ -1,0 +1,91 @@
+
+<script src="../extra/firebase.js"></script>
+
+<script>
+
+appServer = {
+    properties: {
+      server: {
+        type: Object,
+        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com");}
+        // value: document.createElement('firebase-auth')
+      },
+      serverData: {
+        type: Object,
+        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com");}
+        // value: document.createElement('firebase-collection')
+      },
+
+      serverConnectivity: {
+        type: Object,
+        value: function(){return new Firebase("https://polymer-prototype.firebaseio.com/.info/connected");}
+        // value: document.createElement('firebase-collection')
+      }
+    },
+    register: function(user, callback){
+
+      this.server.createUser(user,
+        function(error, userData) {
+            if (error) {
+              console.info(error);
+              callback(null, error);
+            } else {
+              console.info(userData);
+              callback(userData);
+            }
+          });
+    },
+    registerSocial:function(social,callback){
+      this.server.authWithOAuthPopup(social, function(error, authData) {
+        if (error) {
+          console.log("Authentication Failed!", error);
+          callback(null, error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+          callback(authData);
+        }
+      });
+    },
+    login:function(user, callback){
+
+      this.server.authWithPassword( user,
+        function(error, userData) {
+            if (error) {
+              console.info(error);
+              callback(null, error);
+            } else {
+              console.info(userData);
+              callback(userData);
+            }
+          });
+    },
+    logout:function(){
+      this.server.unauth();
+    },
+    resetPwd:function(user){
+
+    },
+    readNews:function(callback){
+      this.server.on('value', function(data){
+        callback(data.val());
+      });
+    },
+    readCategories:function(){
+
+    },
+    saveURL:function(){
+
+    },
+    connectionTest:function(){
+      this.serverConnectivity.on("value", function(snap) {
+            if (snap.val() === true) {
+              document.fire('app',{connection: true});
+            } else {
+              document.fire('app',{connection: false});
+            }
+      });
+    }
+
+  };
+
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo: animation-tag</title>
+
+    <link rel="import" href="../animation-tag.html">
+
+    <style>
+        .block {
+            width: 200px;
+            height: 200px;
+            color: white;
+            text-align: center;
+            background-color: #ff4081;
+            margin: 10px;
+            border-radius: 20px;
+        }
+        
+        .otherColor {
+            background-color: #3f51b5;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="horizontal center-center layout">
+
+        <animation-tag animation="flash" start-time="1.0">
+            <div class="block"></div>
+        </animation-tag>
+
+        <animation-tag animation="pulse infinite">
+            <div class="block"></div>
+        </animation-tag>
+
+        <animation-tag animation="flipInX">
+            <div class="block"></div>
+        </animation-tag>
+
+    </div>
+
+    <div class="horizontal center-center layout">
+
+        <animation-tag animation="flipOutX" start-time="2.0">
+            <div class="block">aaa</div>
+        </animation-tag>
+
+        <div class="horizontal center-center layout">
+
+            <animation-tag animation="" onclick="javascript:clickme">
+                <div class="block otherColor">click me</div>
+            </animation-tag>
+
+            <button onclick="javascript:restoreme">restore</button>
+
+        </div>
+    </div>
+    <script>
+        function clickme() {
+            alert('aaaaa');
+        }
+            function restoreme() {
+            alert('aaaaa');
+        }
+        
+    </script>
+
+</body>
+
+</html>

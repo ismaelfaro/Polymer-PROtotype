@@ -1,0 +1,45 @@
+<dom-module id="page-logout">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button {
+        margin: 20px;
+        background: var(--accent-color);
+        color: white;
+      }
+    </style>
+
+    <div class="horizontal center-justified layout">
+        <paper-button on-tap="logout" id="logout"><span>{{config.location.tittleLogout}}</span></paper-input>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+
+    Polymer({
+      is: 'page-logout',
+      behaviors: [appConfig],
+      properties: {
+        auth: {
+          type: Boolean,
+          notify: true
+        },
+        page: {
+          type:String,
+          notify: true
+        }
+
+      },
+      logout: function(){
+        this.auth = false;
+        this.page = "splash"
+        this.config.removeCookie();
+      }
+    });
+
+</script>

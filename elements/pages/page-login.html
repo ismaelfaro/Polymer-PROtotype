@@ -1,4 +1,5 @@
-<link rel="import" href="../app-config-behavior.html">
+<link rel="import" href="../helper/app-server-behavior.html">
+<link rel="import" href="../layout/app-social-buttons-behevior.html">
 
 <dom-module id="page-login">
 	<template>
@@ -16,8 +17,9 @@
 				left: 0px;
 				right: 0px;
 				bottom: 0px;
-				padding: 32px;
+				padding: 8px;
 			}
+
 
 			#base-footer > .buttons {
 				margin-top: 16px;
@@ -29,6 +31,7 @@
 				--paper-input-container-invalid-color: orange;
 				--paper-input-container-input-color: white;
 				width: 100%;
+				padding: 0 8px 0 8px;
 			}
 
 			paper-button {
@@ -36,33 +39,39 @@
 				color: white;
 				background-color: rgba(255, 255, 255, 0.2);
 				width: 100%;
+				text-transform: none;
 			}
-		</style>
 
-		<iron-ajax id="ajax" url="" method="post" handle-as="json" on-response="hresponse" debounce-duration="300"></iron-ajax>
+		</style>
 
 		<app-logo-screen title="{{config.location.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
 
-		<div id="base-footer">
+		<div class="horizontal center-justified layout">
 
-			<app-social-buttons></app-social-buttons>
+		<animation-tag animation="fadeIn">
+			<div id="base-footer">
 
-			<div class="horizontal center-justified layout">
-				<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+				<app-social-buttons socialbutton="{{socialButton}}"></app-social-buttons>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout">
+					<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
+				</div>
+
+				<div class="horizontal center-justified layout buttons">
+					<paper-button on-tap="loginMe">{{config.location.login}}</paper-button>
+					<paper-button on-tap="resetPwd">{{config.location.tittleResetPassword}}</paper-button>
+				</div>
+
+				<app-footer-buttons page="{{page}}" config="{{config}}"></app-footer-buttons>
+
 			</div>
+		</animation-tag>
 
-			<div class="horizontal center-justified layout">
-				<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.pwd}}"></paper-input>
-			</div>
-
-			<div class="horizontal center-justified layout buttons">
-				<paper-button on-tap="login">{{config.location.login}}</paper-button>
-				<paper-button on-tap="register">{{config.location.register}}</paper-button>
-			</div>
-
-			<app-footer-buttons page="{{page}}" config="{{config}}"></app-footer-buttons>
-
-			</div>
+	</div>
 
 	</template>
 </dom-module>
@@ -70,35 +79,47 @@
 <script>
 	Polymer({
 		is: 'page-login',
-		behaviors: [appConfig],
+		behaviors: [ appConfig, appServer, appSocialButtons ],
 		properties: {
+			auth: {
+				type: Boolean,
+				notify: true
+			},
+			user: {
+				type:Object,
+				value: function(){ return {};},
+				notify: true
+			},
+			userdata: {
+				type:Object,
+				value: function(){ return {};},
+				notify: true,
+			},
 			page: {
 				type: String,
 				notify: true
 			}
 		},
-		login: function () {
-			console.info(this.config);
-			this.$.ajax.url = this.config.API['authnative'];
-			this.$.ajax.body = {
-				email: this.userEmail,
-				pwd: this.pwd,
-				pwd2: null,
-				timezone: 'Europe/Berlin',
-				fromSignup: false
-			};
+		loginMe: function () {
+			var self = this;
+			this.login(this.user,
+				function(data, erro){
+					if(!erro){
+							self.fire('app:message',{message:self.config.location.loginUserCorrect});
+							self.userdata = data;
+							self._auth();
 
-			this.$.ajax.generateRequest();
+					}else {
+							self.fire('app:alert',{message:self.config.location[erro]});
+
+					};
+			});
 		},
-		hresponse: function (demo) {
-//			console.log(demo);
-			//TODO: check user and update login to true
-		},
-		register: function () {
-			this.page = 'register';
+		resetPwd: function () {
+			this.page = 'resetpassword';
 		},
 		ready: function() {
-
+			this.user = {};
 		},
 
 	});
