@@ -20,9 +20,11 @@
               <page-new-bubble userID="{{userData.uid}}" item="{{item}}" index="{{index}}"></page-new-bubble>
         </template>
 
+        <google-map></google-map>
+
         <paper-input id="menssage" label="{{config.language.message}}" value={{message.message}}></paper-input>
 
-        <paper-button on-tap="_sendMessage" raised>send</paper-button>
+        <paper-button on-tap="_sendMessage" raised>{{config.language.sendMessage}}</paper-button>
 
       </section>
 
@@ -49,7 +51,7 @@
         this.config.app.scrollChat.scrollTop = this.config.app.scrollChat.scrollHeight+100;
       },
       _sendMessage: function(){
-        if(this.message === {}) return;
+        if(!this.message.message) return;
 
         this.message.uid = this.userdata.uid;
         this.message.password = this.userdata.password;
