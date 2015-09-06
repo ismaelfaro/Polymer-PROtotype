@@ -26,22 +26,22 @@
         <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
           <a data-route="news" href="/#!/news">
             <iron-icon icon="view-list"></iron-icon>
-            <span>{{config.location.tittleNews}}</span>
+            <span>{{config.language.tittleNews}}</span>
           </a>
 
           <a data-route="chat" href="/#!/chat">
             <iron-icon icon="dashboard"></iron-icon>
-            <span>{{config.location.tittleChat}}</span>
+            <span>{{config.language.tittleChat}}</span>
           </a>
 
           <a data-route="profile" href="/#!/profile">
             <iron-icon icon="face"></iron-icon>
-            <span>{{config.location.tittleProfile}}</span>
+            <span>{{config.language.tittleProfile}}</span>
           </a>
 
           <a data-route="logout" href="/#!/logout">
             <iron-icon icon="close"></iron-icon>
-            <span>{{config.location.tittleLogout}}</span>
+            <span>{{config.language.tittleLogout}}</span>
           </a>
 
         </paper-menu>
@@ -67,7 +67,6 @@
         </paper-toolbar>
 
         <!-- Main Content -->
-        <div class="content">
           <iron-pages id="pageBase" attr-for-selected="data-route" selected="{{route}}">
             <section data-route="news">
               <page-news></page-news>
@@ -76,9 +75,7 @@
             <section data-route="chat">
               <animation-tag animation="slideInUp">
                 <paper-material elevation="1">
-                  <h2 class="paper-font-display2">{{config.location.tittleChat}}</h2>
-                  <!-- <categorie-table></categorie-table> -->
-
+                  <h2 class="paper-font-display2">{{config.language.tittleChat}}</h2>
                   <page-chat userData='{{config.userProfile}}'></page-chat>
                 </paper-material>
               </animation-tag>
@@ -87,7 +84,7 @@
             <section data-route="profile">
               <animation-tag animation="slideInUp">
                 <paper-material elevation="1">
-                  <h2 class="paper-font-display2">{{config.location.tittleProfile}}</h2>
+                  <h2 class="paper-font-display2">{{config.language.tittleProfile}}</h2>
                   <page-profile userData='{{config.userProfile}}' </page-profile>
                     <!-- <google-map></google-map> -->
                 </paper-material>
@@ -97,14 +94,13 @@
             <section data-route="logout">
               <animation-tag animation="zoomIn">
                 <paper-material elevation="1">
-                  <h2 class="paper-font-display2">{{config.location.tittleLogout}}</h2>
+                  <h2 class="paper-font-display2">{{config.language.tittleLogout}}</h2>
                   <page-logout page="{{pageSelector}}" auth="{{authDetect}}"></page-logout>
                 </paper-material>
               </animation-tag>
             </section>
 
           </iron-pages>
-        </div>
       </paper-header-panel>
     </paper-drawer-panel>
 

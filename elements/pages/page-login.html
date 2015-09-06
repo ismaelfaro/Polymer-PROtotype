@@ -44,7 +44,7 @@
 
 		</style>
 
-		<app-logo-screen title="{{config.location.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
+		<app-logo-screen title="{{config.language.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
 
 		<div class="horizontal center-justified layout">
 
@@ -54,16 +54,16 @@
 				<app-social-buttons socialbutton="{{socialButton}}"></app-social-buttons>
 
 				<div class="horizontal center-justified layout">
-					<paper-input id="email" label="{{config.location.email}}" value="{{user.email}}"></paper-input>
+					<paper-input id="email" label="{{config.language.email}}" value="{{user.email}}"></paper-input>
 				</div>
 
 				<div class="horizontal center-justified layout">
-					<paper-input id="pwd" label="{{config.location.password}}" type="password" value="{{user.password}}"></paper-input>
+					<paper-input id="pwd" label="{{config.language.password}}" type="password" value="{{user.password}}"></paper-input>
 				</div>
 
 				<div class="horizontal center-justified layout buttons">
-					<paper-button on-tap="loginMe">{{config.location.login}}</paper-button>
-					<paper-button on-tap="resetPwd">{{config.location.tittleResetPassword}}</paper-button>
+					<paper-button on-tap="loginMe">{{config.language.login}}</paper-button>
+					<paper-button on-tap="resetPwd">{{config.language.tittleResetPassword}}</paper-button>
 				</div>
 
 				<app-footer-buttons page="{{page}}" config="{{config}}"></app-footer-buttons>
@@ -105,12 +105,12 @@
 			this.login(this.user,
 				function(data, erro){
 					if(!erro){
-							self.fire('app:message',{message:self.config.location.loginUserCorrect});
+							self.fire('app:message',{message:self.config.language.loginUserCorrect});
 							self.userdata = data;
 							self._auth();
 
 					}else {
-							self.fire('app:alert',{message:self.config.location[erro]});
+							self.fire('app:alert',{message:self.config.language[erro]});
 
 					};
 			});

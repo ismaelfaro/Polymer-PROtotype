@@ -12,7 +12,7 @@
 
 			var _dataStorage = {};
 
-			var _appLocation = _APPLocation;
+			var _appLanguage = _APPLanguage;
 
       var _userProfile = { auth: false };
 
@@ -24,18 +24,18 @@
             notify: true,
             value: function() { return _appData; }
 					},
-					locale: {
+					_language: {
             type: Object,
             notify: true,
             value: function() {
-                _appLocation.setLanguage(_appLocation.getDeviceLanguage());
-                return _appLocation; },
+                _appLanguage.setLanguage(_appLanguage.getDeviceLanguage());
+                return _appLanguage; },
           },
-          location: {
+          language: {
             type: Object,
             notify: true,
             value: function() {
-                return _appLocation.location; },
+                return _appLanguage.language; },
           },
 					data: {
 						type: Object,

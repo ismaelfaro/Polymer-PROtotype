@@ -6,7 +6,7 @@ You can use it to create a WebAPP prototype.
 
 * App file : /elements/app-filterly.html
 * Config file   : /elements/app-config.html
-* Language file : /elements/app-locations.html
+* Language file : /elements/app-Language.html
 * Routing File  : /elements/routing.html
 * Pages : /elements/pages/
 * Layout: /elements/layout/
@@ -24,4 +24,3 @@ You can use it to create a WebAPP prototype.
 
 * manifestIOS // it's necesary update it.
 * manifest.json
-

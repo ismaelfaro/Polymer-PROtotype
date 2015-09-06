@@ -29,11 +29,11 @@
 			this.registerSocial(social,
 				function(data, erro){
 					if(!erro){
-							self.fire('app:message',{message:self.config.location.loginUserCorrect});
+							self.fire('app:message',{message:self.config.language.loginUserCorrect});
 							self.userdata = self._cleanSocialData(social, data);
 							self._auth();
 					}else {
-							self.fire('app:alert',{message:self.config.location[erro]});
+							self.fire('app:alert',{message:self.config.language[erro]});
 					};
 			});
 		},

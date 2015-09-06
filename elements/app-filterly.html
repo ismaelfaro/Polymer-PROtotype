@@ -30,7 +30,7 @@
 		</style>
 
 
-		<app-start id="initcontent" route="{{route}}" page-selector="{{pageSelector}}" config="{{config}}" auth-detect="{{authDetect}}"></app-start>
+		<app-start-login id="initcontent" route="{{route}}" page-selector="{{pageSelector}}" config="{{config}}" auth-detect="{{authDetect}}"></app-start-login>
 
 		<app-logic id="appcontent" route="{{route}}" page-selector="{{pageSelector}}" config="{{config}}" auth-detect="{{authDetect}}"></app-logic>
 
@@ -81,8 +81,6 @@
 			this.initRoute();
 			this.initMessageWidget();
 
-			// store scroll dom component
-			this.config.app.scrollChat= document.querySelector('#mainContainer');
 		}
 	});
 
