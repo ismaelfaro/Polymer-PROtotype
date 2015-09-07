@@ -2,7 +2,7 @@
 Complete Web-App scaffolding based in [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/index?hl=en).
 You can use it to create a WebAPP prototype.
 
-you can check a Demo in [polymer-prototype.firebaseapp.com](polymer-prototype.firebaseapp.com)
+you can check a Demo in [polymer-prototype.firebaseapp.com](https://polymer-prototype.firebaseapp.com)
 
 ##You have the next features:
 
