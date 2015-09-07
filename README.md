@@ -49,6 +49,7 @@ The idea is create a set of tools, using Polymer (web components), to help entre
 ## TODO:
 
 * Complete the Cordova integration
+* Improve the Desktop appearance
 * Look for a better solution to IOS offline
 * Create a Gulp task to automate deploy tasks 
 * Refine Polymer Web-components
