@@ -4,7 +4,7 @@ You can use it to create a WebAPP prototype.
 
 ##You have the next features:
 
-* App file : /elements/app-filterly.html
+* App file : /elements/app-main.html
 * Config file   : /elements/app-config.html
 * Language file : /elements/app-Language.html
 * Routing File  : /elements/routing.html
@@ -17,7 +17,7 @@ You can use it to create a WebAPP prototype.
 
 ##theming:
 
-* custom APP theme: /elements/app-filterly.ccs
+* custom APP theme: /elements/app-main.ccs
 * general App theme: /style/app-theme.html
 
 ## manifest to use as a WebAPP
