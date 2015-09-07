@@ -8,10 +8,6 @@
 				display: block;
 			}
 
-			app-logo-screen {
-				padding: 32px;
-			}
-
 			#base-footer {
 				position: absolute;
 				left: 0px;
@@ -27,8 +23,8 @@
 
 			paper-input {
 				--paper-input-container-color: white;
-				--paper-input-container-focus-color: yellow;
-				--paper-input-container-invalid-color: orange;
+				--paper-input-container-focus-color: orange;
+				--paper-input-container-invalid-color: red;
 				--paper-input-container-input-color: white;
 				width: 100%;
 				padding: 0 8px 0 8px;
@@ -37,14 +33,14 @@
 			paper-button {
 				font-weight: 100;
 				color: white;
-				background-color: rgba(255, 255, 255, 0.2);
+				background-color: var(--button-background);
 				width: 100%;
 				text-transform: none;
 			}
 
 		</style>
 
-		<app-logo-screen title="{{config.language.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
+		<app-logo-screen tittle="{{config.language.tittleLogin}}" logo="images/logo-app.png"></app-logo-screen>
 
 		<div class="horizontal center-justified layout">
 
@@ -54,7 +50,7 @@
 				<app-social-buttons socialbutton="{{socialButton}}"></app-social-buttons>
 
 				<div class="horizontal center-justified layout">
-					<paper-input id="email" label="{{config.language.email}}" value="{{user.email}}"></paper-input>
+					<paper-input id="email" label="{{config.language.email}}" type="email" value="{{user.email}}"></paper-input>
 				</div>
 
 				<div class="horizontal center-justified layout">

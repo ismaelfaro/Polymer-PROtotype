@@ -1,33 +1,43 @@
 <dom-module id="app-logo-screen">
 
-	<template>	
+	<template>
 		<style>
 			:host {
 				display: block;
 				color: white;
 				font-weight: 100;
+				width: 100%;
+			}
+
+			.center{
+				text-align: center;
+				padding: 30px 0 0 0;
+			}
+
+			#tittle{
+				font-size: 26px;
+				margin-bottom: 6px;
+			}
+
+			 #description{
+				font-size: 20px;
+				margin-bottom: 6px;
 			}
 
 			#logo{
-				height: 60px; 
-				width: auto;
+				height: 60px;
 			}
-			#tittle{
-				
-				font-stretch: 300;
-				font-size: 30px;
-				padding-bottom: 8px;
-			}
-			#description{
-				font-stretch: 300;
-				font-size: 20px;
-			}
+
 
 		</style>
 
-		<div id="tittle">{{title}}</div>
-		<img id="logo" src="{{logo}}" alt="filter.ly">
-		<div id="description">{{description}}</div>
+		<div class="center">
+
+				<img class="" id="logo" src="{{logo}}" alt="YourAppName">
+				<div class="" id="tittle">{{tittle}}</div>
+				<div class="" id="description">{{description}}</div>
+
+		</div>
 
 	</template>
 </dom-module>
@@ -37,7 +47,7 @@
 	Polymer({
 		is: 'app-logo-screen',
 		properties:{
-			title		: String,
+			tittle		: String,
 			description	: String,
 			logo		: {
 				type:String

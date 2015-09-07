@@ -7,10 +7,6 @@
 				display: block;
 			}
 
-			app-logo-screen {
-				padding: 32px;
-			}
-
 			#base-footer {
 				position: absolute;
 				left: 0px;
@@ -34,14 +30,14 @@
 			paper-button {
 				font-weight: 100;
 				color: white;
-				background-color: rgba(255, 255, 255, 0.2);
+				background-color: var(--button-background);
 				width: 100%;
 				text-transform: none;
 			}
 		</style>
 
 		<animation-tag animation="fadeInUp">
-			<app-logo-screen title="{{config.language.tittleSplash}}" description="{{config.language.descriptionSplash}}" logo="images/logo-app.png"></app-logo-screen>
+			<app-logo-screen tittle="{{config.language.tittleSplash}}" description="{{config.language.descriptionSplash}}" logo="images/logo-app.png"></app-logo-screen>
 		</animation-tag>
 
 		<div id="base-footer" class="content-footer">

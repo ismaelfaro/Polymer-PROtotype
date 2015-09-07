@@ -1,7 +1,7 @@
 <link rel="import" href="../../styles/app-theme.html">
 
 <dom-module id="app-logic">
-  <link rel="import" type="css" href="../app-filterly.css">
+  <link rel="import" type="css" href="../app-main.css">
 
   <template>
   <style>
@@ -54,16 +54,18 @@
 
         <paper-toolbar id="mainToolbar">
 
+          <span class="flex"></span>
 
           <div id="logo" class="paper-font-display2 app-name">
 
-            <iron-image style="background-position-x: 100%;width:50%; height:50%; padding-top: 50px; margin-top: 8px;" sizing="cover" src="{{config.app.logo}}"></iron-image>
+            <iron-image style="background-position-x: 100%;width:100%; height:100%;" sizing="cover" src="{{config.app.logo}}"></iron-image>
 
           </div>
 
           <span class="flex"></span>
 
           <paper-icon-button id="paperToggle" class="menu-button" icon="menu" paper-drawer-toggle> </paper-icon-button>
+
         </paper-toolbar>
 
         <!-- Main Content -->
@@ -73,12 +75,10 @@
             </section>
 
             <section data-route="chat">
-              <animation-tag animation="slideInUp">
-                <paper-material elevation="1">
+                <paper-material class="thechat" elevation="1">
                   <h2 class="paper-font-display2">{{config.language.tittleChat}}</h2>
-                  <page-chat userData='{{config.userProfile}}'></page-chat>
+                  <page-chat class="thechat" userData='{{config.userProfile}}'></page-chat>
                 </paper-material>
-              </animation-tag>
             </section>
 
             <section data-route="profile">

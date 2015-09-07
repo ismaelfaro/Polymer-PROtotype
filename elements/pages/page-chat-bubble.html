@@ -1,5 +1,5 @@
 
-<dom-module id="page-new-bubble">
+<dom-module id="page-chat-bubble">
 
   <template>
 
@@ -46,7 +46,7 @@
 
 <script>
   Polymer({
-    is: "page-new-bubble",
+    is: "page-chat-bubble",
     behaviors: [appConfig],
     properties: {
       item: {
@@ -58,10 +58,10 @@
     },
     ready: function(){
       if(this.item.uid === this.config.userProfile.uid){
-        this.animation = "bounceInLeft";
+        this.animation = "bounceInRight";
       } else {
         this.$.photo.classList.add('photo-left');
-        this.animation = "bounceInRight";
+        this.animation = "bounceInLeft";
       }
     },
   	openNew:function(){

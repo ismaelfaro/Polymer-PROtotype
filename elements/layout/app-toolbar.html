@@ -1,13 +1,11 @@
 <dom-module id="app-toolbar">
 
-<!--	<link rel="import" type="css" href="../filterly-app.css">-->
-
-	<template>	
+	<template>
 			<style>
 			:host {
 				display: block;
 			}
-				
+
 			#mainToolbar .middle {
 				margin-left: 48px;
 			}
@@ -40,14 +38,14 @@
 				  <!-- Application name -->
 				  <div class="middle paper-font-display2 app-name">
 					<div id="logo">
-						<iron-image style="width:50%; height:50%; padding-top: 50px; margin-top: 14px;" sizing="cover"  src="/images/logo.png" ></iron-image>  
+						<iron-image style="width:50%; height:50%; padding-top: 50px; margin-top: 14px;" sizing="cover"  src="/images/logo.png" ></iron-image>
 					</div>
 				  </div>
 				  <!-- Application sub title -->
 				  <div class="bottom title"></div>
 
         </paper-toolbar>
-		
+
 	</template>
 </dom-module>
 
@@ -58,8 +56,8 @@
 		properties:{
 			paperDrawerToggle:{
 				type: Boolean,
-				notify: true	
-			}	
+				notify: true
+			}
 		},
 		_touchme:function(){
 			this.domHost._openMenu();
