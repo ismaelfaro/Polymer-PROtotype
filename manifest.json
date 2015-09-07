@@ -1,6 +1,6 @@
 {
-  "name": "Filter.ly",
-  "short_name": "Filter.ly",
+  "name": "YourAppName",
+  "short_name": "YourAppName",
   "icons": [{
         "src": "images/touch/icon-128x128.png",
         "sizes": "128x128"
