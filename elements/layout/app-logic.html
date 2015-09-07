@@ -13,6 +13,11 @@
       height: 100%;
     }
 
+    /*.thechat {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }*/
   </style>
 
   <paper-drawer-panel id="paperDrawerPanel" right-drawer>
@@ -73,12 +78,10 @@
             </section>
 
             <section data-route="chat">
-              <animation-tag animation="slideInUp">
-                <paper-material elevation="1">
+                <paper-material class="thechat" elevation="1">
                   <h2 class="paper-font-display2">{{config.language.tittleChat}}</h2>
-                  <page-chat userData='{{config.userProfile}}'></page-chat>
+                  <page-chat class="thechat" userData='{{config.userProfile}}'></page-chat>
                 </paper-material>
-              </animation-tag>
             </section>
 
             <section data-route="profile">

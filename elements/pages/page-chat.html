@@ -6,27 +6,76 @@
   <style>
     :host {
       display: block;
+      height: 100%;
     }
 
     page-new-card{
       margin-bottom: 20px;
     }
 
+    #wrapper{
+    width: 100%;
+    margin-bottom: 70px;
+    }
+
+
+    #chat{
+    width: 100%;
+        overflow:scroll;
+    }
+
+    #bottomPanel{
+        height: 70px;
+        position:fixed;
+        bottom:0px;
+        left:0px;
+        right:0px;
+        z-index: 10;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #fff;
+        border-color: #333;
+        border-width: medium;
+    }
+
+    #bottomPanel paper-input{
+        float: left;
+        top:0px;
+        bottom:10px;
+        left:10px;
+        width: 60%;
+
+    }
+
+    #bottomPanel paper-button{
+        background-color: var(--accent-color);
+        color: #FFF;
+        float:right;
+        top:15px;
+        bottom:10px;
+        width:35%;
+    }
+
+
   </style>
 
-  <section id="chat">
+  <paper-material  id="bottomPanel" elevation="5">
+      <paper-input autofocus id="menssage" label="{{config.language.message}}" value={{message.message}}></paper-input>
+      <paper-button on-tap="_sendMessage" raised>{{config.language.sendMessage}}</paper-button>
+  </paper-material>
 
-        <template is="dom-repeat" items="{{items}}" index-as="index">
-              <page-new-bubble userID="{{userData.uid}}" item="{{item}}" index="{{index}}"></page-new-bubble>
-        </template>
+  <div id="wrapper">
+    <section id="chat">
 
-        <google-map></google-map>
+          <template is="dom-repeat" items="{{items}}" index-as="index">
+                <page-new-bubble userID="{{userData.uid}}" item="{{item}}" index="{{index}}"></page-new-bubble>
+          </template>
 
-        <paper-input id="menssage" label="{{config.language.message}}" value={{message.message}}></paper-input>
+    </section>
 
-        <paper-button on-tap="_sendMessage" raised>{{config.language.sendMessage}}</paper-button>
+  </div>
 
-      </section>
+
 
   </template>
 </dom-module>
@@ -45,36 +94,50 @@
         },
         message: {
           type: Object
+        },
+        scrollChat: {
+          type: Object
         }
       },
       _scrollview: function(){
-        this.config.app.scrollChat.scrollTop = this.config.app.scrollChat.scrollHeight+100;
+        var self = this;
+        window.setTimeout(function(){
+          self.scrollChat.scrollIntoView(false);
+        }, 300);
+
       },
       _sendMessage: function(){
+
         if(!this.message.message) return;
 
         this.message.uid = this.userdata.uid;
         this.message.password = this.userdata.password;
 
-        this.send('posts', this.message, function(data){});
+        this.send('posts', this.message);
 
         this.message = {};
-
+        this.$.menssage.autofocus = true;
+        console.info(this.$.menssage.autofocus);
         this._scrollview();
 
       },
       _populateData: function(data){
         this.items = data;
+        this._scrollview();
       },
       ready: function() {
 
+        this.scrollChat = Polymer.dom(this).parentNode;
         var self = this;
 
         this.message = {};
 
         this.read('posts',function(data){
             self._populateData(data);
+
         });
+
+
       }
     });
   })();
