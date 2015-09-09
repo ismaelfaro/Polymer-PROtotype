@@ -36,6 +36,7 @@
 				background-color: var(--button-background);
 				width: 100%;
 				text-transform: none;
+				margin-top: 24px;
 			}
 
 		</style>
@@ -57,10 +58,9 @@
 					<paper-input id="pwd" label="{{config.language.password}}" type="password" value="{{user.password}}"></paper-input>
 				</div>
 
-				<div class="horizontal center-justified layout buttons">
-					<paper-button on-tap="loginMe">{{config.language.login}}</paper-button>
-					<paper-button on-tap="resetPwd">{{config.language.tittleResetPassword}}</paper-button>
-				</div>
+				<paper-button on-tap="loginMe">{{config.language.login}}</paper-button>
+				<paper-button on-tap="resetPwd">{{config.language.tittleResetPassword}}</paper-button>
+
 
 				<app-footer-buttons page="{{page}}" config="{{config}}"></app-footer-buttons>
 

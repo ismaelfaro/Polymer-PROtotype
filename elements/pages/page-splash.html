@@ -33,6 +33,7 @@
 				background-color: var(--button-background);
 				width: 100%;
 				text-transform: none;
+				margin-top: 24px;
 			}
 		</style>
 
@@ -42,10 +43,8 @@
 
 		<div id="base-footer" class="content-footer">
 			<animation-tag animation="fadeInUp">
-				<div class="horizontal center-justified layout buttons">
-						<paper-button on-tap="bLogin">{{config.language.login}}</paper-button>
-						<paper-button on-tap="bRegister">{{config.language.register}}</paper-button>
-				</div>
+				<paper-button on-tap="bLogin">{{config.language.login}}</paper-button>
+				<paper-button on-tap="bRegister">{{config.language.register}}</paper-button>
 			</animation-tag>
 		</div>
 
