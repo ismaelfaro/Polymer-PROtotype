@@ -1,10 +1,28 @@
 {
-  "private": true,
-  "devDependencies": {
-     "paper-elements": "PolymerElements/paper-elements",
-     "iron-elements": "PolymerElements/iron-elements",
+  "name": "polymer-pro",
+  "version": "1.0.0",
+  "description": "Complete Web-App scaffolding based in [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/index?hl=en). You can use it to create a WebAPP prototype.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismaelfaro/Web-APP-Polymer-Base.git"
   },
-  "engines": {
-    "node": ">=0.10.0"
+  "author": "ismael faro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ismaelfaro/Web-APP-Polymer-Base/issues"
+  },
+  "homepage": "https://github.com/ismaelfaro/Web-APP-Polymer-Base#readme",
+  "devDependencies": {
+    "paper-elements": "PolymerElements/paper-elements",
+    "iron-elements": "PolymerElements/iron-elements",
+    "gulp": "^3.9.0",
+    "gulp-crisper": "0.0.5",
+    "gulp-htmlmin": "^1.1.4",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-removelogs": "^0.1.0",
+    "gulp-shell": "^0.4.3",
+    "gulp-uglify": "^1.4.0",
+    "gulp-uncss": "^1.0.3",
+    "gulp-vulcanize": "^6.0.1"
   }
 }
