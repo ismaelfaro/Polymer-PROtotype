@@ -1,4 +1,4 @@
-# Web-APP-Polymer-Base
+# Polymer PRO-toype - Web-APP-Base
 Complete Web-App scaffolding based in [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/index?hl=en).
 You can use it to create a WebAPP prototype.
 
