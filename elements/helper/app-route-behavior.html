@@ -30,7 +30,15 @@ appRoute = {
 			this.route = value;
 
 		},
-
+    _validateHash:function( hash ){
+      var splitHash = hash.split('/');
+      
+      if (splitHash[0] && splitHash[0] === '#!'){
+         return true;
+      } else {
+        return false;
+      }
+    },
 		initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
@@ -45,7 +53,8 @@ appRoute = {
 			} else {
 				this._showInit();
 				// Fix Safari and firefox splash.
-				if( window.location.hash !== '#!/') this._changePage('splash');
+        console.info(window.location.hash);
+				if( !this._validateHash( window.location.hash )) this._changePage('splash');
 				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
 			}
 		},
