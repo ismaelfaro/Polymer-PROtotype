@@ -1,7 +1,8 @@
 {
-  "name": "polymer-starter-kit",
+  "name": "polymer-PRO-totype",
   "private": true,
   "dependencies": {
+    "polymer": "Polymer/polymer",
     "iron-elements": "PolymerElements/iron-elements#1.0.0",
     "paper-elements": "PolymerElements/paper-elements#1.0.1",
     "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
