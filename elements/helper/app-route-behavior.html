@@ -32,7 +32,7 @@ appRoute = {
 		},
     _validateHash:function( hash ){
       var splitHash = hash.split('/');
-      
+
       if (splitHash[0] && splitHash[0] === '#!'){
          return true;
       } else {
@@ -42,7 +42,7 @@ appRoute = {
 		initRoute: function(){
 			if( window.location.hash === '#!/undefined') this._changePage('splash');
 
-			this.config.consoldev('user auth : ' + this.config.userProfile.auth);
+			// this.config.consoldev('user auth : ' + this.config.userProfile.auth);
 
 			if ( this.config.userProfile.auth ) {
 
@@ -53,7 +53,7 @@ appRoute = {
 			} else {
 				this._showInit();
 				// Fix Safari and firefox splash.
-        console.info(window.location.hash);
+        // console.info(window.location.hash);
 				if( !this._validateHash( window.location.hash )) this._changePage('splash');
 				// if( window.location.hash !== '#!/' || window.location.pathname !== '/' ) this._changePage('splash');
 			}
