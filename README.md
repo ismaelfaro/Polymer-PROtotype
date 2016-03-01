@@ -46,6 +46,10 @@ The idea is create a set of tools, using Polymer (web components), to help entre
 * manifestIOS // it's necesary update it.
 * manifest.json
 
+## Install dependencies
+
+ * bower i
+
 ## TODO:
 
 * Complete the Cordova integration
